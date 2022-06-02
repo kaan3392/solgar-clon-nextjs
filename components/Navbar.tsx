@@ -5,9 +5,15 @@ import Image from "next/image";
 import { dropdownButtons } from "../data";
 import Link from "next/link";
 
-const MainContainer = styled.div`
-  position: relative;
+const Container = styled.div`
+  height: 100px;
+  background-color: #fffaf3;
+  border-bottom: 1px solid #d3b595;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 `;
+
 const PseudoCon = styled.div`
   width: 100vw;
   height: calc(100vh - 130px);
@@ -18,14 +24,6 @@ const PseudoCon = styled.div`
   top: 0;
 `;
 
-const Container = styled.div`
-  height: 100px;
-  background-color: #fffaf3;
-  border-bottom: 1px solid #d3b595;
-  position: sticky;
-  top: 0;
-  z-index: 999;
-`;
 const Wrapper = styled.div`
   padding: 0px 80px;
   display: flex;
@@ -200,7 +198,7 @@ const Navbar: React.FunctionComponent = () => {
   };
 
   return (
-    <MainContainer>
+    
       <Container>
         {(productDropdown || institutionalDropdown) && (
           <PseudoCon onClick={pseudeoClick}></PseudoCon>
@@ -278,7 +276,6 @@ const Navbar: React.FunctionComponent = () => {
           </Right>
         </Wrapper>
       </Container>
-    </MainContainer>
   );
 };
 

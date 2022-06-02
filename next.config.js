@@ -6,7 +6,7 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ['assets.vercel.com',"online.solgar.com.tr","st.myideasoft.com","www.solgar.com"],
+    domains: ['assets.vercel.com',"online.solgar.com.tr","st.myideasoft.com","www.solgar.com","solgar.com.tr"],
     formats: ['image/avif', 'image/webp'],
   },
 };

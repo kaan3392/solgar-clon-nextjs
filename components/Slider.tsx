@@ -53,13 +53,13 @@ const ImageContainer = styled.div`
   justify-content: center;
 `;
 
-const Dots = styled.div`
+export const Dots = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-const Dot = styled.div<DotProps>`
+export const Dot = styled.div<DotProps>`
   height: 8px;
   width: 8px;
   border-radius: 50%;

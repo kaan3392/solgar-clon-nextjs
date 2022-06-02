@@ -2,7 +2,7 @@ type DB = {
     
         id:number,
         title:string
-    }
+}
 
 export const dropdownButtons:DB[] = [
     {
@@ -65,7 +65,6 @@ type Slider = {
     img:string
 }
 
-
 export const slider:Slider[] = [
     
     {
@@ -98,3 +97,102 @@ export const slider:Slider[] = [
     }
 
 ]
+
+type Products = {
+    
+    id:number,
+    img:string,
+    categories:string,
+    title:string
+}
+
+export const products:Products[] = [
+    {
+        id:1,
+        img:"/img/esterc.png",
+        categories:"Vitaminler",
+        title:"Ester C-plus"
+    },
+    {
+        id:2,
+        img:"/img/iron.png",
+        categories:"Mineraller",
+        title:"Gentle Iron"
+    },
+    {
+        id:3,
+        img:"/img/hyalu.png",
+        categories:"Özel Takviye",
+        title:"Hyarulonic Asitler"
+    },
+    {
+        id:4,
+        img:"/img/vitb.png",
+        categories:"Vitaminler",
+        title:"Vitamin B-12"
+    },
+    {
+        id:5,
+        img:"/img/magnez.png",
+        categories:"Mineraller",
+        title:"Magnesium Citrate"
+    },
+    {
+        id:6,
+        img:"/img/quercetin.png",
+        categories:"Özel Takviyeler",
+        title:"Quercetin Complex"
+    },
+    {
+        id:7,
+        img:"/img/d3.png",
+        categories:"Vitaminler",
+        title:"Vitamin D-3 1000IU"
+    },
+]
+
+type CategoriesSlide = {
+    
+    id:number,
+    title:string,
+    img:string,
+}
+
+export const catSlides:CategoriesSlide[]= [
+    {
+        id:1,
+        title:"Probiyotikler",
+        img:"https://solgar.com.tr/assets/images/probiyotikler.webp"
+    },
+    {
+        id:2,
+        title:"B Vitaminleri",
+        img:"https://solgar.com.tr/assets/images/b_vitaminleri.webp"
+    },
+    {
+        id:3,
+        title:"Çocuk Ürünleri",
+        img:"https://solgar.com.tr/assets/images/cocuk_urunleri.webp"
+    },
+    {
+        id:4,
+        title:"Mineraller",
+        img:"https://solgar.com.tr/assets/images/mineraller.webp"
+    },
+    {
+        id:5,
+        title:"Omega-3",
+        img:"https://solgar.com.tr/assets/images/esansiyel_yag_asitleri.webp"
+    },
+    {
+        id:6,
+        title:"Multivitaminler",
+        img:"https://solgar.com.tr/assets/images/multivitaminler.webp"
+    },
+    {
+        id:7,
+        title:"Özel Takviyeler",
+        img:"https://solgar.com.tr/assets/images/vitaminler.webp"
+    },
+]
+
