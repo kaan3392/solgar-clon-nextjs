@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import Slider from "../components/Slider";
 
 const Home: NextPage = () => {
   return (
@@ -13,7 +14,7 @@ const Home: NextPage = () => {
           rel="stylesheet"
         />
       </Head>
-      <div>hey</div>
+      <Slider/>
     </div>
   );
 };
