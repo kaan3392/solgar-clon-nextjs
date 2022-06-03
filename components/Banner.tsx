@@ -12,6 +12,9 @@ const Wrapper = styled.div`
   @media only screen and (max-width: 768px) {
     padding: 0 30px;
   }
+  @media only screen and (max-width: 380px) {
+    padding: 0 10px;
+  }
 `;
 const Items = styled.div`
  display: flex;
@@ -23,6 +26,11 @@ const Items = styled.div`
       color: #FFE2B8;
       cursor: pointer;
       opacity: 0.6;
+  }
+  @media only screen and (max-width: 380px) {
+    svg{
+      font-size: 20px;
+    }
   }
 `;
 

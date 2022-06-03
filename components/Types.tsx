@@ -13,3 +13,6 @@ export interface ArrowDirectionProps {
   right?: boolean;
   left?: boolean;
 }
+export interface HorizontalProps {
+  horizontal?:boolean
+}

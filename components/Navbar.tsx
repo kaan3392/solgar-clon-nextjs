@@ -15,6 +15,7 @@ const Container = styled.div`
   @media only screen and (max-width: 768px) {
     height: 55px;
   }
+  
 `;
 
 const PseudoCon = styled.div`
@@ -36,10 +37,18 @@ const Wrapper = styled.div`
   @media only screen and (max-width: 768px) {
     padding: 0 10px;
   }
+  @media only screen and (max-width: 380px) {
+    padding: 0 5px;
+  }
+  
 `;
+
 
 const Left = styled.div`
   flex: 1;
+  @media only screen and (max-width: 380px) {
+    flex:1.5;
+  }
 `;
 
 const Center = styled.div`
@@ -188,8 +197,14 @@ const Right = styled.div`
     flex:5;
     background-color: #fcead9;
     border-radius: 5px;
-    padding: 5px;
-
+    border-bottom: none;
+    svg{
+      font-size: 30px;
+      font-weight: 300;
+    }
+  }
+  @media only screen and (max-width: 380px) {
+    margin-left:5px;
   }
 `;
 
@@ -204,12 +219,22 @@ const Input = styled.input`
   align-items: center;
   justify-content: center;
   font-size: 15px;
-  :focus {
+  &:focus {
     outline: none;
+  }
+  &::placeholder{
+    font-weight: 300;
   }
   @media only screen and (max-width: 768px) {
     padding:5px ;
     font-weight: 300;
+  }
+  @media only screen and (max-width: 380px) {
+    &::placeholder{
+      font-size: 14px;
+      padding-left: 5px;
+      font-weight: 200;
+    }
   }
   
 `;

@@ -22,10 +22,13 @@ const Container = styled.div`
   @media only screen and (max-width: 768px) {
     height: calc(65vh - 85px);
   }
+  @media only screen and (max-width: 380px) {
+    height: calc(75vh - 85px);
+  }
 `;
 
 const Title = styled.div`
-  margin-top: 20px;
+  margin-top: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,6 +49,9 @@ const Slide = styled.div`
   @media only screen and (max-width: 768px) {
     padding: 0 40px;
   }
+  @media only screen and (max-width: 380px) {
+    padding: 0 20px;
+  }
 `;
 
 const Arrow = styled.div<ArrowDirectionProps>`
@@ -53,12 +59,16 @@ const Arrow = styled.div<ArrowDirectionProps>`
   position: absolute;
   cursor: pointer;
   z-index: 2;
-  opacity: 0.3;
+  opacity: 0.5;
   left: ${(props) => props.left && "90px"};
   right: ${(props) => props.right && "90px"};
   @media only screen and (max-width: 768px) {
     left: ${(props) => props.left && "10px"};
     right: ${(props) => props.right && "10px"};
+  }
+  @media only screen and (max-width: 768px) {
+    left: ${(props) => props.left && "20px"};
+    right: ${(props) => props.right && "20px"};
   }
 `;
 
@@ -80,19 +90,25 @@ const CatWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
+  box-sizing: border-box;
   height: 350px;
   background-color: white;
   margin-left: 10px;
-  min-width: 24%;
+  min-width: 24.5%;
   overflow: hidden;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   border-bottom: 1px solid #8f8f8f;
-  &:first-child{
+  &:first-child {
     margin-left: 0;
   }
   @media only screen and (max-width: 768px) {
     min-width: 49%;
+  }
+  @media only screen and (max-width: 380px) {
+    min-width: 100%;
+    height: 300px;
+ 
   }
 `;
 
@@ -134,9 +150,13 @@ const Categories = () => {
 
   const handleClick = (direction: string) => {
     if (direction === "left") {
-      setCatSlide(catSlide > 0 ? catSlide - 1 : catSlides.length - numberOfProductShown);
+      setCatSlide(
+        catSlide > 0 ? catSlide - 1 : catSlides.length - numberOfProductShown
+      );
     } else {
-      setCatSlide(catSlide < catSlides.length - numberOfProductShown ? catSlide + 1 : 0);
+      setCatSlide(
+        catSlide < catSlides.length - numberOfProductShown ? catSlide + 1 : 0
+      );
     }
   };
 
@@ -198,7 +218,7 @@ const Categories = () => {
           <ArrowForwardIosOutlined />
         </Arrow>
       </Slide>
-      <DotsLoop/>
+      <DotsLoop />
     </Container>
   );
 };

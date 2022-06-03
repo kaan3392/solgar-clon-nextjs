@@ -2,13 +2,20 @@ import React from "react";
 import { Facebook, Instagram, YouTube } from "@mui/icons-material";
 import styled from "styled-components";
 import Image from "next/image";
+import { HorizontalProps } from "./Types";
 
 const Container = styled.div`
-  height: 80vh;
+  height: 90vh;
   width: 100%;
   background-color: #302519;
   display: flex;
   flex-direction: column;
+  @media only screen and (max-width: 768px) {
+    height: 60vh;
+  }
+  @media only screen and (max-width: 380px) {
+    height: 80vh;
+  }
 `;
 
 const Top = styled.div`
@@ -17,28 +24,14 @@ const Top = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   border-bottom: 1px solid rgb(102, 93, 43);
+  @media only screen and (max-width: 768px) {
+    padding: 30px;
+  }
+  @media only screen and (max-width: 380px) {
+    padding: 20px;
+    flex-direction: column;
+  }
 `;
-
-const List = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  text-align: start;
-  justify-content: flex-start;
-  flex-direction: column;
-`;
-
-const ListGroup = styled.div`
-flex:1;
-`;
-
-const Title = styled.div`
-  margin-bottom: 10px;
-  color: rgb(240, 216, 82);
-  font-weight: 600;
-`;
-
 const Item = styled.li`
   color: white;
   display: flex;
@@ -48,12 +41,59 @@ const Item = styled.li`
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  &:hover{
-    color: #FFDC8F;
+  &:hover {
+    color: #ffdc8f;
   }
   svg {
     margin-right: 5px;
   }
+`;
+
+const List = styled.ul<HorizontalProps>`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  text-align: start;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  @media only screen and (max-width: 768px) {
+    flex-direction: ${(props) => props.horizontal && "row"};
+    flex-wrap: wrap;
+    align-content: stretch;
+  }
+`;
+
+const ListGroup = styled.div`
+  display: flex;
+  flex: 1;
+  &:nth-child(3) {
+    flex: 2;
+  }
+  @media only screen and (max-width: 768px) {
+    &:last-child,
+    :first-child {
+      display: none;
+    }
+    &:nth-child(2) {
+      flex: 2.5;
+      ${List} {
+        ${Item} {
+          width: 45%;
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: 380px) {
+    margin-bottom: 20px;
+  }
+`;
+
+const Title = styled.div`
+  margin-bottom: 10px;
+  color: rgb(240, 216, 82);
+  font-weight: 600;
 `;
 
 const Logo = styled.div`
@@ -67,6 +107,10 @@ const Bottom = styled.div`
   justify-content: center;
   flex-direction: column;
   padding: 30px 0px;
+  @media only screen and (max-width: 380px) {
+    padding: 10px;
+    text-align: center;
+  }
 `;
 
 const BTitle = styled.h2`
@@ -90,60 +134,72 @@ const Text = styled.p`
   font-size: 13px;
 `;
 
+const MobileCon = styled.div`
+  display: flex;
+  flex:1;
+  flex-direction: column;
+`;
+
 const Footer = () => {
   return (
     <Container>
       <Top>
         <ListGroup>
-          <Title>TAKİP EDİN</Title>
-          <List>
-            <Item>
-              <Facebook /> Facebook
-            </Item>
-            <Item>
-              <Instagram /> Instagram
-            </Item>
-            <Item>
-              <YouTube /> Youtube
-            </Item>
-          </List>
+          <MobileCon>
+            <Title>TAKİP EDİN</Title>
+            <List>
+              <Item>
+                <Facebook /> Facebook
+              </Item>
+              <Item>
+                <Instagram /> Instagram
+              </Item>
+              <Item>
+                <YouTube /> Youtube
+              </Item>
+            </List>
+          </MobileCon>
         </ListGroup>
         <ListGroup>
-          <Title>ÜRÜNLER</Title>
-          <List>
-            <Item>Amino Asitler ve Proteinler</Item>
-            <Item>Bitkisel Takviyeler</Item>
-            <Item>Çocuk Ürünleri</Item>
-            <Item>Esansiyel Yağ Asitle</Item>
-            <Item>Kalsiyum Grubu</Item>
-            <Item>Koenzim Q-10</Item>
-            <Item>Mineraller</Item>
-            <Item>Multivitaminler</Item>
-            <Item>Özel Takviyeler</Item>
-            <Item>Probiyotikler</Item>
-            <Item>Vitaminler</Item>
-            <Item>B Vitaminleri</Item>
-          </List>
+          <MobileCon>
+            <Title>ÜRÜNLER</Title>
+            <List horizontal>
+              <Item>Amino Asitler ve Proteinler</Item>
+              <Item>Bitkisel Takviyeler</Item>
+              <Item>Çocuk Ürünleri</Item>
+              <Item>Esansiyel Yağ Asitle</Item>
+              <Item>Kalsiyum Grubu</Item>
+              <Item>Koenzim Q-10</Item>
+              <Item>Mineraller</Item>
+              <Item>Multivitaminler</Item>
+              <Item>Özel Takviyeler</Item>
+              <Item>Probiyotikler</Item>
+              <Item>Vitaminler</Item>
+              <Item>B Vitaminleri</Item>
+            </List>
+          </MobileCon>
         </ListGroup>
         <ListGroup>
-          <Title>KURUMSAL</Title>
-          <List>
-            <Item>Hakkımızda</Item>
-            <Item>Felsefemiz</Item>
-            <Item>Solgar Tarihi</Item>
-            <Item>Altın Standart</Item>
-            <Item>Ödül Kazanan Ürünler</Item>
-          </List>
-        </ListGroup>
-        <ListGroup>
-          <Title>SOLGAR</Title>
-          <List>
-            <Item>İletişim</Item>
-            <Item>En Yakın Eczane</Item>
-            <Item>Sıkça Sorulan Sorular</Item>
-            <Item>Gizlilik Politikası</Item>
-            <Item>Çerez Politikası</Item>
-          </List>
+          <MobileCon>
+            <Title>KURUMSAL</Title>
+            <List>
+              <Item>Hakkımızda</Item>
+              <Item>Felsefemiz</Item>
+              <Item>Solgar Tarihi</Item>
+              <Item>Altın Standart</Item>
+              <Item>Ödül Kazanan Ürünler</Item>
+            </List>
+          </MobileCon>
+          <MobileCon>
+            <Title>SOLGAR</Title>
+            <List>
+              <Item>İletişim</Item>
+              <Item>En Yakın Eczane</Item>
+              <Item>Sıkça Sorulan Sorular</Item>
+              <Item>Gizlilik Politikası</Item>
+              <Item>Çerez Politikası</Item>
+            </List>
+          </MobileCon>
         </ListGroup>
         <ListGroup>
           <Logo>
@@ -163,4 +219,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

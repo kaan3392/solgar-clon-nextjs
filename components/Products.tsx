@@ -13,12 +13,19 @@ const Container = styled.div`
   @media only screen and (max-width: 768px) {
     height: calc(80vh - 85px);
   }
+  @media only screen and (max-width: 380px) {
+    height: calc(90vh - 85px);
+    padding: 20px 0px;
+  }
 `;
 
 const Wrapper = styled.div`
   margin: 0px 200px;
   @media only screen and (max-width: 768px) {
     margin: 0 50px;
+  }
+  @media only screen and (max-width: 380px) {
+    margin: 0 10px;
   }
 `;
 
@@ -40,11 +47,16 @@ const Title = styled.span`
 
 const SubTitle = styled.h1`
   color: #802c1c;
-  font-size: 1.5rem;
+  font-size: 24px;
   letter-spacing: 0.1rem;
   margin-bottom: 15px;
   @media only screen and (max-width: 768px) {
     margin-bottom: 10px;
+  }
+  @media only screen and (max-width: 380px) {
+    letter-spacing: 1px;
+    text-align: center;
+    font-size: 22px;
   }
 `;
 
@@ -52,6 +64,9 @@ const Info = styled.p`
   text-align: center;
   margin-bottom: 15px;
   font-weight: 500;
+  @media only screen and (max-width: 380px) {
+    line-height: 1.8rem;
+  }
 `;
 
 const Slider = styled.div`
@@ -66,7 +81,7 @@ const Arrow = styled.div`
   position: absolute;
   cursor: pointer;
   z-index: 2;
-  opacity: 0.3;
+  opacity: 0.5;
 `;
 
 const ImgCon = styled.div`
@@ -84,6 +99,10 @@ const PContainer = styled.div`
   flex-direction: column;
   @media only screen and (max-width: 768px) {
     min-width: 50%;
+  }
+  @media only screen and (max-width: 380px) {
+    min-width: 100%;
+    height: 300px;
   }
 `;
 

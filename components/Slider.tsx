@@ -13,6 +13,9 @@ const Container = styled.div`
   @media only screen and (max-width: 768px) {
     height: calc(45vh - 85px);
   }
+  @media only screen and (max-width: 380px) {
+    height: calc(40vh - 85px);
+  }
 `;
 
 const SliderContainer = styled.div`
@@ -41,7 +44,10 @@ const Arrow = styled.div<ArrowProps>`
   display: flex;
   cursor: pointer;
   z-index: 2;
-  opacity: 0.3;
+  opacity: 0.5;
+  &:hover{
+    opacity: 1;
+  }
 `;
 
 const ImageConLittle = styled.div<ImageProps>`
@@ -59,6 +65,9 @@ const ImageContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  @media only screen and (max-width: 380px) {
+    object-fit: cover;
+  }
 `;
 
 export const Dots = styled.div`
