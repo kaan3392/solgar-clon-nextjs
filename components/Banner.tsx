@@ -9,6 +9,9 @@ const Container = styled.div`
 const Wrapper = styled.div`
   padding: 0px 80px;
   height: 100%;
+  @media only screen and (max-width: 768px) {
+    padding: 0 30px;
+  }
 `;
 const Items = styled.div`
  display: flex;
@@ -19,6 +22,7 @@ const Items = styled.div`
       margin-left: 5px;
       color: #FFE2B8;
       cursor: pointer;
+      opacity: 0.6;
   }
 `;
 

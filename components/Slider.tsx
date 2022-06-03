@@ -1,4 +1,4 @@
-import { ArrowBack, ArrowForward } from "@mui/icons-material";
+import { ArrowBack, ArrowForward, LowPriority } from "@mui/icons-material";
 import Image from "next/image";
 import React, { useState } from "react";
 import styled from "styled-components";
@@ -10,6 +10,9 @@ const Container = styled.div`
   background-color: #fffaf3;
   display: flex;
   flex-direction: column;
+  @media only screen and (max-width: 768px) {
+    height: calc(45vh - 85px);
+  }
 `;
 
 const SliderContainer = styled.div`
@@ -26,6 +29,10 @@ const Wrapper = styled.div`
   overflow: hidden;
   position: relative;
   cursor: pointer;
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    
+  }
 `;
 
 const Arrow = styled.div<ArrowProps>`
@@ -41,7 +48,7 @@ const ImageConLittle = styled.div<ImageProps>`
   width: ${(props) => (props.active ? "100%" : "0")};
   height: ${(props) => (props.active ? "100%" : "0")};
   opacity: ${(props) => (props.active ? "1" : "0")};
-  transition: opacity 1s;
+  transition: opacity .5s;
 `;
 
 const ImageContainer = styled.div`
@@ -51,6 +58,7 @@ const ImageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 `;
 
 export const Dots = styled.div`
@@ -90,7 +98,7 @@ const Slider = () => {
           {slider.map((slide) => (
             <ImageConLittle active={slide.id === currentImg} key={slide.id}>
               <ImageContainer>
-                <Image src={slide.img} alt="" layout="fill" objectFit="cover" />
+                <Image src={slide.img} alt="" layout="fill" objectFit="cover" priority />
               </ImageContainer>
             </ImageConLittle>
           ))}

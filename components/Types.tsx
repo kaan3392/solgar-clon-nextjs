@@ -8,3 +8,8 @@ export interface ImageProps {
 export interface ArrowProps {
     onClick: React.MouseEventHandler<HTMLDivElement>;
 }
+
+export interface ArrowDirectionProps {
+  right?: boolean;
+  left?: boolean;
+}

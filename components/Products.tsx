@@ -10,10 +10,16 @@ const Container = styled.div`
   width: 100%;
   background-color: #fffaf3;
   padding: 40px 0px;
+  @media only screen and (max-width: 768px) {
+    height: calc(80vh - 85px);
+  }
 `;
 
 const Wrapper = styled.div`
   margin: 0px 200px;
+  @media only screen and (max-width: 768px) {
+    margin: 0 50px;
+  }
 `;
 
 const Text = styled.div`
@@ -27,6 +33,9 @@ const Title = styled.span`
   letter-spacing: 0.3rem;
   margin-bottom: 15px;
   font-weight: 500;
+  @media only screen and (max-width: 768px) {
+    margin-bottom: 5px;
+  }
 `;
 
 const SubTitle = styled.h1`
@@ -34,6 +43,9 @@ const SubTitle = styled.h1`
   font-size: 1.5rem;
   letter-spacing: 0.1rem;
   margin-bottom: 15px;
+  @media only screen and (max-width: 768px) {
+    margin-bottom: 10px;
+  }
 `;
 
 const Info = styled.p`
@@ -65,16 +77,14 @@ const ImgCon = styled.div`
 
 const PContainer = styled.div`
   min-width: 33%;
-  min-height: 90%;
-`;
-
-const PWrapper = styled.div`
+  height: 400px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   flex-direction: column;
-  height: 400px;
-  width: 100%;
+  @media only screen and (max-width: 768px) {
+    min-width: 50%;
+  }
 `;
 
 const PImg = styled.div`
@@ -97,24 +107,44 @@ const PTitle = styled.h2`
 
 const Products = () => {
   const [index, setIndex] = useState(0);
+  const [slideWidth, setSlideWidth] = useState<number>(0);
+  const [numberOfProductShown, setNumberOfProductShown] = useState<any>(null);
   const slideRef = useRef<HTMLDivElement | null>(null);
   const imgRef = useRef<HTMLDivElement | null>(null);
 
   const handleClick = (direction: string) => {
     if (direction === "left") {
-      setIndex(index > 0 ? index - 1 : 4);
+      setIndex(index > 0 ? index - 1 : products.length - numberOfProductShown);
     }
     if (direction === "right") {
-      setIndex(index < 4 ? index + 1 : 0);
+      setIndex(index < products.length - numberOfProductShown ? index + 1 : 0);
     }
   };
-
+ 
   useEffect(() => {
-    if (!slideRef.current) { return } 
-    const slideWidth = slideRef.current.clientWidth;
-    if (!imgRef.current) { return } 
-    imgRef.current.style.transform = `translateX(${-slideWidth * index}px)`
-}, [index])
+    if (!slideRef.current) {
+      return;
+    }
+    setSlideWidth(slideRef.current.clientWidth);
+    if (!imgRef.current) {
+      return;
+    }
+    imgRef.current.style.transform = `translateX(${-slideWidth * index}px)`;
+    setNumberOfProductShown(
+      Math.round(imgRef.current.clientWidth / slideRef.current.clientWidth)
+    );
+    console.log(numberOfProductShown);
+  }, [index, slideWidth]);
+
+  const DotsLoop: React.FunctionComponent = () => {
+    return (
+      <Dots>
+        {[...Array(products.length - numberOfProductShown + 1)].map((e, i) => {
+          return <Dot key={i} active={index === i}></Dot>;
+        })}
+      </Dots>
+    );
+  };
 
   return (
     <Container>
@@ -134,19 +164,18 @@ const Products = () => {
           </Arrow>
           <ImgCon ref={imgRef}>
             {products.map((product) => (
-              <PContainer key={product.id} className="productContainer">
-                <PWrapper ref={slideRef}>
-                  <PImg>
-                    <Image
-                      src={product.img}
-                      alt=""
-                      objectFit="contain"
-                      layout="fill"
-                    />
-                  </PImg>
-                  <PCat className="productCat">{product.categories}</PCat>
-                  <PTitle className="productTitle">{product.title}</PTitle>
-                </PWrapper>
+              <PContainer key={product.id} ref={slideRef}>
+                <PImg>
+                  <Image
+                    src={product.img}
+                    alt=""
+                    objectFit="contain"
+                    layout="fill"
+                    priority
+                  />
+                </PImg>
+                <PCat className="productCat">{product.categories}</PCat>
+                <PTitle className="productTitle">{product.title}</PTitle>
               </PContainer>
             ))}
           </ImgCon>
@@ -155,13 +184,7 @@ const Products = () => {
           </Arrow>
         </Slider>
       </Wrapper>
-      <Dots>
-        <Dot active={index === 0}></Dot>
-        <Dot active={index === 1}></Dot>
-        <Dot active={index === 2}></Dot>
-        <Dot active={index === 3}></Dot>
-        <Dot active={index === 4}></Dot>
-      </Dots>
+      <DotsLoop />
     </Container>
   );
 };

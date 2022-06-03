@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { KeyboardArrowDown, Search } from "@mui/icons-material";
+import { KeyboardArrowDown, Search, DragHandle } from "@mui/icons-material";
 import Image from "next/image";
 import { dropdownButtons } from "../data";
 import Link from "next/link";
@@ -12,6 +12,9 @@ const Container = styled.div`
   position: sticky;
   top: 0;
   z-index: 999;
+  @media only screen and (max-width: 768px) {
+    height: 55px;
+  }
 `;
 
 const PseudoCon = styled.div`
@@ -30,14 +33,22 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 100%;
+  @media only screen and (max-width: 768px) {
+    padding: 0 10px;
+  }
 `;
+
 const Left = styled.div`
   flex: 1;
 `;
+
 const Center = styled.div`
   flex: 3;
   height: 100%;
   padding: 0 10px;
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const List = styled.ul`
@@ -49,6 +60,7 @@ const List = styled.ul`
   justify-content: flex-start;
   text-align: center;
   height: 100%;
+  
 `;
 
 const ListItems = styled.li<{
@@ -98,6 +110,7 @@ const PCLeft = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
+
 const PCLeftItems = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -121,6 +134,7 @@ const PCLeftItems = styled.div`
     color: white;
   }
 `;
+
 const InstitutionalCon = styled.div`
   display: flex;
   align-items: center;
@@ -170,13 +184,20 @@ const Right = styled.div`
     color: gray;
     font-weight: lighter;
   }
+  @media only screen and (max-width: 768px) {
+    flex:5;
+    background-color: #fcead9;
+    border-radius: 5px;
+    padding: 5px;
+
+  }
 `;
 
 const Input = styled.input`
   width: 100%;
   background-color: inherit;
   border: none;
-  padding: 5px 5px 15px 5px;
+  padding: 5px 5px 10px 5px;
   align-items: center;
   font-size: 14px;
   display: flex;
@@ -186,7 +207,28 @@ const Input = styled.input`
   :focus {
     outline: none;
   }
+  @media only screen and (max-width: 768px) {
+    padding:5px ;
+    font-weight: 300;
+  }
+  
 `;
+const MenuIcon = styled.div`
+display: none;
+@media only screen and (max-width: 768px) {
+    display: block;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg{
+
+      font-weight:lighter;
+      font-size: 35px;
+    }
+  }
+
+`
 
 const Navbar: React.FunctionComponent = () => {
   const [productDropdown, setProductDropdown] = useState(false);
@@ -198,86 +240,87 @@ const Navbar: React.FunctionComponent = () => {
   };
 
   return (
-    
-      <Container>
-        {(productDropdown || institutionalDropdown) && (
-          <PseudoCon onClick={pseudeoClick}></PseudoCon>
-        )}
-        <Wrapper>
-          <Left>
-            <Image
-              src="/img/solgar.PNG"
-              alt=""
-              width={220}
-              height={100}
-              objectFit="contain"
-            />
-          </Left>
-          <Center>
-            <List>
-              <ListItems
-                productDropdown={productDropdown}
-                onClick={() => {
-                  setProductDropdown(!productDropdown);
-                  setInstitutionalDropdown(false);
-                }}
-              >
-                ÜRÜNLER <KeyboardArrowDown />
-                {productDropdown && (
-                  <ProductContainer>
-                    <PCLeft>
-                      {dropdownButtons.map((button) => (
-                        <PCLeftItems>
-                          <Link
-                            style={{ textDecoration: "none", color: "inherit" }}
-                            href="/products"
-                          >
-                            {button.title}
-                          </Link>
-                        </PCLeftItems>
-                      ))}
-                    </PCLeft>
-                    <PCRight>
-                      <Image
-                        src="/img/droplogo.PNG"
-                        alt=""
-                        width={500}
-                        height={150}
-                      />
-                    </PCRight>
-                  </ProductContainer>
-                )}
-              </ListItems>
-              <ListItems
-                institutionalDropdown={institutionalDropdown}
-                onClick={() => {
-                  setInstitutionalDropdown(!institutionalDropdown);
-                  setProductDropdown(false);
-                }}
-              >
-                KURUMSAL <KeyboardArrowDown />
-                {institutionalDropdown && (
-                  <InstitutionalCon>
-                    <InstiItem>Hakkımızda</InstiItem>
-                    <InstiItem>Felsefemiz</InstiItem>
-                    <InstiItem>Solgar Tarihi</InstiItem>
-                    <InstiItem>Altın Standart</InstiItem>
-                    <InstiItem>Ödül Kazanan Ürünler</InstiItem>
-                  </InstitutionalCon>
-                )}
-              </ListItems>
-              <ListItems>EN YAKIN ECZANE</ListItems>
-              <ListItems>İLETİŞİM</ListItems>
-            </List>
-          </Center>
-          <Right>
-            <Input type="text" placeholder="Solgar'da Ara" />
-            <Search />
-          </Right>
-        </Wrapper>
-      </Container>
+    <Container>
+      {(productDropdown || institutionalDropdown) && (
+        <PseudoCon onClick={pseudeoClick}></PseudoCon>
+      )}
+      <Wrapper>
+        <Left>
+          <Image
+            src="/img/solgar.PNG"
+            alt=""
+            width={220}
+            height={100}
+            objectFit="contain"
+          />
+        </Left>
+        <Center>
+          <List>
+            <ListItems
+              productDropdown={productDropdown}
+              onClick={() => {
+                setProductDropdown(!productDropdown);
+                setInstitutionalDropdown(false);
+              }}
+            >
+              ÜRÜNLER <KeyboardArrowDown />
+              {productDropdown && (
+                <ProductContainer>
+                  <PCLeft>
+                    {dropdownButtons.map((button) => (
+                      <PCLeftItems>
+                        <Link
+                          style={{ textDecoration: "none", color: "inherit" }}
+                          href="/products"
+                        >
+                          {button.title}
+                        </Link>
+                      </PCLeftItems>
+                    ))}
+                  </PCLeft>
+                  <PCRight>
+                    <Image
+                      src="/img/droplogo.PNG"
+                      alt=""
+                      width={500}
+                      height={150}
+                    />
+                  </PCRight>
+                </ProductContainer>
+              )}
+            </ListItems>
+            <ListItems
+              institutionalDropdown={institutionalDropdown}
+              onClick={() => {
+                setInstitutionalDropdown(!institutionalDropdown);
+                setProductDropdown(false);
+              }}
+            >
+              KURUMSAL <KeyboardArrowDown />
+              {institutionalDropdown && (
+                <InstitutionalCon>
+                  <InstiItem>Hakkımızda</InstiItem>
+                  <InstiItem>Felsefemiz</InstiItem>
+                  <InstiItem>Solgar Tarihi</InstiItem>
+                  <InstiItem>Altın Standart</InstiItem>
+                  <InstiItem>Ödül Kazanan Ürünler</InstiItem>
+                </InstitutionalCon>
+              )}
+            </ListItems>
+            <ListItems>EN YAKIN ECZANE</ListItems>
+            <ListItems>İLETİŞİM</ListItems>
+          </List>
+        </Center>
+        <Right>
+          <Input type="text" placeholder="Solgar'da Ara" />
+          <Search />
+        </Right>
+        <MenuIcon>
+          <DragHandle/>
+        </MenuIcon>
+      </Wrapper>
+    </Container>
   );
 };
 
 export default Navbar;
-

@@ -48,6 +48,9 @@ const Item = styled.li`
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
+  &:hover{
+    color: #FFDC8F;
+  }
   svg {
     margin-right: 5px;
   }
