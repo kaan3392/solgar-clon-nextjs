@@ -259,7 +259,7 @@ const Navbar: React.FunctionComponent = () => {
   const [productDropdown, setProductDropdown] = useState(false);
   const [institutionalDropdown, setInstitutionalDropdown] = useState(false);
 
-  const pseudeoClick: React.MouseEventHandler<HTMLDivElement> = () => {
+  const pseudeoClick = () => {
     setInstitutionalDropdown(false);
     setProductDropdown(false);
   };
