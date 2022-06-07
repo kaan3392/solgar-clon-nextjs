@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import { KeyboardArrowDown, Search, DragHandle } from "@mui/icons-material";
+import {
+  KeyboardArrowDown,
+  Search,
+  DragHandle,
+  Close,
+} from "@mui/icons-material";
 import Image from "next/image";
 import { dropdownButtons } from "../data";
 import Link from "next/link";
+import { MenuContext, MenuContextInterface } from "../context/MenuContext";
 
-const Container = styled.div`
+const Container = styled.div<MenuContextInterface>`
   height: 100px;
   background-color: #fffaf3;
   border-bottom: 1px solid #d3b595;
@@ -13,9 +19,10 @@ const Container = styled.div`
   top: 0;
   z-index: 999;
   @media only screen and (max-width: 768px) {
+    top: 30px;
     height: 55px;
+    background-color: ${(props) => (props.menu ? "#302519" : "#fffaf3")};
   }
-  
 `;
 
 const PseudoCon = styled.div`
@@ -40,14 +47,12 @@ const Wrapper = styled.div`
   @media only screen and (max-width: 380px) {
     padding: 0 5px;
   }
-  
 `;
-
 
 const Left = styled.div`
   flex: 1;
   @media only screen and (max-width: 380px) {
-    flex:1.5;
+    flex: 1.5;
   }
 `;
 
@@ -69,7 +74,6 @@ const List = styled.ul`
   justify-content: flex-start;
   text-align: center;
   height: 100%;
-  
 `;
 
 const ListItems = styled.li<{
@@ -182,7 +186,7 @@ const PCRight = styled.div`
   padding-left: 70px;
 `;
 
-const Right = styled.div`
+const Right = styled.div<MenuContextInterface>`
   flex: 1;
   display: flex;
   align-items: center;
@@ -194,21 +198,22 @@ const Right = styled.div`
     font-weight: lighter;
   }
   @media only screen and (max-width: 768px) {
-    flex:5;
-    background-color: #fcead9;
+    flex: 5;
+    /* background-color: #fcead9; */
+    background-color: ${(props) => (props.menu ? "#302519" : "#fffaf3")};
     border-radius: 5px;
     border-bottom: none;
-    svg{
+    svg {
       font-size: 30px;
       font-weight: 300;
     }
   }
   @media only screen and (max-width: 380px) {
-    margin-left:5px;
+    margin-left: 5px;
   }
 `;
 
-const Input = styled.input`
+const Input = styled.input<MenuContextInterface>`
   width: 100%;
   background-color: inherit;
   border: none;
@@ -222,42 +227,56 @@ const Input = styled.input`
   &:focus {
     outline: none;
   }
-  &::placeholder{
+  &::placeholder {
     font-weight: 300;
+    @media only screen and (max-width: 768px) {
+      color: ${props => props.menu && "white"};
+    }
   }
   @media only screen and (max-width: 768px) {
-    padding:5px ;
+    padding: 5px;
     font-weight: 300;
+    background-color: ${(props) => (props.menu ? "#302519" : "#fffaf3")};
+    color: ${props => props.menu && "white"};
   }
   @media only screen and (max-width: 380px) {
-    &::placeholder{
+    &::placeholder {
       font-size: 14px;
       padding-left: 5px;
       font-weight: 200;
     }
   }
-  
 `;
+
 const MenuIcon = styled.div`
-display: none;
-@media only screen and (max-width: 768px) {
+  display: none;
+  @media only screen and (max-width: 768px) {
     display: block;
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    svg{
+    svg {
+      cursor: pointer;
 
-      font-weight:lighter;
+      font-weight: lighter;
       font-size: 35px;
     }
   }
+`;
 
-`
+const SearchCon = styled.div<MenuContextInterface>`
+  @media only screen and (max-width: 768px) {
+    display: ${(props) => props.menu && "none"};
+  }
+`;
 
 const Navbar: React.FunctionComponent = () => {
   const [productDropdown, setProductDropdown] = useState(false);
   const [institutionalDropdown, setInstitutionalDropdown] = useState(false);
+  const { state } = useContext(MenuContext);
+  const { menu } = state;
+  const { dispatch } = useContext(MenuContext);
 
   const pseudeoClick = () => {
     setInstitutionalDropdown(false);
@@ -265,7 +284,7 @@ const Navbar: React.FunctionComponent = () => {
   };
 
   return (
-    <Container>
+    <Container menu={menu}>
       {(productDropdown || institutionalDropdown) && (
         <PseudoCon onClick={pseudeoClick}></PseudoCon>
       )}
@@ -336,12 +355,21 @@ const Navbar: React.FunctionComponent = () => {
             <ListItems>İLETİŞİM</ListItems>
           </List>
         </Center>
-        <Right>
-          <Input type="text" placeholder="Solgar'da Ara" />
-          <Search />
+        <Right menu={menu}>
+          <Input menu={menu} type="text" placeholder="Solgar'da Ara" />
+          <SearchCon menu={menu}>
+            <Search />
+          </SearchCon>
         </Right>
         <MenuIcon>
-          <DragHandle/>
+          {menu ? (
+            <Close
+              onClick={() => dispatch({ type: "Close" })}
+              style={{ color: "gray" }}
+            />
+          ) : (
+            <DragHandle onClick={() => dispatch({type:"Open"})} style={{ fontWeight: "300" }} />
+          )}
         </MenuIcon>
       </Wrapper>
     </Container>
