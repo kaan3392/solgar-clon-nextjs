@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Facebook, Instagram, YouTube } from "@mui/icons-material";
 import styled from "styled-components";
 import Image from "next/image";
 import { HorizontalProps } from "./Types";
+import { MenuContext, MenuContextInterface } from "../context/MenuContext";
 
-const Container = styled.div`
+const Container = styled.div<MenuContextInterface>`
   height: 90vh;
   width: 100%;
   background-color: #302519;
@@ -12,6 +13,7 @@ const Container = styled.div`
   flex-direction: column;
   @media only screen and (max-width: 768px) {
     height: 60vh;
+    display: ${props => props.menu && "none"  };
   }
   @media only screen and (max-width: 380px) {
     height: 80vh;
@@ -136,13 +138,16 @@ const Text = styled.p`
 
 const MobileCon = styled.div`
   display: flex;
-  flex:1;
+  flex: 1;
   flex-direction: column;
 `;
 
 const Footer = () => {
+  const { state } = useContext(MenuContext);
+  const { menu } = state;
+
   return (
-    <Container>
+    <Container menu={menu}>
       <Top>
         <ListGroup>
           <MobileCon>
