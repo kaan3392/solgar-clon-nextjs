@@ -174,7 +174,6 @@ const Categories = () => {
     setNumberOfProductShown(
       Math.round(catSlideRef.current.clientWidth / slideRef.current.clientWidth)
     );
-    console.log(numberOfProductShown);
   }, [catSlide]);
 
   const DotsLoop: React.FunctionComponent = () => {
