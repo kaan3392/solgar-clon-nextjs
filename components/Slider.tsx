@@ -1,9 +1,9 @@
-import { ArrowBack, ArrowForward, LowPriority } from "@mui/icons-material";
+import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import Image from "next/image";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { slider } from "../data";
-import { DotProps, ArrowProps, ImageProps } from "./Types";
+import { DotProps, ImageProps } from "./Types";
 
 const Container = styled.div`
   height: calc(100vh - 130px);
@@ -38,7 +38,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Arrow = styled.div<ArrowProps>`
+const Arrow = styled.div`
   top: 50%;
   position: absolute;
   display: flex;
@@ -111,7 +111,7 @@ const Slider = () => {
               </ImageContainer>
             </ImageConLittle>
           ))}
-          <Arrow style={{ right: 10 }} onClick={() => handleClick("right")}>
+          <Arrow style={{ right: 10 }}  onClick={() => handleClick("right")}>
             <ArrowForward />
           </Arrow>
         </Wrapper>
