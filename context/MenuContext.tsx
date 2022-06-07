@@ -1,25 +1,31 @@
 import React, { createContext, useReducer } from "react";
 
-type MenuContextInterface = typeof defaultState;
+export type MenuContextInterface = {
+  menu?: boolean;
+  filterCat?: any;
+};
 
-type Actions = { type: "Open" } | { type: "Close" } | { type: "Toggle" };
+type Actions =
+  | { type: "Open" }
+  | { type: "Close" }
+  | { type: "Toggle" }
+  | { type: "Filter"; payload: string | null };
 
 interface ProviderProps {
-  children :React.ReactNode
+  children: React.ReactNode;
 }
 
-const defaultState  = {
+const defaultState: MenuContextInterface = {
   menu: false,
+  filterCat: null,
 };
 
 export const MenuContext = createContext<{
   state: MenuContextInterface;
-  dispatch:React.Dispatch<Actions>
-}>({state:defaultState, dispatch:() => {}});
+  dispatch: React.Dispatch<Actions>;
+}>({ state: defaultState, dispatch: () => {} });
 
-
-
-const MenuReducer  = (state: MenuContextInterface, action: Actions) => {
+const MenuReducer = (state: MenuContextInterface, action: Actions) => {
   switch (action.type) {
     case "Open":
       return { menu: true };
@@ -27,6 +33,8 @@ const MenuReducer  = (state: MenuContextInterface, action: Actions) => {
       return { menu: false };
     case "Toggle":
       return { menu: !state.menu };
+    case "Filter":
+      return { filterCat: action.payload };
     default:
       throw new Error();
   }
@@ -36,9 +44,13 @@ export const MenuContextProvider = ({ children }: ProviderProps) => {
   const [state, dispatch] = useReducer(MenuReducer, defaultState);
 
   return (
-    <MenuContext.Provider value={{
-      state,
-      dispatch
-    }}>{children}</MenuContext.Provider>
+    <MenuContext.Provider
+      value={{
+        state,
+        dispatch,
+      }}
+    >
+      {children}
+    </MenuContext.Provider>
   );
 };
