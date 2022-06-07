@@ -1,6 +1,4 @@
 import React from "react";
-import dynamic from "next/dynamic";
-const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -46,14 +44,12 @@ const Video = () => {
     <Container>
       <Vid>
         <PlayerCon>
-          <ReactPlayer
-            as="style"
-            rel="stylesheet preload prefetch"
-            crossorigin="anonymous"
-            width="100%"
-            height="100%"
-            controls
-            url="https://www.youtube.com/watch?v=VgYh9QUV3zc"
+          <iframe
+            src="https://www.youtube.com/embed/VgYh9QUV3zc"
+            frameBorder="0"
+            allow="fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen={true}
+            style={{width:"100%", height:"100%"}}
           />
         </PlayerCon>
       </Vid>
