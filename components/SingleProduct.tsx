@@ -17,7 +17,7 @@ import {
 
 const Container = styled.div`
   width: 100%;
-  height: 115vh;
+  height: 120vh;
   background-color: #fffaf3;
 `;
 const Wrapper = styled.div`
@@ -36,7 +36,7 @@ const WrapperTop = styled.div`
 const WrapperBottom = styled.div`
   display: flex;
   width: 100%;
-  height: 65%;
+  height: 80%;
   @media only screen and (max-width: 768px) {
     flex-direction: column;
     height: 80%;
@@ -44,7 +44,7 @@ const WrapperBottom = styled.div`
 `;
 const WrapperBottomLeft = styled.div`
   width: 60%;
-  height: 100%;
+  height: 90%;
   margin-right: 40px;
   display: flex;
   overflow: hidden;
@@ -125,7 +125,7 @@ const BigSlide = styled.div`
 `;
 const WrapperBottomRight = styled.div`
   width: 40%;
-  height: 100%;
+  height: 90%;
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none;
@@ -182,6 +182,7 @@ const LittleDiv = styled.div<ActiveArrowProps>`
   justify-content: space-between;
   align-items:${props => props.activeArrow && "center"} ;
   flex-direction: ${props => props.activeArrow ? "row" : "column"};
+  cursor: pointer;
 `;
 const Text = styled.h4`
   letter-spacing: 0.1rem;
@@ -378,11 +379,11 @@ const SingleProduct: React.FunctionComponent<ProductProps> = ({ product }) => {
               )}
             </MainContainer>
             <MainContainer active={true}>
-              <LittleDiv activeArrow={true}>
+              <LittleDiv onClick={() => setOpen(open === 1 ? 4 : 1)} activeArrow={true}>
                 <Text>KULLANIM ÖNERİSİ</Text>
                 <InsideArrowCon
                   activeArrow={open === 1}
-                  onClick={() => setOpen(open === 1 ? 4 : 1)}
+                  
                 >
                   <KeyboardArrowUp />
                 </InsideArrowCon>
@@ -390,11 +391,11 @@ const SingleProduct: React.FunctionComponent<ProductProps> = ({ product }) => {
               {open === 1 && <p>{product.howToUse}</p>}
             </MainContainer>
             <MainContainer>
-              <LittleDiv activeArrow={true}>
+              <LittleDiv onClick={() => setOpen(open === 2 ? 4 : 2)} activeArrow={true}>
                 <Text>EK BİLGİ</Text>
                 <InsideArrowCon
                   activeArrow={open === 2}
-                  onClick={() => setOpen(open === 2 ? 4 : 2)}
+                  
                 >
                   <KeyboardArrowUp />
                 </InsideArrowCon>

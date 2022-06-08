@@ -15,11 +15,11 @@ export const dropdownButtons:DB[] = [
     },
     {
         id:3,
-        title:"Çocuk Ürünleri"
+        title:"Cocuk Ürünleri"
     },
     {
         id:4,
-        title:"Esansiyel Yağ Asitleri"
+        title:"Esansiyel Yag Asitleri"
     },
     {
         id:5,
@@ -51,7 +51,7 @@ export const dropdownButtons:DB[] = [
     },
     {
         id:11,
-        title:"B vitaminleri"
+        title:"Vitaminler"
     },
     {
         id:12,
@@ -196,3 +196,38 @@ export const catSlides:CategoriesSlide[]= [
     },
 ]
 
+type InterestedProducts = {
+    
+    id:number,
+    title:string,
+    img:string,
+    categories:string
+}
+
+export const interestedProducts:InterestedProducts[] = [
+    {
+        id:1,
+        img:"https://online.solgar.com.tr/WebSitesData/B7276B31-4A9F-4914-9C8D-5D6BFD175310/mpt_Files/BC39819E-B5A7-1D33-A583-CF9835074996.webp",
+        title:"Balance Rhodiola Complex",
+        categories:"ÖZEL TAKVİYELER"
+    },
+    {
+        id:2,
+        img:"https://online.solgar.com.tr/WebSitesData/B7276B31-4A9F-4914-9C8D-5D6BFD175310/mpt_Files/0859A216-290C-5099-9DFA-FD33CAFF8CBE.webp",
+        title:"Rhodiola Root Extract",
+        categories:"BİTKİSEL TAKVİYELER"
+    },
+    {
+        id:3,
+        img:"https://online.solgar.com.tr/WebSitesData/B7276B31-4A9F-4914-9C8D-5D6BFD175310/mpt_Files/0FC81191-A067-5676-9CE6-A9BC8544795C.webp",
+        title:"St.John's Wort",
+        categories:"BİTKİSEL TAKVİYELER"
+    },
+    {
+        id:4,
+        img:"https://online.solgar.com.tr/WebSitesData/B7276B31-4A9F-4914-9C8D-5D6BFD175310/mpt_Files/632E00BE-15F4-3513-A037-FBB5E463B226.webp",
+        title:"Valerian Root Extract",
+        categories:"BİTKİSEL TAKVİYELER"
+    },
+
+]

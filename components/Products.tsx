@@ -152,8 +152,8 @@ const Products = () => {
     setNumberOfProductShown(
       Math.round(imgRef.current.clientWidth / slideRef.current.clientWidth)
     );
-    console.log(numberOfProductShown);
   }, [index, slideWidth]);
+
 
   const DotsLoop: React.FunctionComponent = () => {
     return (

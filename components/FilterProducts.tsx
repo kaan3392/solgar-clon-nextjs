@@ -1,335 +1,399 @@
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
+import React, { useContext, useEffect, useState } from "react";
+import styled from "styled-components";
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
+import Image from "next/image";
+import { IProduct, ProductsProps } from "./Types";
+import { MenuContext } from "../context/MenuContext";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
+const Container = styled.div`
+  height: 120vh;
+  width: 100%;
+  background-color: #fffaf3;
+  padding: 40px 0px;
+`;
+const Wrapper = styled.div`
+  height: 100%;
+  margin: 0px 80px 0px 100px;
+  display: flex;
+`;
+const MainContainer = styled.div`
+  height: 100%;
+  flex: 10;
+  display: flex;
+  flex-direction: column;
+`;
+const Left = styled.div`
+  flex: 3;
+  border-right: 1px solid rgb(173, 160, 86, 0.5);
+`;
+const LeftWrapper = styled.div`
+  padding: 20px 0px;
+`;
+const LeftTitle = styled.div`
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+`;
+const LeftList = styled.ul`
+  list-style: none;
+  padding: 0;
+`;
+const LeftListItem = styled.li`
+  margin: 20px 0px;
+  letter-spacing: 1px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+`;
+const Check = styled.span``;
+const IsCheck = styled.input`
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+`;
+const CatTitle = styled.label`
+  margin-left: 5px;
+  cursor: pointer;
+`;
 
+const Right = styled.div`
+  width: 100%;
+  height: 95%;
+`;
 
-const FilterProducts = () => {
-  return (
-    <div>FilterProducts</div>
-  )
-}
+const RightWrapper = styled.div`
+  height: 100%;
+  padding: 20px 20px 50px 20px;
+  display: flex;
+  flex-direction: column;
+`;
 
-export default FilterProducts
+const RightTitle = styled.div`
+  font-size: 30px;
+  margin-bottom: 40px;
+  font-weight: 700;
+`;
 
+const RightContainer = styled.div`
+  width: 100%;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: flex-start;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
 
+const ProductContainer = styled.div`
+  width: 25%;
+  height: 300px;
+  cursor: pointer;
+  margin-bottom: 30px;
+`;
 
+const ImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 80%;
+`;
 
-/* 
+const ProductTitle = styled.div`
+  font-size: 14px;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+  text-align: center;
+`;
+const ProductCat = styled.div`
+  font-size: 11px;
+  color: gold;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+`;
 
-import { solgarData } from "../../newSolgar"
-import { Link } from "react-router-dom";
-import { useContext } from 'react'
-import { FilterContext } from '../../contexts'
+const Paginate = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: end;
+  height: 10%;
+`;
+const PaginateLine = styled.div`
+  display: flex;
+`;
 
-const FilterProducts = () => {
-    const [filter, setFilter] = useState("");
-    const [products, setProducts] = useState(solgarData);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [productsPerPage, setProductsPerPage] = useState(12);
-    const [context, setContext] = useContext(FilterContext);
+const Arrow = styled.div`
+  cursor: pointer;
+`;
 
-    const handleClick = (e) => {
-        if (e.target.checked) {
-            setContext(e.target.id)
-            setCurrentPage(1);
-        } else {
-            setContext("")
-            setCurrentPage(1);
-        }
-    };
+const PageNumber = styled.div`
+  margin-right: 10px;
+`;
 
-    const filteredProducts = context.toLowerCase();
+const FilterProducts: React.FunctionComponent<ProductsProps> = (props) => {
+  const [filter, setFilter] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage, setProductsPerPage] = useState(12);
+  const router = useRouter();
 
-    useEffect(() => {
-        if (filteredProducts !== undefined) {
-            if (filteredProducts === "amino asitler ve proteinler") {
-
-                setProducts(solgarData.filter((pro) => pro.category.toLowerCase() === filteredProducts))
-            }
-            else if (filteredProducts === "bitkisel takviyeler") {
-
-                setProducts(solgarData.filter((pro) => pro.category.toLowerCase() === filteredProducts))
-            }
-            else if (filteredProducts === "çocuk ürünleri") {
-
-                setProducts(solgarData.filter((pro) => pro.category.toLowerCase() === filteredProducts))
-            }
-            else if (filteredProducts === "esansiyel yağ asitleri") {
-
-                setProducts(solgarData.filter((pro) => pro.category.toLowerCase() === filteredProducts))
-            }
-            else if (filteredProducts === "kalsiyum grubu") {
-
-                setProducts(solgarData.filter((pro) => pro.category.toLowerCase() === filteredProducts))
-            }
-            else if (filteredProducts === "koenzim q-10") {
-
-                setProducts(solgarData.filter((pro) => pro.category.toLowerCase() === filteredProducts))
-            }
-            else if (filteredProducts === "mineraller") {
-
-                setProducts(solgarData.filter((pro) => pro.category.toLowerCase() === filteredProducts))
-            }
-            else if (filteredProducts === "multivitaminler") {
-
-                setProducts(solgarData.filter((pro) => pro.category.toLowerCase() === filteredProducts))
-            }
-            else if (filteredProducts === "özel takviyeler") {
-
-                setProducts(solgarData.filter((pro) => pro.category.toLowerCase() === filteredProducts))
-            }
-            else if (filteredProducts === "probiyotikler") {
-
-                setProducts(solgarData.filter((pro) => pro.category.toLowerCase() === filteredProducts))
-            }
-            else if (filteredProducts === "vitaminler") {
-
-                setProducts(solgarData.filter((pro) => pro.category.toLowerCase() === filteredProducts))
-            } else {
-                setProducts(solgarData);
-            }
-        } else {
-            setProducts(solgarData);
-        }
-    }, [filteredProducts])
-
-    const cbChange = (e) => {
-        let cbs = document.getElementsByClassName("isCheck");
-        for (let i = 0; i < cbs.length; i++) {
-            cbs[i].checked = false;
-        }
-        e.target.checked = true;
+  const cbChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let cbs = document.getElementsByTagName("input");
+    for (let i = 0; i < cbs?.length; i++) {
+      cbs[i].checked = false;
     }
+    e.target.checked = true;
+  };
 
-    const indexOfLastProduct = currentPage * productsPerPage;
-    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-    const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+  const handleClick = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+    let myFilter;
+    if (e.currentTarget.checked) {
+      myFilter = e.currentTarget.id;
+      console.log(myFilter);
+      router.replace({
+        pathname: `/products`,
+        query: { category: myFilter },
+      });
+      setCurrentPage(1);
+    }
+  };
 
-    return (
-        <div className="fPContainer">
-            <div className="fpWrapper">
-                <div className="fPLeft">
-                    <div className="fPLeftTitle">KATEGORİLER</div>
-                    <ul className="fPLeftList" onClick={(e) => handleClick(e)}>
-                        <li className="fPLeftListItem  " >
-                            <span className="check">
-                                <input className="isCheck" onChange={(e) => cbChange(e)} type="checkbox" id="Amino asitler ve Proteinler" />
-                            </span>
-                            <label htmlFor="Amino asitler ve Proteinler">Amino Asitler ve Proteinler</label>
-                        </li>
-                        <li className="fPLeftListItem ">
-                            <span className="check">
-                                <input className="isCheck" onChange={(e) => cbChange(e)} type="checkbox" id="Bitkisel Takviyeler" />
-                            </span>
-                            <label htmlFor="Bitkisel Takviyeler">Bitkisel Takviyeler</label>
-                        </li>
-                        <li className="fPLeftListItem " >
-                            <span className="check">
-                                <input className="isCheck" onChange={(e) => cbChange(e)} type="checkbox" id="Çocuk Ürünleri" />
-                            </span>
-                            <label htmlFor="Çocuk Ürünleri">Çocuk Ürünleri</label>
-                        </li>
-                        <li className="fPLeftListItem ">
-                            <span className="check">
-                                <input className="isCheck" onChange={(e) => cbChange(e)} type="checkbox" id="Esansiyel Yağ Asitleri" />
-                            </span>
-                            <label htmlFor="Esansiyel Yağ Asitleri">Esansiyel Yağ Asitleri</label>
-                        </li>
-                        <li className="fPLeftListItem ">
-                            <span className="check">
-                                <input className="isCheck" onChange={(e) => cbChange(e)} type="checkbox" id="Kalsiyum Grubu" />
-                            </span>
-                            <label htmlFor="Kalsiyum Grubu">Kalsiyum Grubu</label>
-                        </li>
-                        <li className="fPLeftListItem ">
-                            <span className="check">
-                                <input className="isCheck" onChange={(e) => cbChange(e)} type="checkbox" id="Koenzim Q-10" />
-                            </span>
-                            <label htmlFor="Koenzim Q-10">Koenzim Q-10</label>
-                        </li>
-                        <li className="fPLeftListItem ">
-                            <span className="check">
-                                <input className="isCheck" onChange={(e) => cbChange(e)} type="checkbox" id="Mineraller" />
-                            </span>
-                            <label htmlFor="Mineraller">Mineraller</label>
-                        </li>
-                        <li className="fPLeftListItem ">
-                            <span className="check">
-                                <input className="isCheck" onChange={(e) => cbChange(e)} type="checkbox" id="Multivitaminler" />
-                            </span>
-                            <label htmlFor="Multivitaminler">Multivitaminler</label>
-                        </li>
-                        <li className="fPLeftListItem ">
-                            <span className="check">
-                                <input className="isCheck" onChange={(e) => cbChange(e)} type="checkbox" id="Özel Takviyeler" />
-                            </span>
-                            <label htmlFor="Özel Takviyeler">Özel Takviyeler</label>
-                        </li>
-                        <li className="fPLeftListItem ">
-                            <span className="check">
-                                <input className="isCheck" onChange={(e) => cbChange(e)} type="checkbox" id="Probiyotikler" />
-                            </span>
-                            <label htmlFor="Probiyotikler">Probiyotikler</label>
-                        </li>
-                        <li className="fPLeftListItem ">
-                            <span className="check">
-                                <input className="isCheck" onChange={(e) => cbChange(e)} type="checkbox" id="Vitaminler" />
-                            </span>
-                            <label htmlFor="Vitaminler">Vitaminler</label>
-                        </li>
-                    </ul>
-                </div>
-                <div className="fPRight">
-                    <div className="fPRightWrapper">
-                        <div className="fPRightTitle">TÜM ÜRÜNLER</div>
-                        <div className="fPRightCon">
-                            {currentProducts.map((product) => (
-                                <div key={product.name} className="fPRightProductCon">
-                                    <Link style={{ textDecoration: "none", color: "inherit" }} to={`/products/${product.name}`}>
-                                        <img className="fPRightProductImg" src={product.image} alt="" />
-                                        <div className="fPRightProductCat">{product.category}</div>
-                                        <div className="fPRightProductTitle">{product.name}</div>
-                                    </Link>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            <div className="paginate">
-                <div>
-                    {(indexOfFirstProduct + 1) + " - " + Math.min(indexOfLastProduct, products.length) + " / " + products.length}
-                </div>
-                <div className="arrows">
-                    <ArrowBackIos onClick={() => { setCurrentPage(prev => Math.max(prev - 1, 1)) }} />
-                    <ArrowForwardIos onClick={() => { setCurrentPage(prev => Math.min(prev + 1, Math.ceil(products.length / productsPerPage))) }} />
-                </div>
-            </div>
-            </div>
-        </div>
-    )
+  useEffect(() => {
+    console.log(props.products)
+  }, [props]);
+
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = props.products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+  return (
+    <Container>
+      <Wrapper>
+        <Left>
+          <LeftWrapper>
+            <LeftTitle>KATEGORİLER</LeftTitle>
+            <LeftList>
+              <LeftListItem>
+                <Check>
+                  <IsCheck
+                    onChange={(e) => cbChange(e)}
+                    onClick={(e) => handleClick(e)}
+                    type="checkbox"
+                    className="isCheck"
+                   
+                  />
+                </Check>
+                <CatTitle htmlFor="Tüm Ürünler">Tüm Ürünler</CatTitle>
+              </LeftListItem>
+              <LeftListItem>
+                <Check>
+                  <IsCheck
+                    onChange={(e) => cbChange(e)}
+                    onClick={(e) => handleClick(e)}
+                    type="checkbox"
+                    className="isCheck"
+                    id="Amino asitler ve Proteinler"
+                  />
+                </Check>
+                <CatTitle htmlFor="Amino asitler ve Proteinler">
+                  Amino Asitler ve Proteinler
+                </CatTitle>
+              </LeftListItem>
+              <LeftListItem>
+                <Check>
+                  <IsCheck
+                    onChange={(e) => cbChange(e)}
+                    onClick={(e) => handleClick(e)}
+                    type="checkbox"
+                    className="isCheck"
+                    id="Bitkisel Takviyeler"
+                  />
+                </Check>
+                <CatTitle htmlFor="Bitkisel Takviyeler">
+                  Bitkisel Takviyeler
+                </CatTitle>
+              </LeftListItem>
+              <LeftListItem>
+                <Check>
+                  <IsCheck
+                    onChange={(e) => cbChange(e)}
+                    onClick={(e) => handleClick(e)}
+                    type="checkbox"
+                    className="isCheck"
+                    id="Cocuk Ürünleri"
+                  />
+                </Check>
+                <CatTitle htmlFor="Cocuk Ürünleri">Çocuk Ürünleri</CatTitle>
+              </LeftListItem>
+              <LeftListItem>
+                <Check>
+                  <IsCheck
+                    onChange={(e) => cbChange(e)}
+                    onClick={(e) => handleClick(e)}
+                    type="checkbox"
+                    className="isCheck"
+                    id="Esansiyel Yag Asitleri"
+                  />
+                </Check>
+                <CatTitle htmlFor="Esansiyel Yag Asitleri">
+                  Esansiyel Yağ Asitleri
+                </CatTitle>
+              </LeftListItem>
+              <LeftListItem>
+                <Check>
+                  <IsCheck
+                    onChange={(e) => cbChange(e)}
+                    onClick={(e) => handleClick(e)}
+                    type="checkbox"
+                    className="isCheck"
+                    id="Kalsiyum Grubu"
+                  />
+                </Check>
+                <CatTitle htmlFor="Kalsiyum Grubu">Kalsiyum Grubu</CatTitle>
+              </LeftListItem>
+              <LeftListItem>
+                <Check>
+                  <IsCheck
+                    onChange={(e) => cbChange(e)}
+                    onClick={(e) => handleClick(e)}
+                    type="checkbox"
+                    className="isCheck"
+                    id="Koenzim Q-10"
+                  />
+                </Check>
+                <CatTitle htmlFor="Koenzim Q-10">Koenzim Q-10</CatTitle>
+              </LeftListItem>
+              <LeftListItem>
+                <Check>
+                  <IsCheck
+                    onChange={(e) => cbChange(e)}
+                    onClick={(e) => handleClick(e)}
+                    type="checkbox"
+                    className="isCheck"
+                    id="Mineraller"
+                  />
+                </Check>
+                <CatTitle htmlFor="Mineraller">Mineraller</CatTitle>
+              </LeftListItem>
+              <LeftListItem>
+                <Check>
+                  <IsCheck
+                    onChange={(e) => cbChange(e)}
+                    onClick={(e) => handleClick(e)}
+                    type="checkbox"
+                    className="isCheck"
+                    id="Multivitaminler"
+                  />
+                </Check>
+                <CatTitle htmlFor="Multivitaminler">Multivitaminler</CatTitle>
+              </LeftListItem>
+              <LeftListItem>
+                <Check>
+                  <IsCheck
+                    onChange={(e) => cbChange(e)}
+                    onClick={(e) => handleClick(e)}
+                    type="checkbox"
+                    className="isCheck"
+                    id="Özel Takviyeler"
+                  />
+                </Check>
+                <CatTitle htmlFor="Özel Takviyeler">Özel Takviyeler</CatTitle>
+              </LeftListItem>
+              <LeftListItem>
+                <Check>
+                  <IsCheck
+                    onChange={(e) => cbChange(e)}
+                    onClick={(e) => handleClick(e)}
+                    type="checkbox"
+                    className="isCheck"
+                    id="Probiyotikler"
+                  />
+                </Check>
+                <CatTitle htmlFor="Probiyotikler">Probiyotikler</CatTitle>
+              </LeftListItem>
+              <LeftListItem>
+                <Check>
+                  <IsCheck
+                    onChange={(e) => cbChange(e)}
+                    onClick={(e) => handleClick(e)}
+                    type="checkbox"
+                    className="isCheck"
+                    id="Vitaminler"
+                  />
+                </Check>
+                <CatTitle htmlFor="Vitaminler">Vitaminler</CatTitle>
+              </LeftListItem>
+            </LeftList>
+          </LeftWrapper>
+        </Left>
+        <MainContainer>
+          <Right>
+            <RightWrapper>
+              <RightTitle>TÜM ÜRÜNLER</RightTitle>
+              <RightContainer>
+                {currentProducts.map((product, i) => (
+                  <Link href={`/products/${product._id}`} key={i}>
+                    <ProductContainer>
+                      <ImageContainer>
+                        <Image
+                          src={product.image}
+                          alt=""
+                          layout="fill"
+                          objectFit="contain"
+                        />
+                      </ImageContainer>
+                      <ProductCat>{product.category}</ProductCat>
+                      <ProductTitle>{product.name}</ProductTitle>
+                    </ProductContainer>
+                  </Link>
+                ))}
+              </RightContainer>
+            </RightWrapper>
+          </Right>
+          <Paginate>
+            <PaginateLine>
+              <PageNumber>
+                {indexOfFirstProduct +
+                  1 +
+                  " - " +
+                  Math.min(indexOfLastProduct, props.products.length) +
+                  " / " +
+                  props.products.length}
+              </PageNumber>
+              <Arrow
+                onClick={() => {
+                  setCurrentPage((prev) => Math.max(prev - 1, 1));
+                }}
+              >
+                <ArrowBackIos />
+              </Arrow>
+              <Arrow
+                onClick={() => {
+                  setCurrentPage((prev) =>
+                    Math.min(
+                      prev + 1,
+                      Math.ceil(props.products.length / productsPerPage)
+                    )
+                  );
+                }}
+              >
+                <ArrowForwardIos />
+              </Arrow>
+            </PaginateLine>
+          </Paginate>
+        </MainContainer>
+      </Wrapper>
+    </Container>
+  );
 };
 
-
-.fPContainer{
-    height: 120vh;
-    width: 100%;
-    background-color: #FFFAF3;
-    padding:40px 0px;
-}
-
-.fpWrapper{
-    height: 100%;
-    margin:0px 150px ;
-    display: flex;
-}
-.fPLeft{
-    flex:3;
-    border-right: 1px solid rgb(173, 160, 86, .5);
-}
-
-.fPLeftTitle{
-    font-size: 15px;
-    font-weight: 500;
-    margin-bottom: 10px;
-}
-
-.fPLeftList{
-    list-style: none;
-    padding: 0;
-}
-.fPLeftListInside{
-    list-style: none;
-}
-input[type=checkbox] {
-    position: relative;
-    cursor: pointer;
-     
-}
-
-
-.fPLeftListItem{
-    margin: 20px 0px;
-    letter-spacing: 1px;
-    font-size: 15px;
-}
-
-.fPLeftListItem > label{
-    margin-left: 5px;
-    cursor: pointer;
-}
-
-
-.fPRight{
-    flex:10;
-    height: 95%;
-}
-
-.fPRightWrapper{
-    height: 100%;
-    padding: 20px 20px 70px 40px ;
-    display: flex;
-    flex-direction: column;
-}
-.fPRightTitle{
-    font-size: 30px;
-    margin-bottom: 40px;
-    font-weight: 600;
-}
-.fPRightCon{
-    width: 100%;
-    flex-wrap: wrap;
-    display: flex;
-    overflow-y: scroll;
-}
-
-.fPRightCon::-webkit-scrollbar {
-    display: none;
-}
-
-
-.fPRightProductCon{
-    width: 25%;
-    cursor: pointer;
-    margin-bottom: 30px;
-}
-.fPRightProductImg{
-    width: 100%;
-    
-}
-    
-.fPRightProductCat{
-    font-size: 11px;
-    color: gold;
-    font-weight: 300;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 5px;
-}
-.fPRightProductTitle{
-    font-size: 14px;
-    font-weight: 300;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 5px;
-    text-align: center;
-}
-
-.paginate{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: end;
-}
-
-.arrows{
-    cursor: pointer;
-}
-
-export default FilterProducts
-
-
-
-*/
+export default FilterProducts;

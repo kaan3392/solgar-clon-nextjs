@@ -1,4 +1,5 @@
 import { Document } from "mongoose";
+import { ParsedUrlQuery } from "querystring";
 import { ReactNode } from "react";
 
 export interface DotProps {
@@ -18,6 +19,16 @@ export interface HorizontalProps {
 export interface MenuProps {
   menu?:boolean
 }
+export interface ActiveTitleProps {
+  activeTitle?:boolean
+}
+export interface ActiveArrowProps {
+  activeArrow?:boolean
+}
+export interface DirectionArrowProps {
+  upArrow?:boolean
+  downArrow?:boolean
+}
 
 export interface IProduct extends Document{
   name: string ;
@@ -28,7 +39,8 @@ export interface IProduct extends Document{
   titleTurkish?: string;
   short: string;
   amount: string;
-  contentHeader: string;
+  contents:any;
+  contentHeader?: string;
   contentKeys?: string[];
   contentVals?: string[];
   otherContents?: string;
@@ -38,6 +50,22 @@ export interface IProduct extends Document{
   children?:ReactNode;
 }
 
+export interface ProductProps{
+  product:IProduct;
+}
+
 export interface ProductsProps{
   products: IProduct[];
 }
+
+export interface IParams extends ParsedUrlQuery {
+  id: string
+}
+
+export interface ActiveProps {
+  active?:boolean;
+}
+
+export type Props = {
+  children?: ReactNode;
+};
