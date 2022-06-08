@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import {
   KeyboardArrowDown,
@@ -10,6 +10,9 @@ import Image from "next/image";
 import { dropdownButtons } from "../data";
 import Link from "next/link";
 import { MenuContext, MenuContextInterface } from "../context/MenuContext";
+import axios from "axios";
+import { IProduct, Props } from "./Types";
+import { useRouter } from "next/router";
 
 const Container = styled.div<MenuContextInterface>`
   height: 100px;
@@ -192,6 +195,7 @@ const Right = styled.div<MenuContextInterface>`
   align-items: center;
   justify-content: space-between;
   border-bottom: 0.5px solid #d3b595;
+  position: relative;
   svg {
     opacity: 0.8;
     color: gray;
@@ -230,14 +234,14 @@ const Input = styled.input<MenuContextInterface>`
   &::placeholder {
     font-weight: 300;
     @media only screen and (max-width: 768px) {
-      color: ${props => props.menu && "white"};
+      color: ${(props) => props.menu && "white"};
     }
   }
   @media only screen and (max-width: 768px) {
     padding: 5px;
     font-weight: 300;
     background-color: ${(props) => (props.menu ? "#302519" : "#fffaf3")};
-    color: ${props => props.menu && "white"};
+    color: ${(props) => props.menu && "white"};
   }
   @media only screen and (max-width: 380px) {
     &::placeholder {
@@ -270,6 +274,56 @@ const SearchCon = styled.div<MenuContextInterface>`
     display: ${(props) => props.menu && "none"};
   }
 `;
+const FilteredCon = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+  box-sizing: border-box;
+  top: 30px;
+  padding: 0 5px;
+  border: 1px solid gray;
+  background-color: #dfd1bd;
+`;
+const Pro = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 5px;
+  width: 100%;
+  cursor: pointer;
+  border-bottom: 1px solid #cdaa75;
+  &:last-child {
+    border-bottom: none;
+  }
+  &:hover {
+    background-color: #d9c6aab2;
+  }
+  &:first-child {
+    margin-top: 5px;
+  }
+  @media only screen and (max-width: 385px) {
+    padding: 3px 5px;
+  }
+`;
+const Text = styled.div`
+  font-size: 14px;
+  @media only screen and (max-width: 768px) {
+    font-size: 14px;
+  }
+`;
+
+const ImageCon = styled.div<Props>`
+  width: 45px;
+  height: 45px;
+  position: relative;
+  margin-right: 5px;
+  @media only screen and (max-width: 768px) {
+    width: 25px;
+    height: 25px;
+  }
+`;
 
 const Navbar: React.FunctionComponent = () => {
   const [productDropdown, setProductDropdown] = useState(false);
@@ -277,10 +331,35 @@ const Navbar: React.FunctionComponent = () => {
   const { state } = useContext(MenuContext);
   const { menu } = state;
   const { dispatch } = useContext(MenuContext);
+  const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
+  const [text, setText] = useState("");
+  const router = useRouter();
 
   const pseudeoClick = () => {
     setInstitutionalDropdown(false);
     setProductDropdown(false);
+  };
+
+  useEffect(() => {
+    const filterProducts = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:3000/api/products?filter=${text}`
+        );
+        console.log(res.data);
+        setFilteredProducts(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    if (text.length > 1) {
+      filterProducts();
+    }
+  }, [text]);
+
+  const handleClick = (id: string) => {
+    router.push(`/products/${id}`);
+    setText("");
   };
 
   return (
@@ -315,7 +394,7 @@ const Navbar: React.FunctionComponent = () => {
                       <PCLeftItems>
                         <Link
                           style={{ textDecoration: "none", color: "inherit" }}
-                          href="/products"
+                          href={`/products?category=${button.title}`}
                         >
                           {button.title}
                         </Link>
@@ -356,10 +435,33 @@ const Navbar: React.FunctionComponent = () => {
           </List>
         </Center>
         <Right menu={menu}>
-          <Input menu={menu} type="text" placeholder="Solgar'da Ara" />
+          <Input
+            onChange={(e) => setText(e.target.value)}
+            menu={menu}
+            type="text"
+            placeholder="Solgar'da Ara"
+          />
           <SearchCon menu={menu}>
             <Search />
           </SearchCon>
+          {filteredProducts.length > 0 && text.length > 0 && (
+            <FilteredCon>
+              {filteredProducts.map((product, i) => (
+                
+                  <Pro key={i} onClick={() => handleClick(product._id)}>
+                    <ImageCon>
+                      <Image
+                        src={product.image}
+                        alt=""
+                        layout="fill"
+                        objectFit="contain"
+                      />
+                    </ImageCon>
+                    <Text>{product.name}</Text>
+                  </Pro>
+              ))}
+            </FilteredCon>
+          )}
         </Right>
         <MenuIcon>
           {menu ? (
@@ -368,7 +470,10 @@ const Navbar: React.FunctionComponent = () => {
               style={{ color: "gray" }}
             />
           ) : (
-            <DragHandle onClick={() => dispatch({type:"Open"})} style={{ fontWeight: "300" }} />
+            <DragHandle
+              onClick={() => dispatch({ type: "Open" })}
+              style={{ fontWeight: "300" }}
+            />
           )}
         </MenuIcon>
       </Wrapper>
