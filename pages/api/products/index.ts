@@ -23,10 +23,14 @@ export default async function handler(
           5
         );
       } else {
+        console.log("aaa")
         products = await Product.find();
+        console.log("bbb")
       }
+      console.log("ccc")
       return res.status(200).json(products);
     } catch (error) {
+      console.log("ddd")
       return res.status(500).json(error as Error);
     }
   }
