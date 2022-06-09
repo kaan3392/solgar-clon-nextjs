@@ -32,11 +32,8 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     );
     
   } else {
-    console.log("aaa")
     res = await publicRequest.get<IProduct>("/products");
-    console.log("bbb")
   }
-
   return {
     props: {
       products: res.data,

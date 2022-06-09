@@ -29,12 +29,10 @@ const Product: NextPage<{ product: IProduct }> = ({ product }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  console.log("aaa")
   const { id } = context.params as IParams;
   const res = await publicRequest.get<IProduct>(
     `/products/${id}`
   );
-  console.log("bbb")
   const product = res.data;
 
   return {
