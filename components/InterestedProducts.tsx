@@ -77,8 +77,8 @@ const InterestedProducts = () => {
       <Title >İLGİNİZİ ÇEKEBİLİR</Title>
       <MainContainer >
         <Wrapper>
-          {interestedProducts.map((pro) => (
-            <Frame>
+          {interestedProducts.map((pro,i) => (
+            <Frame key={i} >
               <ImageContainer>
                 <Image  src={pro.img} alt="" layout="fill" objectFit="contain" />
               </ImageContainer>
