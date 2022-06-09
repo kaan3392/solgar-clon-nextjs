@@ -11,6 +11,7 @@ const Top = styled.div`
   display: flex;
   height: 45%;
   width: 100%;
+  padding-top: 20px;
   @media only screen and (max-width: 768px) {
     height: 45%;
   }

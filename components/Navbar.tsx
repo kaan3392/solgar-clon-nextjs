@@ -25,6 +25,7 @@ const Container = styled.div<MenuContextInterface>`
     top: 30px;
     height: 55px;
     background-color: ${(props) => (props.menu ? "#302519" : "#fffaf3")};
+    display: ${(props) => props.option && "none"};
   }
 `;
 
@@ -240,7 +241,7 @@ const Input = styled.input<MenuContextInterface>`
   @media only screen and (max-width: 768px) {
     padding: 5px;
     font-weight: 300;
-    background-color: ${(props) => (props.menu ? "#302519" : "#fffaf3")};
+    background-color: ${(props) => (props.menu ? "#302519" : "inherit")};
     color: ${(props) => props.menu && "white"};
   }
   @media only screen and (max-width: 380px) {
@@ -262,7 +263,6 @@ const MenuIcon = styled.div`
     justify-content: center;
     svg {
       cursor: pointer;
-
       font-weight: lighter;
       font-size: 35px;
     }
@@ -329,7 +329,7 @@ const Navbar: React.FunctionComponent = () => {
   const [productDropdown, setProductDropdown] = useState(false);
   const [institutionalDropdown, setInstitutionalDropdown] = useState(false);
   const { state } = useContext(MenuContext);
-  const { menu } = state;
+  const { menu, option } = state;
   const { dispatch } = useContext(MenuContext);
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
   const [text, setText] = useState("");
@@ -341,6 +341,7 @@ const Navbar: React.FunctionComponent = () => {
   };
 
   useEffect(() => {
+    if (text === "") return;
     const filterProducts = async () => {
       try {
         const res = await axios.get(
@@ -352,9 +353,10 @@ const Navbar: React.FunctionComponent = () => {
         console.log(err);
       }
     };
-    if (text.length > 1) {
+    const timer = setTimeout(() => {
       filterProducts();
-    }
+    }, 1500);
+    return () => clearTimeout(timer);
   }, [text]);
 
   const handleClick = (id: string) => {
@@ -363,19 +365,21 @@ const Navbar: React.FunctionComponent = () => {
   };
 
   return (
-    <Container menu={menu}>
+    <Container option={option} menu={menu}>
       {(productDropdown || institutionalDropdown) && (
         <PseudoCon onClick={pseudeoClick}></PseudoCon>
       )}
       <Wrapper>
         <Left>
-          <Image
-            src="/img/solgar.PNG"
-            alt=""
-            width={220}
-            height={100}
-            objectFit="contain"
-          />
+          <Link href="/">
+            <Image
+              src="/img/solgar.PNG"
+              alt=""
+              width={220}
+              height={100}
+              objectFit="contain"
+            />
+          </Link>
         </Left>
         <Center>
           <List>
@@ -394,7 +398,9 @@ const Navbar: React.FunctionComponent = () => {
                       <PCLeftItems>
                         <Link
                           style={{ textDecoration: "none", color: "inherit" }}
-                          href={`/products?category=${button.title}`}
+                          href={`/products?category=${encodeURIComponent(
+                            button.title
+                          )}`}
                         >
                           {button.title}
                         </Link>
@@ -438,6 +444,7 @@ const Navbar: React.FunctionComponent = () => {
           <Input
             onChange={(e) => setText(e.target.value)}
             menu={menu}
+            value={text}
             type="text"
             placeholder="Solgar'da Ara"
           />
@@ -447,18 +454,17 @@ const Navbar: React.FunctionComponent = () => {
           {filteredProducts.length > 0 && text.length > 0 && (
             <FilteredCon>
               {filteredProducts.map((product, i) => (
-                
-                  <Pro key={i} onClick={() => handleClick(product._id)}>
-                    <ImageCon>
-                      <Image
-                        src={product.image}
-                        alt=""
-                        layout="fill"
-                        objectFit="contain"
-                      />
-                    </ImageCon>
-                    <Text>{product.name}</Text>
-                  </Pro>
+                <Pro key={i} onClick={() => handleClick(product._id)}>
+                  <ImageCon>
+                    <Image
+                      src={product.image}
+                      alt=""
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </ImageCon>
+                  <Text>{product.name}</Text>
+                </Pro>
               ))}
             </FilteredCon>
           )}

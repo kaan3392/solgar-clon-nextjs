@@ -1,22 +1,31 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import Image from "next/image";
-import { IProduct, ProductsProps } from "./Types";
-import { MenuContext } from "../context/MenuContext";
+import { ProductsProps } from "./Types";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { MenuContext, MenuContextInterface } from "../context/MenuContext";
+import FilteringOptions from "./FilteringOptions";
 
-const Container = styled.div`
+const Container = styled.div<MenuContextInterface>`
   height: 120vh;
   width: 100%;
   background-color: #fffaf3;
   padding: 40px 0px;
+  @media only screen and (max-width: 768px) {
+    height: 100vh;
+    padding:${props => props.option ? "0px " : "20px 0px"} ;
+    position: relative;
+  }
 `;
-const Wrapper = styled.div`
+const Wrapper = styled.div<MenuContextInterface>`
   height: 100%;
   margin: 0px 80px 0px 100px;
   display: flex;
+  @media only screen and (max-width: 768px) {
+    margin:${props => props.option ? "0" : "20px"}  ;
+  }
 `;
 const MainContainer = styled.div`
   height: 100%;
@@ -27,6 +36,9 @@ const MainContainer = styled.div`
 const Left = styled.div`
   flex: 3;
   border-right: 1px solid rgb(173, 160, 86, 0.5);
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 const LeftWrapper = styled.div`
   padding: 20px 0px;
@@ -47,35 +59,35 @@ const LeftListItem = styled.li`
   display: flex;
   align-items: center;
 `;
-const Check = styled.span``;
-const IsCheck = styled.input`
+export const Check = styled.span``;
+
+export const IsCheck = styled.input`
   width: 17px;
   height: 17px;
   cursor: pointer;
 `;
-const CatTitle = styled.label`
+export const CatTitle = styled.label`
   margin-left: 5px;
   cursor: pointer;
 `;
-
 const Right = styled.div`
   width: 100%;
   height: 95%;
 `;
-
 const RightWrapper = styled.div`
   height: 100%;
   padding: 20px 20px 50px 20px;
   display: flex;
   flex-direction: column;
 `;
-
 const RightTitle = styled.div`
   font-size: 30px;
-  margin-bottom: 40px;
+  margin: 20px 0px 40px 0px;
   font-weight: 700;
+  @media only screen and (max-width: 768px) {
+    font-size: 20px;
+  }
 `;
-
 const RightContainer = styled.div`
   width: 100%;
   flex-wrap: wrap;
@@ -86,20 +98,17 @@ const RightContainer = styled.div`
     display: none;
   }
 `;
-
 const ProductContainer = styled.div`
   width: 25%;
   height: 300px;
   cursor: pointer;
   margin-bottom: 30px;
 `;
-
 const ImageContainer = styled.div`
   position: relative;
   width: 100%;
   height: 80%;
 `;
-
 const ProductTitle = styled.div`
   font-size: 14px;
   font-weight: 300;
@@ -118,7 +127,6 @@ const ProductCat = styled.div`
   justify-content: center;
   margin-top: 5px;
 `;
-
 const Paginate = styled.div`
   display: flex;
   flex-direction: column;
@@ -129,20 +137,35 @@ const Paginate = styled.div`
 const PaginateLine = styled.div`
   display: flex;
 `;
-
 const Arrow = styled.div`
   cursor: pointer;
 `;
-
 const PageNumber = styled.div`
   margin-right: 10px;
 `;
 
+const FilteredButton = styled.button`
+  display: none;
+  @media only screen and (max-width: 768px) {
+    display: flex;
+    background-color: #d49d63;
+    position: absolute;
+    border: none;
+    outline: none;
+    top: 50px;
+    right: 40px;
+    padding: 2px 5px;
+    color: white;
+    cursor: pointer;
+  }
+`;
+
 const FilterProducts: React.FunctionComponent<ProductsProps> = (props) => {
-  const [filter, setFilter] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(12);
   const router = useRouter();
+  const { state, dispatch } = useContext(MenuContext);
+const {option} = state
 
   const cbChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let cbs = document.getElementsByTagName("input");
@@ -156,7 +179,6 @@ const FilterProducts: React.FunctionComponent<ProductsProps> = (props) => {
     let myFilter;
     if (e.currentTarget.checked) {
       myFilter = e.currentTarget.id;
-      console.log(myFilter);
       router.replace({
         pathname: `/products`,
         query: { category: myFilter },
@@ -165,10 +187,6 @@ const FilterProducts: React.FunctionComponent<ProductsProps> = (props) => {
     }
   };
 
-  useEffect(() => {
-    console.log(props.products)
-  }, [props]);
-
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = props.products.slice(
@@ -176,8 +194,15 @@ const FilterProducts: React.FunctionComponent<ProductsProps> = (props) => {
     indexOfLastProduct
   );
   return (
-    <Container>
-      <Wrapper>
+    <Container option = {option}>
+      {option ? (
+        <FilteringOptions />
+      ) : (
+        <FilteredButton onClick={() => dispatch({ type: "OptionOpen" })}>
+          FİLTRE
+        </FilteredButton>
+      )}
+      <Wrapper option = {option}>
         <Left>
           <LeftWrapper>
             <LeftTitle>KATEGORİLER</LeftTitle>
@@ -189,7 +214,6 @@ const FilterProducts: React.FunctionComponent<ProductsProps> = (props) => {
                     onClick={(e) => handleClick(e)}
                     type="checkbox"
                     className="isCheck"
-                   
                   />
                 </Check>
                 <CatTitle htmlFor="Tüm Ürünler">Tüm Ürünler</CatTitle>

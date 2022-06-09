@@ -1,5 +1,5 @@
 import { Add } from "@mui/icons-material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -9,11 +9,12 @@ const Container = styled.div`
     position: fixed;
     width: 100vw;
     min-height: 100vh;
-    z-index: 10;
+    z-index: 10000;
     background-color: #302519;
     transition: all 0.2s ease;
     color: white;
     top: 85px;
+    
     /* top: 0;
     bottom: 0;
     left: 0;
@@ -26,6 +27,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  overflow-y: auto;
+  height: 90vh;
 `;
 
 const ListItem = styled.ul`
@@ -75,7 +78,7 @@ const Menu = () => {
           </List>
           {productOpen && (
             <ListItem>
-              <ListChild>Amino Asitler ve Proteinler</ListChild>
+              <ListChild >Amino Asitler ve Proteinler</ListChild>
               <ListChild>Bitkisel Takviyeler</ListChild>
               <ListChild>Çocuk Ürünleri</ListChild>
               <ListChild>Esansiyel Yağ Asitleri</ListChild>

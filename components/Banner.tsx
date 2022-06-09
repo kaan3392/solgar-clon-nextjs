@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Facebook, Instagram, YouTube } from "@mui/icons-material";
 import styled from "styled-components";
+import { MenuContext, MenuContextInterface } from "../context/MenuContext";
 
-const Container = styled.div`
+const Container = styled.div<MenuContextInterface>`
   height: 30px;
   background-color: #302519;
   @media only screen and (max-width: 768px) {
     position: fixed;
-    z-index: 100000;
+    z-index: 10000;
     top: 0;
     width: 100%;
+    display: ${(props) => (props.option && "none")};
+
   }
 `;
 
@@ -43,8 +46,10 @@ const Items = styled.div`
 `;
 
 const Banner = () => {
+  const {state} = useContext(MenuContext)
+  const {option} = state
   return (
-    <Container>
+    <Container option = {option}>
       <Wrapper>
         <Items>
           <Facebook />

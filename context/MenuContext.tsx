@@ -2,13 +2,16 @@ import React, { createContext, useReducer } from "react";
 
 export type MenuContextInterface = {
   menu?: boolean;
-  filterCat?: any;
+  filterCat?: any ;
+  option?:boolean;
 };
 
 type Actions =
   | { type: "Open" }
   | { type: "Close" }
   | { type: "Toggle" }
+  | { type: "OptionOpen" }
+  | { type: "OptionClose" }
   | { type: "Filter"; payload: string | null };
 
 interface ProviderProps {
@@ -18,6 +21,7 @@ interface ProviderProps {
 const defaultState: MenuContextInterface = {
   menu: false,
   filterCat: null,
+  option:false,
 };
 
 export const MenuContext = createContext<{
@@ -33,10 +37,14 @@ const MenuReducer = (state: MenuContextInterface, action: Actions) => {
       return { menu: false };
     case "Toggle":
       return { menu: !state.menu };
+    case "OptionOpen":
+      return { option: true };
+    case "OptionClose":
+      return { option:false};
     case "Filter":
       return { filterCat: action.payload };
     default:
-      throw new Error();
+      return state;
   }
 };
 
