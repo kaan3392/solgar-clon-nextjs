@@ -394,8 +394,8 @@ const Navbar: React.FunctionComponent = () => {
               {productDropdown && (
                 <ProductContainer>
                   <PCLeft>
-                    {dropdownButtons.map((button) => (
-                      <PCLeftItems>
+                    {dropdownButtons.map((button,i) => (
+                      <PCLeftItems key={i} >
                         <Link
                           style={{ textDecoration: "none", color: "inherit" }}
                           href={`/products?category=${encodeURIComponent(

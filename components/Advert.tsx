@@ -64,7 +64,6 @@ const Center = styled.div`
   display: flex;
   width: 100%;
   height: 40%;
-  
 `;
 const CenterLeft = styled.div`
   width: 50%;
@@ -150,8 +149,8 @@ const Advert = () => {
       <Center>
         <CenterLeft>
           <Image
-           layout="fill"
-           objectFit="cover"
+            layout="fill"
+            objectFit="cover"
             src="https://online.solgar.com.tr/WebSitesData/B7276B31-4A9F-4914-9C8D-5D6BFD175310/mpt_Files/CB54AA9F-62A4-5F27-8EDC-FABF2B5D52AB.png"
             alt=""
           />
@@ -188,4 +187,3 @@ const Advert = () => {
 };
 
 export default Advert;
-

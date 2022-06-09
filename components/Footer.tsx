@@ -208,7 +208,7 @@ const Footer = () => {
         </ListGroup>
         <ListGroup>
           <Logo>
-            <Image src="/img/solgar.PNG" width={220} height={120} />
+            <Image alt="" src="/img/solgar.PNG" width={220} height={120} />
           </Logo>
         </ListGroup>
       </Top>

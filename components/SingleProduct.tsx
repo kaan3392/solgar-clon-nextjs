@@ -273,7 +273,7 @@ const SingleProduct: React.FunctionComponent<ProductProps> = ({ product }) => {
         Math.min(slide, product.images?.length - (product.images?.length - 2))
       )
     }px)`;
-  }, [slide, product.images?.length]);
+  }, [slide, product.images?.length, slideHeight]);
 
   return (
     <Container>
