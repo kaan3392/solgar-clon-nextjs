@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
-import axios from "axios";
 import { IParams, IProduct } from "../../components/Types";
 import SingleProduct from "../../components/SingleProduct";
 import Advert from "../../components/Advert";
 import InterestedProducts from "../../components/InterestedProducts";
 import Menu from "../../components/Menu";
 import { MenuContext } from "../../context/MenuContext";
-import { publicRequest } from "../../requestMethod";
+import axios from "axios";
+import { BASE_URL } from "../../util/url";
 
 const Product: NextPage<{ product: IProduct }> = ({ product }) => {
   const { state } = useContext(MenuContext);
@@ -29,9 +29,10 @@ const Product: NextPage<{ product: IProduct }> = ({ product }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+ 
   const { id } = context.params as IParams;
-  const res = await publicRequest.get<IProduct>(
-    `/products/${id}`
+  const res = await axios.get<IProduct>(
+    `${BASE_URL}products/${id}`
   );
   const product = res.data;
 

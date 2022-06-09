@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import FilterProducts from "../../components/FilterProducts";
-import axios from "axios";
 import { IProduct } from "../../components/Types";
 import { MenuContext } from "../../context/MenuContext";
 import Menu from "../../components/Menu";
-import { publicRequest } from "../../requestMethod";
+import axios from "axios";
+import { BASE_URL } from "../../util/url";
 
 const Products: NextPage<{ products: IProduct[] }> = ({ products }) => {
   const { state } = useContext(MenuContext);
@@ -24,15 +24,16 @@ const Products: NextPage<{ products: IProduct[] }> = ({ products }) => {
   );
 };
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+   
   let res;
   if (query.category) {
     
-    res = await publicRequest.get<IProduct>(
-      `/products?cat=${decodeURIComponent(query.category as string)}`
+    res = await axios.get<IProduct>(
+      `${BASE_URL}products?cat=${decodeURIComponent(query.category as string)}`
     );
     
   } else {
-    res = await publicRequest.get<IProduct>("/products");
+    res = await axios.get<IProduct>(`${BASE_URL}products`);
   }
   return {
     props: {

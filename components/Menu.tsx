@@ -14,11 +14,7 @@ const Container = styled.div`
     transition: all 0.2s ease;
     color: white;
     top: 85px;
-    
-    /* top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;  */
+  
   }
 `;
 

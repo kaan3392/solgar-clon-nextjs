@@ -13,7 +13,7 @@ import { MenuContext, MenuContextInterface } from "../context/MenuContext";
 import axios from "axios";
 import { IProduct, Props } from "./Types";
 import { useRouter } from "next/router";
-import { publicRequest } from "../requestMethod";
+import { BASE_URL } from "../util/url";
 
 const Container = styled.div<MenuContextInterface>`
   height: 100px;
@@ -345,8 +345,8 @@ const Navbar: React.FunctionComponent = () => {
     if (text === "") return;
     const filterProducts = async () => {
       try {
-        const res = await publicRequest.get(
-          `/products?filter=${text}`
+        const res = await axios.get(
+          `${BASE_URL}products?filter=${text}`
         );
         console.log(res.data);
         setFilteredProducts(res.data);

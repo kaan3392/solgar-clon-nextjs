@@ -15,7 +15,7 @@ const Container = styled.div<MenuContextInterface>`
   padding: 40px 0px;
   @media only screen and (max-width: 768px) {
     height: 100vh;
-    padding:${props => props.option ? "0px " : "20px 0px"} ;
+    padding: ${(props) => (props.option ? "0px " : "20px 0px")};
     position: relative;
   }
 `;
@@ -24,7 +24,7 @@ const Wrapper = styled.div<MenuContextInterface>`
   margin: 0px 80px 0px 100px;
   display: flex;
   @media only screen and (max-width: 768px) {
-    margin:${props => props.option ? "0" : "20px"}  ;
+    margin: ${(props) => (props.option ? "0" : "20px")};
   }
 `;
 const MainContainer = styled.div`
@@ -165,7 +165,7 @@ const FilterProducts: React.FunctionComponent<ProductsProps> = (props) => {
   const [productsPerPage, setProductsPerPage] = useState(12);
   const router = useRouter();
   const { state, dispatch } = useContext(MenuContext);
-const {option} = state
+  const { option } = state;
 
   const cbChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let cbs = document.getElementsByTagName("input");
@@ -194,7 +194,7 @@ const {option} = state
     indexOfLastProduct
   );
   return (
-    <Container option = {option}>
+    <Container option={option}>
       {option ? (
         <FilteringOptions />
       ) : (
@@ -202,7 +202,7 @@ const {option} = state
           FİLTRE
         </FilteredButton>
       )}
-      <Wrapper option = {option}>
+      <Wrapper option={option}>
         <Left>
           <LeftWrapper>
             <LeftTitle>KATEGORİLER</LeftTitle>
