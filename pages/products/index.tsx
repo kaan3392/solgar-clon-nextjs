@@ -6,6 +6,7 @@ import axios from "axios";
 import { IProduct } from "../../components/Types";
 import { MenuContext } from "../../context/MenuContext";
 import Menu from "../../components/Menu";
+import { publicRequest } from "../../requestMethod";
 
 const Products: NextPage<{ products: IProduct[] }> = ({ products }) => {
   const { state } = useContext(MenuContext);
@@ -26,12 +27,12 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   let res;
   if (query.category) {
     
-    res = await axios.get<IProduct>(
-      `http://localhost:3000/api/products?cat=${decodeURIComponent(query.category as string)}`
+    res = await publicRequest.get<IProduct>(
+      `/products?cat=${decodeURIComponent(query.category as string)}`
     );
     
   } else {
-    res = await axios.get<IProduct>("http://localhost:3000/api/products");
+    res = await publicRequest.get<IProduct>("/products");
   }
 
   return {

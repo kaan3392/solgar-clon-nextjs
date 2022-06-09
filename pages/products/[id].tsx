@@ -8,6 +8,7 @@ import Advert from "../../components/Advert";
 import InterestedProducts from "../../components/InterestedProducts";
 import Menu from "../../components/Menu";
 import { MenuContext } from "../../context/MenuContext";
+import { publicRequest } from "../../requestMethod";
 
 const Product: NextPage<{ product: IProduct }> = ({ product }) => {
   const { state } = useContext(MenuContext);
@@ -29,8 +30,8 @@ const Product: NextPage<{ product: IProduct }> = ({ product }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { id } = context.params as IParams;
-  const res = await axios.get<IProduct>(
-    `http://localhost:3000/api/products/${id}`
+  const res = await publicRequest.get<IProduct>(
+    `/products/${id}`
   );
   const product = res.data;
 
