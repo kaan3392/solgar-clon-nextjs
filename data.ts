@@ -17,7 +17,7 @@ export const dropdownButtons:DB[] = [
     },
     {
         
-        id:"Cocuk Ürünleri",
+        id:"Cocuk ürünleri",
         title:"Çocuk Ürünleri"
     },
     {
@@ -47,7 +47,7 @@ export const dropdownButtons:DB[] = [
     },
     {
         
-        id:"Özel Takviyeler",
+        id:"Ozel Takviyeler",
         title:"Özel Takviyeler"
     },
     {

@@ -217,7 +217,7 @@ const FilterProducts: React.FunctionComponent<ProductsProps> = (props) => {
                     className="isCheck"
                   />
                 </Check>
-                <CatTitle htmlFor="Tüm Ürünler">Tüm Ürünler</CatTitle>
+                <CatTitle htmlFor="">Tüm Ürünler</CatTitle>
               </LeftListItem>
               <LeftListItem>
                 <Check>
@@ -254,10 +254,10 @@ const FilterProducts: React.FunctionComponent<ProductsProps> = (props) => {
                     onClick={(e) => handleClick(e)}
                     type="checkbox"
                     className="isCheck"
-                    id="Cocuk Ürünleri"
+                    id="Cocuk ürünleri"
                   />
                 </Check>
-                <CatTitle htmlFor="Cocuk Ürünleri">Çocuk Ürünleri</CatTitle>
+                <CatTitle htmlFor="Cocuk ürünleri">Çocuk Ürünleri</CatTitle>
               </LeftListItem>
               <LeftListItem>
                 <Check>
@@ -328,10 +328,10 @@ const FilterProducts: React.FunctionComponent<ProductsProps> = (props) => {
                     onClick={(e) => handleClick(e)}
                     type="checkbox"
                     className="isCheck"
-                    id="Özel Takviyeler"
+                    id="Ozel Takviyeler"
                   />
                 </Check>
-                <CatTitle htmlFor="Özel Takviyeler">Özel Takviyeler</CatTitle>
+                <CatTitle htmlFor="Ozel Takviyeler">Özel Takviyeler</CatTitle>
               </LeftListItem>
               <LeftListItem>
                 <Check>
