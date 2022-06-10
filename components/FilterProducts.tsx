@@ -166,6 +166,7 @@ const FilterProducts: React.FunctionComponent<ProductsProps> = (props) => {
   const router = useRouter();
   const { state, dispatch } = useContext(MenuContext);
   const { option } = state;
+  const queryLength : any = router.query
 
   const cbChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let cbs = document.getElementsByTagName("input");
@@ -362,7 +363,7 @@ const FilterProducts: React.FunctionComponent<ProductsProps> = (props) => {
         <MainContainer>
           <Right>
             <RightWrapper>
-              <RightTitle>{router.query.category?.length > 0 ? currentProducts[0]?.category : "Tüm Ürünler"}</RightTitle>
+              <RightTitle>{queryLength.category?.length > 0 ? currentProducts[0]?.category : "Tüm Ürünler"}</RightTitle>
               <RightContainer>
                 {currentProducts.map((product, i) => (
                   <Link href={`/products/${product._id}`} key={i}>
