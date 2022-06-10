@@ -17,7 +17,7 @@ export const dropdownButtons:DB[] = [
     },
     {
         
-        id:"Cocuk ürünleri",
+        id:"Cocuk Urunleri",
         title:"Çocuk Ürünleri"
     },
     {

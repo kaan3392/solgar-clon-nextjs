@@ -119,10 +119,10 @@ const FilteringOptions = () => {
                 onClick={(e) => handleClick(e)}
                 type="checkbox"
                 className="isCheck"
-                id="Cocuk ürünleri"
+                id="Cocuk Urunleri"
               />
             </Check>
-            <CatTitle htmlFor="Cocuk ürünleri">Çocuk Ürünleri</CatTitle>
+            <CatTitle htmlFor="Cocuk Urunleri">Çocuk Ürünleri</CatTitle>
           </ListItem>
           <ListItem>
             <Check>
