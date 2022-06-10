@@ -5,6 +5,9 @@ import styled from "styled-components";
 const Container = styled.div`
   width: 100%;
   height: 115vh;
+  @media only screen and (max-width: 380px) {
+    height: 150vh;
+  }
 `;
 const Top = styled.div`
   background-color: #f9ecd9;
@@ -15,6 +18,9 @@ const Top = styled.div`
   @media only screen and (max-width: 768px) {
     height: 45%;
   }
+  @media only screen and (max-width: 380px) {
+    flex-direction: column;
+  }
 `;
 const TopLeft = styled.div`
   width: 50%;
@@ -24,6 +30,10 @@ const TopLeft = styled.div`
   flex-direction: column;
   @media only screen and (max-width: 768px) {
     padding: 20px 10px 50px 40px;
+  }
+  @media only screen and (max-width: 380px) {
+    padding: 10px;
+    width: 100%;
   }
 `;
 const TopLeftTitle = styled.div`
@@ -52,6 +62,9 @@ const TopLeftExtra = styled.div`
 const TopRight = styled.div`
   width: 50%;
   height: 100%;
+  @media only screen and (max-width: 380px) {
+    width: 100%;
+  }
 `;
 const TopRightCon = styled.div`
   width: 100%;
@@ -64,18 +77,27 @@ const Center = styled.div`
   display: flex;
   width: 100%;
   height: 40%;
+  @media only screen and (max-width: 380px) {
+    flex-direction: column;
+  }
 `;
 const CenterLeft = styled.div`
   width: 50%;
   height: 100%;
   overflow: hidden;
   position: relative;
+  @media only screen and (max-width: 380px) {
+    width: 100%;
+  }
 `;
 const CenterRight = styled.div`
   width: 50%;
   height: 100%;
   display: flex;
   background-color: #f9ecd9;
+  @media only screen and (max-width: 380px) {
+    width: 100%;
+  }
 `;
 const CenterRightWrapper = styled.div`
   height: 100%;
@@ -83,6 +105,9 @@ const CenterRightWrapper = styled.div`
   padding: 20px 50px;
   @media only screen and (max-width: 768px) {
     padding: 20px;
+  }
+  @media only screen and (max-width: 380px) {
+    padding: 10px;
   }
 `;
 const CenterRightTitle = styled.div`
@@ -105,6 +130,10 @@ const Bottom = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  @media only screen and (max-width: 380px) {
+    padding: 10px;
+    text-align: center;
+  }
 `;
 const BottomTitle = styled.div`
   font-size: 25px;

@@ -213,7 +213,7 @@ const Footer = () => {
         </ListGroup>
       </Top>
       <Bottom>
-        <BTitle>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</BTitle>
+        <BTitle>Bu örnek sitedir, gerçek solgar sitesi için lütfen solgar.com.tr'yi ziyaret ediniz.</BTitle>
         <Address>
           Lorem, ipsum dolor sit amet consectetur adipisicing.
         </Address>

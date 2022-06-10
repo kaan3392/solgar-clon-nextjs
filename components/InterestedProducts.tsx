@@ -11,6 +11,7 @@ const Container = styled.div`
   @media only screen and (max-width: 768px) {
     height: 50vh;
   }
+  
 `;
 const Title = styled.div`
   font-size: 28px;
@@ -38,10 +39,17 @@ const Wrapper = styled.div`
   @media only screen and (max-width: 768px) {
     margin: 0 10px;
   }
+  @media only screen and (max-width: 380px) {
+    flex-wrap: wrap;
+  }
 `;
 const Frame = styled.div`
   width: 25%;
   height: 100%;
+  @media only screen and (max-width: 380px) {
+    width: 50%;
+    height: 40%;
+  }
 `;
 const ImageContainer = styled.div`
 width: 100%;

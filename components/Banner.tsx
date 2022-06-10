@@ -11,8 +11,7 @@ const Container = styled.div<MenuContextInterface>`
     z-index: 10000;
     top: 0;
     width: 100%;
-    display: ${(props) => (props.option && "none")};
-
+    display: ${(props) => props.option && "none"};
   }
 `;
 
@@ -30,7 +29,7 @@ const Wrapper = styled.div`
 const Items = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   height: 100%;
   svg {
     margin-left: 5px;
@@ -45,16 +44,31 @@ const Items = styled.div`
   }
 `;
 
+const IconCon = styled.div`
+display: flex;
+`;
+const TextCon = styled.div`
+color:white;
+@media only screen and (max-width: 380px) {
+    font-size: 10px;
+  }
+`;
 const Banner = () => {
-  const {state} = useContext(MenuContext)
-  const {option} = state
+  const { state } = useContext(MenuContext);
+  const { option } = state;
   return (
-    <Container option = {option}>
+    <Container option={option}>
       <Wrapper>
         <Items>
-          <Facebook />
-          <Instagram />
-          <YouTube />
+          <TextCon>
+            Bu örnek sitedir, gerçek solgar sitesi için lütfen solgar.com.tr'yi
+            ziyaret ediniz.
+          </TextCon>
+          <IconCon>
+            <Facebook />
+            <Instagram />
+            <YouTube />
+          </IconCon>
         </Items>
       </Wrapper>
     </Container>

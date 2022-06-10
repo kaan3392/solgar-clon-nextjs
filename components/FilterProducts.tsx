@@ -79,6 +79,9 @@ const RightWrapper = styled.div`
   padding: 20px 20px 50px 20px;
   display: flex;
   flex-direction: column;
+  @media only screen and (max-width: 380px) {
+    padding: 10px 10px 35px 10px;
+  }
 `;
 const RightTitle = styled.div`
   font-size: 30px;
@@ -86,6 +89,9 @@ const RightTitle = styled.div`
   font-weight: 700;
   @media only screen and (max-width: 768px) {
     font-size: 20px;
+  }
+  @media only screen and (max-width: 380px) {
+    margin:30px 0px 30px 0px;
   }
 `;
 const RightContainer = styled.div`
@@ -103,6 +109,9 @@ const ProductContainer = styled.div`
   height: 300px;
   cursor: pointer;
   margin-bottom: 30px;
+  @media only screen and (max-width: 380px) {
+    width: 50%;
+  }
 `;
 const ImageContainer = styled.div`
   position: relative;
