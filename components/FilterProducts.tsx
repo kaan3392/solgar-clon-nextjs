@@ -362,7 +362,7 @@ const FilterProducts: React.FunctionComponent<ProductsProps> = (props) => {
         <MainContainer>
           <Right>
             <RightWrapper>
-              <RightTitle>TÜM ÜRÜNLER</RightTitle>
+              <RightTitle>{router.query.category?.length > 0 ? currentProducts[0]?.category : "Tüm Ürünler"}</RightTitle>
               <RightContainer>
                 {currentProducts.map((product, i) => (
                   <Link href={`/products/${product._id}`} key={i}>

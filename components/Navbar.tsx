@@ -31,7 +31,7 @@ const Container = styled.div<MenuContextInterface>`
 `;
 
 const PseudoCon = styled.div`
-  width: 100vw;
+  width: 95vw;
   height: calc(100vh - 130px);
   opacity: 0;
   z-index: 2;
@@ -56,6 +56,7 @@ const Wrapper = styled.div`
 
 const Left = styled.div`
   flex: 1;
+  cursor: pointer;
   @media only screen and (max-width: 380px) {
     flex: 1.5;
   }
@@ -110,12 +111,12 @@ const ListItems = styled.li<{
 `;
 
 const ProductContainer = styled.div`
+  position: absolute;
   display: flex;
   background-color: #e2d8c4;
-  width: 100vw;
+  width: 100%;
   height: 60vh;
-  padding: 20px 75px;
-  position: absolute;
+  padding: 20px 50px 20px 75px;
   top: 98px;
   left: 0px;
   z-index: 3;
@@ -134,12 +135,12 @@ const PCLeftItems = styled.div`
   justify-content: flex-start;
   align-items: center;
   margin: 10px;
-  padding: 15px;
+  padding: 15px 10px;
   border: none;
   border-radius: 3px;
   width: calc(33% - 40px);
   background-color: #f0e4d1;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   &:last-child {
     text-align: center;
@@ -365,6 +366,13 @@ const Navbar: React.FunctionComponent = () => {
     setText("");
   };
 
+  const handleCat = (id: string) => {
+    router.push({
+      pathname: `/products`,
+      query: { category: id },
+    })
+  }
+
   return (
     <Container option={option} menu={menu}>
       {(productDropdown || institutionalDropdown) && (
@@ -396,7 +404,7 @@ const Navbar: React.FunctionComponent = () => {
                 <ProductContainer>
                   <PCLeft>
                     {dropdownButtons.map((button,i) => (
-                      <PCLeftItems key={i} >
+                      <PCLeftItems onClick={() => handleCat(button.id)} key={i} >
                         <Link
                           style={{ textDecoration: "none", color: "inherit" }}
                           href={`/products?category=${encodeURIComponent(

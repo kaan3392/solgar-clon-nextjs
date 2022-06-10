@@ -1,60 +1,73 @@
 type DB = {
     
-        id:number,
+        id:string,
         title:string
 }
 
 export const dropdownButtons:DB[] = [
     {
-        id:1,
-        title:"Amino Asit ve Protein"
+        
+        id:"Amino asitler ve Proteinler",
+        title:"Amino asitler ve Proteinler"
     },
     {
-        id:2,
-        title:"Bitkisel Takviye"
+        
+        id:"Bitkisel Takviyeler",
+        title:"Bitkisel Takviyeler"
     },
     {
-        id:3,
-        title:"Cocuk Ürünleri"
+        
+        id:"Cocuk Ürünleri",
+        title:"Çocuk Ürünleri"
     },
     {
-        id:4,
-        title:"Esansiyel Yag Asitleri"
+        
+        id:"Esansiyel Yag Asitleri",
+        title:"Esansiyel Yağ Asitleri"
     },
     {
-        id:5,
+        
+        id:"Kalsiyum Grubu",
         title:"Kalsiyum Grubu"
     },
     {
-        id:6,
+        
+        id:"Koenzim Q-10",
         title:"Koenzim Q-10"
     },
     {
-        id:7,
+        
+        id:"Mineraller",
         title:"Mineraller"
     },
     {
-        id:8,
+        
+        id:"Multivitaminler",
         title:"Multivitaminler"
     },
     {
-        id:9,
+        
+        id:"Özel Takviyeler",
         title:"Özel Takviyeler"
     },
     {
-        id:9,
+       
+        id:"Probiyotikler",
         title:"Probiyotikler"
     },
     {
-        id:10,
+        
+        id:"Vitaminler",
         title:"Vitaminler"
     },
     {
-        id:11,
-        title:"Vitaminler"
+        
+        id:"Vitaminler",
+        title:"B Vitaminleri"
     },
     {
-        id:12,
+        
+        id:"",
         title:"Tüm Ürünler"
     },
 ]
