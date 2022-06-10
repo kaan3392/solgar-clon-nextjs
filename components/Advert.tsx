@@ -123,16 +123,15 @@ const Advert = () => {
     <Container>
       <Top>
         <TopLeft>
-          <TopLeftTitle>SOLGAR’IN ALTIN STANDART'I 1947'DEN BERİ</TopLeftTitle>
+          <TopLeftTitle>Lorem ipsum dolor sit amet.</TopLeftTitle>
           <TopLeftDesc>
-            Solgar® kalitesine ulaşmanın kestirme bir yolu yoktur. 70 yılı aşkın
-            bir süredir kendimizi kaliteye ve sağlıklı yaşama adadık. Yıllardır
-            devam eden misyonumuz, sürdürülebilir ve kaliteli hammaddeler
-            kullanarak, uzun bilimsel araştırmaların ve ciddi kalite kontrol
-            testlerinin sonucunda yenilikçi formüller ile ürünler geliştirmektir
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
+            laudantium aut assumenda vitae necessitatibus doloremque autem.
+            Debitis totam laborum recusandae cumque voluptatem qui eius, dolorem
+            animi quae, aliquid quibusdam nihil.
           </TopLeftDesc>
           <TopLeftExtra>
-            Çünkü Altın Standart'a ulaşmak ekstra çaba gerektirir.
+            Lorem ipsum dolor sit, amet consectetur adipisicing.
           </TopLeftExtra>
         </TopLeft>
         <TopRight>
@@ -158,28 +157,26 @@ const Advert = () => {
         <CenterRight>
           <CenterRightWrapper>
             <CenterRightTitle>
-              ALTIN STANDART'I GELİŞTİRMEK İÇİN SÜREKLİ ÇALIŞIYORUZ.
+              Lorem ipsum dolor sit amet consectetur adipisicing.
             </CenterRightTitle>
             <CenterRightText>
-              Araştırmaya ve Bilime Dayalı Ürünler
+              Lorem ipsum dolor sit amet.
             </CenterRightText>
-            <CenterRightText>Sürdürülebilir Hammaddeler</CenterRightText>
-            <CenterRightText>Global Üretim </CenterRightText>
-            <CenterRightText>Sürekli Kalite Kontrol</CenterRightText>
+            <CenterRightText>Lorem, ipsum.</CenterRightText>
+            <CenterRightText>Lorem, ipsum. </CenterRightText>
+            <CenterRightText>Lorem, ipsum dolor.</CenterRightText>
             <CenterRightText>
-              Yüksek Kalite Sandartları: USP Su Filtrasyonu, HEPA Hava
-              Filtrasyonu
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum.
             </CenterRightText>
           </CenterRightWrapper>
         </CenterRight>
       </Center>
       <Bottom>
         <BottomTitle>
-          SOLGAR KALİTESİNE ULAŞMANIN KESTİRME BİR YOLU YOKTUR!
+          Lorem ipsum dolor sit, amet consectetur adipisicing.
         </BottomTitle>
         <BottomText>
-          Kalite 1947'den beri yol gösterici ilkemiz olmuştur, çünkü Altın
-          Standart'a ulaşmak ekstra çaba gerektirir.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis ut dolor cum sunt cumque.
         </BottomText>
       </Bottom>
     </Container>

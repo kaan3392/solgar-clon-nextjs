@@ -196,7 +196,7 @@ const Footer = () => {
             </List>
           </MobileCon>
           <MobileCon>
-            <Title>SOLGAR</Title>
+            <Title>Solgar</Title>
             <List>
               <Item>İletişim</Item>
               <Item>En Yakın Eczane</Item>
@@ -213,11 +213,11 @@ const Footer = () => {
         </ListGroup>
       </Top>
       <Bottom>
-        <BTitle>SOLGAR VİTAMİN VE SAĞLIK ÜRÜNLERİ SAN. VE TİC. A.Ş.</BTitle>
+        <BTitle>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</BTitle>
         <Address>
-          Ebulula Mardin Caddesi No:45, 34330 Beşiktaş / İstanbul
+          Lorem, ipsum dolor sit amet consectetur adipisicing.
         </Address>
-        <Text>Tüm Hakları Saklıdır. © 2022 Solgar</Text>
+        <Text>Lorem ipsum dolor sit amet.</Text>
       </Bottom>
     </Container>
   );
