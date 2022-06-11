@@ -203,6 +203,7 @@ const FilterProducts: React.FunctionComponent<ProductsProps> = (props) => {
     indexOfFirstProduct,
     indexOfLastProduct
   );
+  
   return (
     <Container option={option}>
       {option ? (

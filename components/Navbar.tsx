@@ -346,9 +346,7 @@ const Navbar: React.FunctionComponent = () => {
     if (text === "") return;
     const filterProducts = async () => {
       try {
-        const res = await axios.get(
-          `${BASE_URL}products?filter=${text}`
-        );
+        const res = await axios.get(`${BASE_URL}products?filter=${text}`);
         console.log(res.data);
         setFilteredProducts(res.data);
       } catch (err) {
@@ -370,8 +368,8 @@ const Navbar: React.FunctionComponent = () => {
     router.push({
       pathname: `/products`,
       query: { category: id },
-    })
-  }
+    });
+  };
 
   return (
     <Container option={option} menu={menu}>
@@ -403,8 +401,8 @@ const Navbar: React.FunctionComponent = () => {
               {productDropdown && (
                 <ProductContainer>
                   <PCLeft>
-                    {dropdownButtons.map((button,i) => (
-                      <PCLeftItems onClick={() => handleCat(button.id)} key={i} >
+                    {dropdownButtons.map((button, i) => (
+                      <PCLeftItems onClick={() => handleCat(button.id)} key={i}>
                         <Link
                           style={{ textDecoration: "none", color: "inherit" }}
                           href={`/products?category=${encodeURIComponent(

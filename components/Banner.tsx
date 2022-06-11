@@ -61,8 +61,7 @@ const Banner = () => {
       <Wrapper>
         <Items>
           <TextCon>
-            Bu örnek sitedir, gerçek solgar sitesi için lütfen solgar.com.tr'yi
-            ziyaret ediniz.
+          BU ÖRNEK SİTEDİR, GERCEK SOLGAR SİTESİ İÇİN LÜTFEN solgar.com.tr'Yİ ZİYARET EDİNİZ.
           </TextCon>
           <IconCon>
             <Facebook />
