@@ -23,9 +23,11 @@ export default async function handler(
   if (req.method === "GET") {
     const { cat } = req.query;
     const filter: any = req.query.filter;
+    console.log("giriyor")
 
     try {
       let products;
+      console.log("111")
 
       if (cat) {
         console.log("aaa")
