@@ -2,15 +2,23 @@ import { dbConnect } from "../../../util/mongo";
 import { IProduct } from "../../../components/Types";
 import Product from "../../../models/Product";
 import type { NextApiRequest, NextApiResponse } from "next";
-
+import NextCors from 'nextjs-cors';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<IProduct[] | Error>
 ) {
+
+
+  await NextCors(req, res, {
+    
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+    origin: '*',
+    optionsSuccessStatus: 200, 
+ });
+
   await dbConnect();
 
- 
 
   if (req.method === "GET") {
     const { cat } = req.query;
