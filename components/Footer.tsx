@@ -168,7 +168,7 @@ const Footer = () => {
         <ListGroup>
           <MobileCon>
             <Title>ÜRÜNLER</Title>
-            <List horizontal>
+            <List horizontal={true}>
               <Item>Amino Asitler ve Proteinler</Item>
               <Item>Bitkisel Takviyeler</Item>
               <Item>Çocuk Ürünleri</Item>

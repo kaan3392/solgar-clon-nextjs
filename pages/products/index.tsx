@@ -23,11 +23,13 @@ const Products: NextPage<{ products: IProduct[] }> = ({ products }) => {
     </div>
   );
 };
+
+
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
    
   let res;
   if (query.category || query.category !== "Tüm Ürünler") {
-    
+    console.log(query.category)
     res = await axios.get<IProduct>(
       `${BASE_URL}products?cat=${decodeURIComponent(query.category as string)}`
     );

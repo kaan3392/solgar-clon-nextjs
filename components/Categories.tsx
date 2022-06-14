@@ -191,7 +191,7 @@ const Categories = () => {
         <Text>KATEGORİLER</Text>
       </Title>
       <Slide>
-        <Arrow left onClick={() => handleClick("left")}>
+        <Arrow left={true} onClick={() => handleClick("left")}>
           <ArrowBackIosOutlined />
         </Arrow>
         <Wrapper>
@@ -212,7 +212,7 @@ const Categories = () => {
             ))}
           </SlideCon>
         </Wrapper>
-        <Arrow right onClick={() => handleClick("right")}>
+        <Arrow right={true} onClick={() => handleClick("right")}>
           <ArrowForwardIosOutlined />
         </Arrow>
       </Slide>
