@@ -7,6 +7,7 @@ import { MenuContext } from "../../context/MenuContext";
 import Menu from "../../components/Menu";
 import axios from "axios";
 import { BASE_URL } from "../../util/url";
+import { dbConnect } from "../../util/mongo";
 
 const Products: NextPage<{ products: IProduct[] }> = ({ products }) => {
   const { state } = useContext(MenuContext);
@@ -26,6 +27,8 @@ const Products: NextPage<{ products: IProduct[] }> = ({ products }) => {
 
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+
+  await dbConnect();
    
   let res;
   if (query.category || query.category !== "Tüm Ürünler") {
