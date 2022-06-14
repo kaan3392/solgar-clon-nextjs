@@ -28,6 +28,7 @@ export default async function handler(
       let products;
 
       if (cat) {
+        console.log("aaa")
         products = await Product.find({ category: cat });
       } else if (filter) {
         products = await Product.find({ "name": {$regex: new RegExp(filter, "i")}}).limit(
@@ -36,8 +37,10 @@ export default async function handler(
       } else {
         products = await Product.find();
       }
+      console.log("bbbb")
       return res.status(200).json(products);
     } catch (error) {
+      console.log("cccc")
       return res.status(500).json(error as Error);
     }
   }
