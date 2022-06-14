@@ -45,7 +45,7 @@ const Video = () => {
       <Vid>
         <PlayerCon>
           <iframe
-            src="https://www.youtube.com/embed/VgYh9QUV3zc"
+            src="/img/reklam.mp4"
             frameBorder="0"
             allow="fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen={true}
