@@ -19,10 +19,8 @@ export default async function handler(
 
     try {
       let products;
-      console.log("111")
 
       if (cat) {
-        console.log("aaa")
         products = await Product.find({ category: cat });
       } else if (filter) {
         products = await Product.find({ "name": {$regex: new RegExp(filter, "i")}}).limit(
@@ -31,10 +29,9 @@ export default async function handler(
       } else {
         products = await Product.find();
       }
-      console.log("bbbb")
       return res.status(200).json(products);
     } catch (error) {
-      console.log("cccc")
+      console.log(error)
       return res.status(500).json(error as Error);
     }
   }
