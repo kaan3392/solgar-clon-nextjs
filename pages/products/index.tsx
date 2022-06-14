@@ -27,8 +27,8 @@ const Products: NextPage<{ products: IProduct[] }> = ({ products }) => {
 
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-
-  await dbConnect()
+console.log("mmmmmmmmmmmmmmmmmmmmmmm")
+  await dbConnect();
   let res;
   if (query.category || query.category !== "Tüm Ürünler") {
     console.log(query.category)
