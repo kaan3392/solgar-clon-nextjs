@@ -8,7 +8,7 @@ export default async function handler(
   res: NextApiResponse<IProduct | Error>
 ) {
   const { id } = req.query;
-  dbConnect();
+ await dbConnect();
 
 
   if (req.method === "GET") {
