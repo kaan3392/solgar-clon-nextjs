@@ -7,10 +7,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<IProduct[] | Error>
 ) {
-  console.log("selammmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm")
 
   await dbConnect();
-
 
   if (req.method === "GET") {
     const { cat } = req.query;

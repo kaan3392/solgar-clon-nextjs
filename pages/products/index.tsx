@@ -25,20 +25,19 @@ const Products: NextPage<{ products: IProduct[] }> = ({ products }) => {
   );
 };
 
-
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   await dbConnect();
   let res;
   if (query.category || query.category !== "Tüm Ürünler") {
     console.log(query.category)
-    res = await axios.get<IProduct>(
+    res = await axios.get<IProduct[]>(
       `${BASE_URL}products?cat=${decodeURIComponent(query.category as string)}`
     );
     
   } 
   else {
     console.log(query.category)
-    res = await axios.get<IProduct>(`${BASE_URL}products`);
+    res = await axios.get<IProduct[]>(`${BASE_URL}products`);
   }
   return {
     props: {
@@ -46,4 +45,6 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     },
   };
 };
+
+
 export default Products;
