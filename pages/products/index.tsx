@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetServerSideProps,  NextPage } from "next";
 import Head from "next/head";
 import FilterProducts from "../../components/FilterProducts";
 import { IProduct } from "../../components/Types";
@@ -24,6 +24,7 @@ const Products: NextPage<{ products: IProduct[] }> = ({ products }) => {
     </div>
   );
 };
+
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   await dbConnect();

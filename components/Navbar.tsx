@@ -407,19 +407,12 @@ const Navbar: React.FunctionComponent = () => {
                           style={{ textDecoration: "none", color: "inherit" }}
                           href={{
                             pathname: '/products',
-                            query: { category: button.title },
+                            query: { category: button.id },
                           }}
                         >
                           {button.title}
                         </Link>
-                        {/* <Link
-                          style={{ textDecoration: "none", color: "inherit" }}
-                          href={`/products?category=${encodeURIComponent(
-                            button.title
-                          )}`}
-                        >
-                          {button.title}
-                        </Link> */}
+                        
                       </PCLeftItems>
                     ))}
                   </PCLeft>
