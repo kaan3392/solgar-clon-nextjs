@@ -405,12 +405,21 @@ const Navbar: React.FunctionComponent = () => {
                       <PCLeftItems onClick={() => handleCat(button.id)} key={i}>
                         <Link
                           style={{ textDecoration: "none", color: "inherit" }}
+                          href={{
+                            pathname: '/products',
+                            query: { category: button.title },
+                          }}
+                        >
+                          {button.title}
+                        </Link>
+                        {/* <Link
+                          style={{ textDecoration: "none", color: "inherit" }}
                           href={`/products?category=${encodeURIComponent(
                             button.title
                           )}`}
                         >
                           {button.title}
-                        </Link>
+                        </Link> */}
                       </PCLeftItems>
                     ))}
                   </PCLeft>

@@ -29,14 +29,14 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   await dbConnect();
   let res;
   if (query.category || query.category !== "Tüm Ürünler") {
-    console.log(query.category)
+    console.log(query)
     res = await axios.get<IProduct[]>(
       `${BASE_URL}products?cat=${decodeURIComponent(query.category as string)}`
     );
     
   } 
   else {
-    console.log(query.category)
+    console.log(query)
     res = await axios.get<IProduct[]>(`${BASE_URL}products`);
   }
   return {
