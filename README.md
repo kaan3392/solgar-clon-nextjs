@@ -2,4 +2,4 @@
 
 ## Demo
 
-Demo link heroku: https://solgar-clone.vercel.app/
+Demo link heroku: https://solgar-clone-nextjs.vercel.app/
