@@ -9,7 +9,7 @@ interface Props {
 
 const Layout:FunctionComponent<Props> = ({ children }) => {
   return (
-    <div>
+    <div >
       <Banner/>
       <Navbar />
       {children}

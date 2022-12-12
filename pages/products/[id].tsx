@@ -22,19 +22,20 @@ const Product: NextPage<{ product: IProduct }> = ({ product }) => {
       </Head>
       {state.menu && <Menu />}
       <SingleProduct product={product} />
-      <Advert/>
-      <InterestedProducts/>
+      <Advert />
+      <InterestedProducts />
     </div>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
- 
   const { id } = context.params as IParams;
-  const res = await axios.get<IProduct>(
-    `${BASE_URL}products/${id}`
-  );
-  const product = res.data;
+  // const res = await axios.get<IProduct>(
+  //   `${BASE_URL}products/${id}`
+  // );
+  // const product = res.data;
+  const res = await fetch(`${BASE_URL}products/${id}`);
+  const product = (await res.json()) as IProduct;
 
   return {
     props: {
