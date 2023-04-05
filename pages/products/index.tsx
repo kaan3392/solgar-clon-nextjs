@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
+
+import { BASE_URL } from "../../util/url";
 import FilterProducts from "../../components/FilterProducts";
 import { IProduct } from "../../components/Types";
-import { MenuContext } from "../../context/MenuContext";
 import Menu from "../../components/Menu";
-import axios from "axios";
-import { BASE_URL } from "../../util/url";
-import { dbConnect } from "../../util/mongo";
+import { MenuContext } from "../../context/MenuContext";
+// import { dbConnect } from "../../util/mongo";
 
 const Products: NextPage<{ products: IProduct[] }> = ({ products }) => {
   const { state } = useContext(MenuContext);
@@ -26,14 +26,10 @@ const Products: NextPage<{ products: IProduct[] }> = ({ products }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  await dbConnect();
+  // await dbConnect();
   let products;
   if (query.category || query.category !== "Tüm Ürünler") {
-    console.log(query);
-    // res = await axios.get<IProduct[]>(
-    //   `${BASE_URL}products?cat=${decodeURIComponent(query.category as string)}`
-    // );
-
+    // console.log("QUERY",query);
     const res = await fetch(
       `${BASE_URL}products?cat=${decodeURIComponent(query.category as string)}`
     );

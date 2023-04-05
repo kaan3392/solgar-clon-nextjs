@@ -13,6 +13,7 @@ import {
   DirectionArrowProps,
   ImageProps,
   ProductProps,
+  ShowActiveProps,
 } from "./Types";
 
 const Container = styled.div`
@@ -83,11 +84,23 @@ const ArrowCon = styled.div<DirectionArrowProps>`
     opacity: 1;
   }
 `;
-const SmSlide = styled.div`
+const SmSlide = styled.div<ShowActiveProps>`
   width: 100%;
   min-height: 25%;
   position: relative;
   z-index: 3;
+  border: ${(props) => props.showBorder && "1px solid rgb(185, 164, 44, .5)"};      
+  &:after{
+    content: "";
+    position: absolute;
+    top: calc(50% - 12px);
+    left: 100%;
+    width: 0;
+    height: 0;
+    border: 12px solid transparent;
+    border-left-color: ${(props) => props.showBorder && "rgb(185, 164, 44, .5)"};
+
+  }            
 `;
 const ImgContainerLittle = styled.div`
   z-index: 3;
@@ -292,18 +305,15 @@ const SingleProduct: React.FunctionComponent<ProductProps> = ({ product }) => {
                   <SmSlide
                     key={index}
                     ref={slideRef}
-                    style={
-                      slide === index
-                        ? { border: "1px solid rgb(185, 164, 44, .5)" }
-                        : {}
-                    }
+                    
+                    showBorder={slide === index}
                   >
                     <ImgContainerLittle>
                       <Image src={i} alt="" layout="fill" objectFit="cover" />
                     </ImgContainerLittle>
-                    {slide === index && (
+                    {/* {slide === index && (
                       <Diamond style={{ top: "calc(50% - 10px)" }}></Diamond>
-                    )}
+                    )} */}
                   </SmSlide>
                 ))}
               </LittleSlideCon>

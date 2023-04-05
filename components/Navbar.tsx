@@ -1,18 +1,19 @@
 import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+
 import {
   KeyboardArrowDown,
   Search,
   DragHandle,
   Close,
 } from "@mui/icons-material";
-import Image from "next/image";
 import { dropdownButtons } from "../data";
-import Link from "next/link";
 import { MenuContext, MenuContextInterface } from "../context/MenuContext";
 import axios from "axios";
 import { IProduct, Props } from "./Types";
-import { useRouter } from "next/router";
 import { BASE_URL } from "../util/url";
 
 const Container = styled.div<MenuContextInterface>`
@@ -24,7 +25,7 @@ const Container = styled.div<MenuContextInterface>`
   z-index: 999;
   @media only screen and (max-width: 768px) {
     top: 30px;
-    height: 55px;
+    height: 70px;
     background-color: ${(props) => (props.menu ? "#302519" : "#fffaf3")};
     display: ${(props) => props.option && "none"};
   }
@@ -32,7 +33,7 @@ const Container = styled.div<MenuContextInterface>`
 
 const PseudoCon = styled.div`
   width: 95vw;
-  height: calc(100vh - 130px);
+  height: 100vh;
   opacity: 0;
   z-index: 2;
   position: absolute;
@@ -276,6 +277,7 @@ const SearchCon = styled.div<MenuContextInterface>`
     display: ${(props) => props.menu && "none"};
   }
 `;
+
 const FilteredCon = styled.div`
   display: flex;
   flex-direction: column;
@@ -287,6 +289,7 @@ const FilteredCon = styled.div`
   border: 1px solid gray;
   background-color: #dfd1bd;
 `;
+
 const Pro = styled.div`
   box-sizing: border-box;
   display: flex;
@@ -309,6 +312,7 @@ const Pro = styled.div`
     padding: 3px 5px;
   }
 `;
+
 const Text = styled.div`
   font-size: 14px;
   @media only screen and (max-width: 768px) {
@@ -347,7 +351,6 @@ const Navbar: React.FunctionComponent = () => {
     const filterProducts = async () => {
       try {
         const res = await axios.get(`${BASE_URL}products?filter=${text}`);
-        console.log(res.data);
         setFilteredProducts(res.data);
       } catch (err) {
         console.log(err);
@@ -418,10 +421,11 @@ const Navbar: React.FunctionComponent = () => {
                   </PCLeft>
                   <PCRight>
                     <Image
-                      src="/img/droplogo.PNG"
+                      src="/img/droplogo.png"
                       alt=""
                       width={500}
                       height={150}
+                      objectFit="cover"
                     />
                   </PCRight>
                 </ProductContainer>

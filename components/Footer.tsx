@@ -6,17 +6,17 @@ import { HorizontalProps } from "./Types";
 import { MenuContext, MenuContextInterface } from "../context/MenuContext";
 
 const Container = styled.div<MenuContextInterface>`
-  height: 90vh;
+  min-height: 90vh;
   width: 100%;
   background-color: #302519;
   display: flex;
   flex-direction: column;
   @media only screen and (max-width: 768px) {
-    height: 60vh;
-    display: ${props => props.menu && "none"  };
+    min-height: 60vh;
+    display: ${(props) => props.menu && "none"};
   }
   @media only screen and (max-width: 380px) {
-    height: 80vh;
+    min-height: 50vh;
   }
 `;
 
@@ -120,6 +120,9 @@ const BTitle = styled.h2`
   color: rgb(165, 150, 62);
   letter-spacing: 0.1rem;
   margin-bottom: 10px;
+  @media only screen and (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 const Address = styled.p`
@@ -213,10 +216,11 @@ const Footer = () => {
         </ListGroup>
       </Top>
       <Bottom>
-        <BTitle>BU ÖRNEK SİTEDİR, GERCEK SOLGAR SİTESİ İÇİN LÜTFEN solgar.com.tr'Yİ ZİYARET EDİNİZ.</BTitle>
-        <Address>
-          Lorem, ipsum dolor sit amet consectetur adipisicing.
-        </Address>
+        <BTitle>
+          BU ÖRNEK SİTEDİR, GERCEK SOLGAR SİTESİ İÇİN LÜTFEN solgar.com.tr'Yİ
+          ZİYARET EDİNİZ.
+        </BTitle>
+        <Address>Lorem, ipsum dolor sit amet consectetur adipisicing.</Address>
         <Text>Lorem ipsum dolor sit amet.</Text>
       </Bottom>
     </Container>

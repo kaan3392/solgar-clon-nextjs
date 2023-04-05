@@ -11,19 +11,19 @@ import { ArrowDirectionProps } from "./Types";
 
 const Container = styled.div`
   width: 100%;
-  height: calc(100vh - 100px);
+  min-height: calc(100vh - 100px);
   background-color: #efe5d8;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: column;
   border-top: 1px solid rgba(233, 207, 63, 0.329);
   position: relative;
   padding-top: 20px;
   @media only screen and (max-width: 768px) {
-    height: calc(65vh - 85px);
+    height: calc(90vh - 100px);
   }
   @media only screen and (max-width: 380px) {
-    height: calc(75vh - 85px);
+    height: calc(80vh - 100px);
   }
 `;
 
@@ -37,7 +37,6 @@ const Title = styled.div`
 const Text = styled.div`
   color: #802c1c;
   font-size: 27px;
-  padding-top: 30px;
 `;
 
 const Slide = styled.div`

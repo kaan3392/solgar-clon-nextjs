@@ -6,27 +6,23 @@ import { Dot, Dots } from "./Slider";
 import Image from "next/image";
 
 const Container = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   background-color: #fffaf3;
   padding: 40px 0px;
-  @media only screen and (max-width: 768px) {
-    height: calc(80vh - 85px);
-  }
-  @media only screen and (max-width: 380px) {
-    height: calc(90vh - 85px);
-    padding: 20px 0px;
-  }
+  display: flex;
+  justify-content: center;
 `;
 
 const Wrapper = styled.div`
-  margin: 0px 200px;
-  @media only screen and (max-width: 768px) {
-    margin: 0 50px;
-  }
-  @media only screen and (max-width: 380px) {
-    margin: 0 10px;
-  }
+  height: 100%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+const Top = styled.div`
+  
 `;
 
 const Text = styled.div`
@@ -52,10 +48,10 @@ const SubTitle = styled.h1`
   margin-bottom: 15px;
   @media only screen and (max-width: 768px) {
     margin-bottom: 10px;
+    text-align: center;
   }
   @media only screen and (max-width: 380px) {
     letter-spacing: 1px;
-    text-align: center;
     font-size: 22px;
   }
 `;
@@ -124,6 +120,11 @@ const PTitle = styled.h2`
   font-size: 16px;
 `;
 
+const Bottom = styled.div`
+
+
+`
+
 const Products = () => {
   const [index, setIndex] = useState(0);
   const [slideWidth, setSlideWidth] = useState<number>(0);
@@ -139,7 +140,7 @@ const Products = () => {
       setIndex(index < products.length - numberOfProductShown ? index + 1 : 0);
     }
   };
- 
+
   useEffect(() => {
     if (!slideRef.current) {
       return;
@@ -154,7 +155,6 @@ const Products = () => {
     );
   }, [index, slideWidth]);
 
-
   const DotsLoop: React.FunctionComponent = () => {
     return (
       <Dots>
@@ -168,42 +168,46 @@ const Products = () => {
   return (
     <Container>
       <Wrapper>
-        <Text>
-          <Title>SOLGAR VİTAMİN</Title>
-          <SubTitle>SİZİN İÇİN GELİŞTİRİLMİŞ YENİLİKÇİ ÜRÜNLER</SubTitle>
-          <Info>
-            Solgar® olarak, ihtiyacınız olan desteği, ihtiyaç duyduğunuz anda
-            size sunmak için yüksek kaliteli bileşenleri bir araya getiren
-            benzersiz, yenilikçi ürünler yaratmaya kendimizi adadık.
-          </Info>
-        </Text>
-        <Slider>
-          <Arrow style={{ left: 10 }} onClick={() => handleClick("left")}>
-            <ArrowBack />
-          </Arrow>
-          <ImgCon ref={imgRef}>
-            {products.map((product) => (
-              <PContainer key={product.id} ref={slideRef}>
-                <PImg>
-                  <Image
-                    src={product.img}
-                    alt=""
-                    objectFit="contain"
-                    layout="fill"
-                    priority
-                  />
-                </PImg>
-                <PCat className="productCat">{product.categories}</PCat>
-                <PTitle className="productTitle">{product.title}</PTitle>
-              </PContainer>
-            ))}
-          </ImgCon>
-          <Arrow style={{ right: 10 }} onClick={() => handleClick("right")}>
-            <ArrowForward />
-          </Arrow>
-        </Slider>
+        <Top>
+          <Text>
+            <Title>SOLGAR VİTAMİN</Title>
+            <SubTitle>SİZİN İÇİN GELİŞTİRİLMİŞ YENİLİKÇİ ÜRÜNLER</SubTitle>
+            <Info>
+              Solgar® olarak, ihtiyacınız olan desteği, ihtiyaç duyduğunuz anda
+              size sunmak için yüksek kaliteli bileşenleri bir araya getiren
+              benzersiz, yenilikçi ürünler yaratmaya kendimizi adadık.
+            </Info>
+          </Text>
+          <Slider>
+            <Arrow style={{ left: 10 }} onClick={() => handleClick("left")}>
+              <ArrowBack />
+            </Arrow>
+            <ImgCon ref={imgRef}>
+              {products.map((product) => (
+                <PContainer key={product.id} ref={slideRef}>
+                  <PImg>
+                    <Image
+                      src={product.img}
+                      alt=""
+                      objectFit="contain"
+                      layout="fill"
+                      priority
+                    />
+                  </PImg>
+                  <PCat className="productCat">{product.categories}</PCat>
+                  <PTitle className="productTitle">{product.title}</PTitle>
+                </PContainer>
+              ))}
+            </ImgCon>
+            <Arrow style={{ right: 10 }} onClick={() => handleClick("right")}>
+              <ArrowForward />
+            </Arrow>
+          </Slider>
+        </Top>
+        <Bottom>
+          <DotsLoop />
+        </Bottom>
       </Wrapper>
-      <DotsLoop />
     </Container>
   );
 };

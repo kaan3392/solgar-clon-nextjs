@@ -26,6 +26,7 @@ export default async function handler(
       } else {
         products = await Product.find();
       }
+      console.log(products.length)
       return res.status(200).json(products);
     } catch (error) {
       console.log(error)

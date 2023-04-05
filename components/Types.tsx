@@ -29,6 +29,9 @@ export interface DirectionArrowProps {
   upArrow?:boolean
   downArrow?:boolean
 }
+export interface ShowActiveProps {
+  showBorder?:boolean
+}
 
 export interface IProduct extends Document{
   name: string ;

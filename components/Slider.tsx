@@ -11,10 +11,11 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   @media only screen and (max-width: 768px) {
-    height: calc(45vh - 85px);
+    height: calc(85vh - 130px);
+    margin-top:30px;
   }
   @media only screen and (max-width: 380px) {
-    height: calc(40vh - 85px);
+    height: calc(60vh - 85px);
   }
 `;
 
@@ -27,14 +28,13 @@ const SliderContainer = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
-  width: 80%;
+  width: 85%;
   height: 100%;
   overflow: hidden;
   position: relative;
   cursor: pointer;
   @media only screen and (max-width: 768px) {
-    width: 100%;
-    
+    width: 95%;
   }
 `;
 
@@ -45,7 +45,7 @@ const Arrow = styled.div`
   cursor: pointer;
   z-index: 2;
   opacity: 0.5;
-  &:hover{
+  &:hover {
     opacity: 1;
   }
 `;
@@ -54,20 +54,17 @@ const ImageConLittle = styled.div<ImageProps>`
   width: ${(props) => (props.active ? "100%" : "0")};
   height: ${(props) => (props.active ? "100%" : "0")};
   opacity: ${(props) => (props.active ? "1" : "0")};
-  transition: opacity .5s;
+  transition: opacity 0.5s;
 `;
 
 const ImageContainer = styled.div`
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  /* object-fit: contain; */
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  @media only screen and (max-width: 380px) {
-    object-fit: cover;
-  }
 `;
 
 export const Dots = styled.div`
@@ -97,6 +94,8 @@ const Slider = () => {
     }
   };
 
+  const dotsArray = new Array(7).fill(0).map((_, index) => index + 1);
+
   return (
     <Container>
       <SliderContainer>
@@ -107,23 +106,25 @@ const Slider = () => {
           {slider.map((slide) => (
             <ImageConLittle active={slide.id === currentImg} key={slide.id}>
               <ImageContainer>
-                <Image src={slide.img} alt="" layout="fill" objectFit="cover" priority />
+                <Image
+                  src={slide.img}
+                  alt=""
+                  layout="fill"
+                  objectFit="cover"
+                  priority
+                />
               </ImageContainer>
             </ImageConLittle>
           ))}
-          <Arrow style={{ right: 10 }}  onClick={() => handleClick("right")}>
+          <Arrow style={{ right: 10 }} onClick={() => handleClick("right")}>
             <ArrowForward />
           </Arrow>
         </Wrapper>
       </SliderContainer>
       <Dots>
-        <Dot active={currentImg === 1}></Dot>
-        <Dot active={currentImg === 2}></Dot>
-        <Dot active={currentImg === 3}></Dot>
-        <Dot active={currentImg === 4}></Dot>
-        <Dot active={currentImg === 5}></Dot>
-        <Dot active={currentImg === 6}></Dot>
-        <Dot active={currentImg === 7}></Dot>
+        {dotsArray.map((dot) => (
+          <Dot key={dot} active={currentImg === dot} />
+        ))}
       </Dots>
     </Container>
   );

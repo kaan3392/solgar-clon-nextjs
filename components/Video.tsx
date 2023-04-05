@@ -2,14 +2,15 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   background-color: #fffaf3;
   width: 100%;
+  padding: 40px 0px;
   @media only screen and (max-width: 768px) {
-    height: 60vh;
+    height: 70vh;
   }
   @media only screen and (max-width: 380px) {
-    height: 35vh;
+    height: 45vh;
   }
 `;
 
@@ -17,12 +18,12 @@ const Vid = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 120px;
+  padding-top: 80px;
   @media only screen and (max-width: 768px) {
-    padding-top: 70px;
+    padding-top: 40px;
   }
   @media only screen and (max-width: 380px) {
-    padding-top: 40px;
+    padding-top: 20px;
   }
 `;
 

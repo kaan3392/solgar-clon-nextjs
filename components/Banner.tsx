@@ -12,6 +12,7 @@ const Container = styled.div<MenuContextInterface>`
     top: 0;
     width: 100%;
     display: ${(props) => props.option && "none"};
+    font-size:12px;
   }
 `;
 
