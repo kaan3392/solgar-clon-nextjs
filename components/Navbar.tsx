@@ -369,7 +369,7 @@ const Navbar = () => {
 
     const timer = setTimeout(() => {
       filterProducts();
-    }, 1500);
+    }, 1000);
     
     return () => clearTimeout(timer);
   }, [text]);
