@@ -430,9 +430,10 @@ const Navbar = () => {
                     <Image
                       src="/img/droplogo.png"
                       alt=""
-                      width={500}
+                      width={450}
                       height={150}
                       objectFit="cover"
+                      priority
                     />
                   </PCRight>
                 </ProductContainer>
