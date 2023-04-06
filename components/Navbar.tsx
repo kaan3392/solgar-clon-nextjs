@@ -331,14 +331,16 @@ const ImageCon = styled.div<Props>`
   }
 `;
 
-const Navbar: React.FunctionComponent = () => {
+const Navbar = () => {
   const [productDropdown, setProductDropdown] = useState(false);
   const [institutionalDropdown, setInstitutionalDropdown] = useState(false);
-  const { state } = useContext(MenuContext);
-  const { menu, option } = state;
-  const { dispatch } = useContext(MenuContext);
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
   const [text, setText] = useState("");
+
+  const { state } = useContext(MenuContext);
+  const { menu, option } = state;
+
+  const { dispatch } = useContext(MenuContext);
   const router = useRouter();
 
   const pseudeoClick = () => {
@@ -348,6 +350,7 @@ const Navbar: React.FunctionComponent = () => {
 
   useEffect(() => {
     if (text === "") return;
+
     const filterProducts = async () => {
       try {
         const res = await axios.get(`${BASE_URL}products?filter=${text}`);
@@ -356,6 +359,7 @@ const Navbar: React.FunctionComponent = () => {
         console.log(err);
       }
     };
+    
     const timer = setTimeout(() => {
       filterProducts();
     }, 1500);
@@ -367,17 +371,17 @@ const Navbar: React.FunctionComponent = () => {
     setText("");
   };
 
-  const handleCat = (id: string) => {
-    router.push({
-      pathname: `/products`,
-      query: { category: id },
-    });
-  };
+  // const handleCat = (id: string) => {
+  //   router.push({
+  //     pathname: `/products`,
+  //     query: { category: id },
+  //   });
+  // };
 
   return (
     <Container option={option} menu={menu}>
       {(productDropdown || institutionalDropdown) && (
-        <PseudoCon onClick={pseudeoClick}></PseudoCon>
+        <PseudoCon onClick={pseudeoClick} />
       )}
       <Wrapper>
         <Left>
@@ -405,18 +409,13 @@ const Navbar: React.FunctionComponent = () => {
                 <ProductContainer>
                   <PCLeft>
                     {dropdownButtons.map((button, i) => (
-                      <PCLeftItems onClick={() => handleCat(button.id)} key={i}>
-                        <Link
-                          style={{ textDecoration: "none", color: "inherit" }}
-                          href={{
-                            pathname: '/products',
-                            query: { category: button.id },
-                          }}
-                        >
-                          {button.title}
-                        </Link>
-                        
-                      </PCLeftItems>
+                      <Link href={`/products?category=${button.id}`} key={i}>
+                        <PCLeftItems>
+                          
+                            {button.title}
+                          
+                        </PCLeftItems>
+                      </Link>
                     ))}
                   </PCLeft>
                   <PCRight>

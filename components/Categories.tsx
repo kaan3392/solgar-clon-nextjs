@@ -143,6 +143,7 @@ const SlideTitle = styled.div`
 const Categories = () => {
   const [catSlide, setCatSlide] = useState(0);
   const [numberOfProductShown, setNumberOfProductShown] = useState<any>(null);
+  
   const catSlideRef = useRef<HTMLDivElement | null>(null);
   const slideRef = useRef<HTMLDivElement | null>(null);
 
