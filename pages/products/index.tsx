@@ -24,9 +24,11 @@ const Products: NextPage<{ products: IProduct[] }> = ({ products }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ query:{category} }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  query: { category },
+}) => {
   let products;
-  
+
   if (category || category !== "Tüm Ürünler") {
     const res = await fetch(
       `${BASE_URL}products?cat=${decodeURIComponent(category as string)}`
@@ -36,7 +38,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query:{category} 
     const res = await fetch(`${BASE_URL}products`);
     products = (await res.json()) as IProduct[];
   }
-
+  console.log(products);
   return {
     props: {
       products,

@@ -18,13 +18,13 @@ export default async function handler(
       let products;
 
       if (cat) {
-        products = await Product.find({ category: cat });
+        products = await Product.find({ category: cat },{name: 1, image: 1, category: 1, _id:1}).limit(5);
       } else if (filter) {
-        products = await Product.find({ "name": {$regex: new RegExp(filter, "i")}}).limit(
+        products = await Product.find({ "name": {$regex: new RegExp(filter, "i")}}, {image:1, name:1, _id:1}).limit(
           5
         );
       } else {
-        products = await Product.find();
+        products = await Product.find({}, {image:1, name:1, _id:1, category:1});
       }
       return res.status(200).json(products);
     } catch (error) {
