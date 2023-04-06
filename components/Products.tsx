@@ -79,6 +79,10 @@ const Arrow = styled.div`
   cursor: pointer;
   z-index: 2;
   opacity: 0.5;
+  svg{
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 const ImgCon = styled.div`
