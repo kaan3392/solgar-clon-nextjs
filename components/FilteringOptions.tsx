@@ -72,7 +72,7 @@ const FilteringOptions = () => {
     <Container>
       <Wrapper>
         <IconContainer onClick={() => dispatch({ type: "OptionClose" })}>
-          <Close />
+          <Close  />
         </IconContainer>
         <Title>KATEGORİLER</Title>
         <List>

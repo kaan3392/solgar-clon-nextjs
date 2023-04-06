@@ -1,6 +1,6 @@
 import React from "react";
 interface IProps{
-  style: React.CSSProperties;
+  style?: React.CSSProperties;
   onClick?: () => void;
 }
 
