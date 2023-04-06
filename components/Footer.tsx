@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
-import { Facebook, Instagram, YouTube } from "@mui/icons-material";
 import styled from "styled-components";
 import Image from "next/image";
 import { HorizontalProps } from "./Types";
 import { MenuContext, MenuContextInterface } from "../context/MenuContext";
+import Facebook from "../svg/facebook";
+import Instagram from "../svg/instagram";
+import Youtube from "../svg/youtube";
 
 const Container = styled.div<MenuContextInterface>`
   min-height: 90vh;
@@ -163,7 +165,7 @@ const Footer = () => {
                 <Instagram /> Instagram
               </Item>
               <Item>
-                <YouTube /> Youtube
+                <Youtube /> Youtube
               </Item>
             </List>
           </MobileCon>

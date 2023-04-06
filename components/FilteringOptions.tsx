@@ -1,13 +1,13 @@
-import { Close } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { MenuContext } from "../context/MenuContext";
 import { CatTitle, Check, IsCheck } from "./FilterProducts";
+import Close from "../svg/close";
 
 const Container = styled.div`
-display: none;
-@media only screen and (max-width: 768px) {
+  display: none;
+  @media only screen and (max-width: 768px) {
     display: block;
     position: fixed;
     width: 100vw;
@@ -16,34 +16,37 @@ display: none;
     background-color: #f7dbbe;
     transition: all 0.2s ease;
     color: #7f4f27;
-
   }
-
 `;
 const Wrapper = styled.div`
-padding: 20px;`;
+  padding: 20px;
+`;
 const Title = styled.h1`
-font-size: 18px;
-
+  font-size: 18px;
 `;
 const List = styled.ul`
-list-style: none;
-margin: 0;
-padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 `;
 const ListItem = styled.li`
-padding: 10px 0;`;
-const IconContainer = styled.div`
-position: absolute;
-top:20px;
-right: 20px;
-color: black;
+  padding: 10px 0;
+`;
 
-`
+const IconContainer = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: black;
+  svg{
+    width: 20px;
+    height: 20px;
+  }
+`;
 
 const FilteringOptions = () => {
   const router = useRouter();
-  const { dispatch} = useContext(MenuContext)
+  const { dispatch } = useContext(MenuContext);
 
   const cbChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let cbs = document.getElementsByTagName("input");
@@ -56,7 +59,7 @@ const FilteringOptions = () => {
   const handleClick = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
     let myFilter;
     if (e.currentTarget.checked) {
-        dispatch({type:"OptionClose"})
+      dispatch({ type: "OptionClose" });
       myFilter = e.currentTarget.id;
       router.replace({
         pathname: `/products`,
@@ -68,9 +71,9 @@ const FilteringOptions = () => {
   return (
     <Container>
       <Wrapper>
-          <IconContainer onClick={() => dispatch({type:"OptionClose"})}>
-              <Close/>
-          </IconContainer>
+        <IconContainer onClick={() => dispatch({ type: "OptionClose" })}>
+          <Close />
+        </IconContainer>
         <Title>KATEGORİLER</Title>
         <List>
           <ListItem>

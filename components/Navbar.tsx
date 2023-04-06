@@ -4,17 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import {
-  KeyboardArrowDown,
-  Search,
-  DragHandle,
-  Close,
-} from "@mui/icons-material";
+
 import { dropdownButtons } from "../data";
 import { MenuContext, MenuContextInterface } from "../context/MenuContext";
 import axios from "axios";
 import { IProduct, Props } from "./Types";
 import { BASE_URL } from "../util/url";
+import KeyboardDown from "../svg/keyboardDown";
+import Search from "../svg/search";
+import Close from "../svg/close";
+import Drag from "../svg/drag";
 
 const Container = styled.div<MenuContextInterface>`
   height: 100px;
@@ -104,6 +103,8 @@ const ListItems = styled.li<{
   position: ${(props) => props.institutionalDropdown && "relative"};
   svg {
     margin-left: 5px;
+    width: 10px;
+    height: 10px;
   }
   &:hover {
     height: 100%;
@@ -268,11 +269,17 @@ const MenuIcon = styled.div`
       cursor: pointer;
       font-weight: lighter;
       font-size: 35px;
+      width: 18px;
+      height: 18px;
     }
   }
 `;
 
 const SearchCon = styled.div<MenuContextInterface>`
+svg{
+  width: 16px;
+  height: 16px;
+}
   @media only screen and (max-width: 768px) {
     display: ${(props) => props.menu && "none"};
   }
@@ -359,10 +366,11 @@ const Navbar = () => {
         console.log(err);
       }
     };
-    
+
     const timer = setTimeout(() => {
       filterProducts();
     }, 1500);
+    
     return () => clearTimeout(timer);
   }, [text]);
 
@@ -404,7 +412,7 @@ const Navbar = () => {
                 setInstitutionalDropdown(false);
               }}
             >
-              ÜRÜNLER <KeyboardArrowDown />
+              ÜRÜNLER <KeyboardDown />
               {productDropdown && (
                 <ProductContainer>
                   <PCLeft>
@@ -437,7 +445,7 @@ const Navbar = () => {
                 setProductDropdown(false);
               }}
             >
-              KURUMSAL <KeyboardArrowDown />
+              KURUMSAL <KeyboardDown />
               {institutionalDropdown && (
                 <InstitutionalCon>
                   <InstiItem>Hakkımızda</InstiItem>
@@ -488,7 +496,7 @@ const Navbar = () => {
               style={{ color: "gray" }}
             />
           ) : (
-            <DragHandle
+            <Drag
               onClick={() => dispatch({ type: "Open" })}
               style={{ fontWeight: "300" }}
             />

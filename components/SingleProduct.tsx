@@ -1,10 +1,5 @@
-import {
-  ArrowDownward,
-  ArrowUpward,
-  KeyboardArrowUp,
-} from "@mui/icons-material";
-import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import styled from "styled-components";
 import {
   ActiveArrowProps,
@@ -15,6 +10,9 @@ import {
   ProductProps,
   ShowActiveProps,
 } from "./Types";
+import KeyboardUp from "../svg/keyboardUp";
+import ArrowUp from "../svg/arrowUp";
+import ArrowDown from "../svg/arrowDown";
 
 const Container = styled.div`
   width: 100%;
@@ -80,6 +78,10 @@ const ArrowCon = styled.div<DirectionArrowProps>`
   left: 40%;
   cursor: pointer;
   opacity: 0.5;
+  svg{
+    width: 20px;
+    height: 20px;
+  }
   &:hover {
     opacity: 1;
   }
@@ -115,16 +117,7 @@ const ImgContainerBig = styled.div<ImageProps>`
   z-index: 3;
   position: relative;
 `;
-const Diamond = styled.div`
-  height: 20px;
-  width: 20px;
-  background-color: transparent;
-  transform: rotate(-45deg);
-  z-index: -1;
-  position: absolute;
-  right: -10px;
-  border: 1px solid gold;
-`;
+
 const BigSlide = styled.div`
   width: 81%;
   height: 100%;
@@ -211,6 +204,10 @@ const InsideArrowCon = styled.div<ActiveArrowProps>`
   display: flex;
   align-items: center;
   justify-content: center;
+  svg{
+    width: 15px;
+    height: 15px;
+  }
 `;
 const InsideChoose = styled.div`
   display: flex;
@@ -260,6 +257,7 @@ const SingleProduct: React.FunctionComponent<ProductProps> = ({ product }) => {
   const [open, setOpen] = useState(0);
   const [show, setShow] = useState(0);
   const [slideHeight, setSlideHeight] = useState<number>(0);
+
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const slideRef = useRef<HTMLDivElement | null>(null);
 
@@ -298,7 +296,7 @@ const SingleProduct: React.FunctionComponent<ProductProps> = ({ product }) => {
           <WrapperBottomLeft>
             <LittleSlide>
               <ArrowCon upArrow={true} onClick={() => handleClick("up")}>
-                <ArrowUpward />
+                <ArrowUp />
               </ArrowCon>
               <LittleSlideCon ref={wrapperRef}>
                 {product.images?.slice(0, 6).map((i, index) => (
@@ -311,14 +309,11 @@ const SingleProduct: React.FunctionComponent<ProductProps> = ({ product }) => {
                     <ImgContainerLittle>
                       <Image src={i} alt="" layout="fill" objectFit="cover" />
                     </ImgContainerLittle>
-                    {/* {slide === index && (
-                      <Diamond style={{ top: "calc(50% - 10px)" }}></Diamond>
-                    )} */}
                   </SmSlide>
                 ))}
               </LittleSlideCon>
               <ArrowCon downArrow={true} onClick={() => handleClick("down")}>
-                <ArrowDownward />
+                <ArrowDown />
               </ArrowCon>
             </LittleSlide>
             <BigSlide>
@@ -342,7 +337,7 @@ const SingleProduct: React.FunctionComponent<ProductProps> = ({ product }) => {
                 <InsideArrowCon
                   activeArrow={open === 0}
                 >
-                  <KeyboardArrowUp />
+                  <KeyboardUp />
                 </InsideArrowCon>
               </Inside>
               {open === 0 && (
@@ -393,9 +388,8 @@ const SingleProduct: React.FunctionComponent<ProductProps> = ({ product }) => {
                 <Text>KULLANIM ÖNERİSİ</Text>
                 <InsideArrowCon
                   activeArrow={open === 1}
-                  
                 >
-                  <KeyboardArrowUp />
+                  <KeyboardUp />
                 </InsideArrowCon>
               </LittleDiv>
               {open === 1 && <p>{product.howToUse}</p>}
@@ -405,9 +399,8 @@ const SingleProduct: React.FunctionComponent<ProductProps> = ({ product }) => {
                 <Text>EK BİLGİ</Text>
                 <InsideArrowCon
                   activeArrow={open === 2}
-                  
                 >
-                  <KeyboardArrowUp />
+                  <KeyboardUp />
                 </InsideArrowCon>
               </LittleDiv>
               {open === 2 && <p>{product.extraInfo}</p>}

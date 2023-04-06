@@ -1,10 +1,10 @@
-import { Add } from "@mui/icons-material";
-import { useRouter } from "next/router";
 import React, { useContext, useState } from "react";
-import styled from "styled-components";
+import { useRouter } from "next/router";
 import Link from "next/link";
+import styled from "styled-components";
 import { MenuContext } from "../context/MenuContext";
 import { dropdownButtons } from "../data";
+import Plus from "../svg/plus";
 
 const Container = styled.div`
   display: none;
@@ -38,7 +38,12 @@ const ListItem = styled.ul`
   flex-direction: column;
 `;
 
-const IconCon = styled.div``;
+const IconCon = styled.div`
+svg{
+  width: 12px;
+  height: 12px;
+}
+`;
 
 const Lists = styled.li`
   font-size: 15px;
@@ -95,7 +100,7 @@ const Menu = () => {
           <Lists onClick={() => setProductOpen(!productOpen)}>
             ÜRÜNLER
             <IconCon>
-              <Add />
+              <Plus />
             </IconCon>
           </Lists>
           {productOpen && (
@@ -104,7 +109,7 @@ const Menu = () => {
           <Lists onClick={() => setCorporate(!corporate)}>
             KURUMSAL
             <IconCon>
-              <Add />
+              <Plus />
             </IconCon>
           </Lists>
           {corporate && (

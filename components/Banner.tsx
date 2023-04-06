@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
-import { Facebook, Instagram, YouTube } from "@mui/icons-material";
 import styled from "styled-components";
 import { MenuContext, MenuContextInterface } from "../context/MenuContext";
+import Youtube from "../svg/youtube";
+import Facebook from "../svg/facebook";
+import Instagram from "../svg/instagram";
 
 const Container = styled.div<MenuContextInterface>`
   height: 30px;
@@ -12,7 +14,7 @@ const Container = styled.div<MenuContextInterface>`
     top: 0;
     width: 100%;
     display: ${(props) => props.option && "none"};
-    font-size:12px;
+    font-size: 12px;
   }
 `;
 
@@ -46,11 +48,16 @@ const Items = styled.div`
 `;
 
 const IconCon = styled.div`
-display: flex;
+  display: flex;
+  svg{
+    width: 20px;
+    height: 20px;
+    fill: #ac9678;
+  }
 `;
 const TextCon = styled.div`
-color:white;
-@media only screen and (max-width: 380px) {
+  color: white;
+  @media only screen and (max-width: 380px) {
     font-size: 10px;
   }
 `;
@@ -62,12 +69,13 @@ const Banner = () => {
       <Wrapper>
         <Items>
           <TextCon>
-          BU ÖRNEK SİTEDİR, GERCEK SOLGAR SİTESİ İÇİN LÜTFEN solgar.com.tr'Yİ ZİYARET EDİNİZ.
+            BU ÖRNEK SİTEDİR, GERCEK SOLGAR SİTESİ İÇİN LÜTFEN solgar.com.tr'Yİ
+            ZİYARET EDİNİZ.
           </TextCon>
           <IconCon>
             <Facebook />
             <Instagram />
-            <YouTube />
+            <Youtube />
           </IconCon>
         </Items>
       </Wrapper>

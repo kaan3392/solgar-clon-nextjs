@@ -1,12 +1,13 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
-import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import Image from "next/image";
 import { ProductsProps } from "./Types";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { MenuContext, MenuContextInterface } from "../context/MenuContext";
 import FilteringOptions from "./FilteringOptions";
+import ArrowRight from "../svg/arrowRight";
+import ArrowLeft from "../svg/arrowLeft";
 
 const Container = styled.div<MenuContextInterface>`
   height: 120vh;
@@ -148,6 +149,10 @@ const PaginateLine = styled.div`
 `;
 const Arrow = styled.div`
   cursor: pointer;
+  svg{
+    width: 20px;
+    height: 20px;
+  }
 `;
 const PageNumber = styled.div`
   margin-right: 10px;
@@ -409,7 +414,7 @@ const FilterProducts: React.FunctionComponent<ProductsProps> = (props) => {
                   setCurrentPage((prev) => Math.max(prev - 1, 1));
                 }}
               >
-                <ArrowBackIos />
+                <ArrowLeft />
               </Arrow>
               <Arrow
                 onClick={() => {
@@ -421,7 +426,7 @@ const FilterProducts: React.FunctionComponent<ProductsProps> = (props) => {
                   );
                 }}
               >
-                <ArrowForwardIos />
+                <ArrowRight />
               </Arrow>
             </PaginateLine>
           </Paginate>

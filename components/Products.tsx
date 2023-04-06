@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import { products } from "../data";
 import { Dot, Dots } from "./Slider";
 import Image from "next/image";
+import ArrowLeft from "../svg/arrowLeft";
+import ArrowRight from "../svg/arrowRight";
 
 const Container = styled.div`
   min-height: 100vh;
@@ -180,7 +181,7 @@ const Products = () => {
           </Text>
           <Slider>
             <Arrow style={{ left: 10 }} onClick={() => handleClick("left")}>
-              <ArrowBack />
+              <ArrowLeft />
             </Arrow>
             <ImgCon ref={imgRef}>
               {products.map((product) => (
@@ -200,7 +201,7 @@ const Products = () => {
               ))}
             </ImgCon>
             <Arrow style={{ right: 10 }} onClick={() => handleClick("right")}>
-              <ArrowForward />
+              <ArrowRight />
             </Arrow>
           </Slider>
         </Top>

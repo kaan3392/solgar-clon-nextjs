@@ -1,13 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { catSlides } from "../data";
-import {
-  ArrowBackIosOutlined,
-  ArrowForwardIosOutlined,
-} from "@mui/icons-material";
 import Image from "next/image";
 import { Dot, Dots } from "./Slider";
 import { ArrowDirectionProps } from "./Types";
+import ArrowLeft from "../svg/arrowLeft";
+import ArrowRight from "../svg/arrowRight";
 
 const Container = styled.div`
   width: 100%;
@@ -61,6 +59,10 @@ const Arrow = styled.div<ArrowDirectionProps>`
   opacity: 0.5;
   left: ${(props) => props.left && "90px"};
   right: ${(props) => props.right && "90px"};
+  svg{
+    width: 20px;
+    height: 20px;
+  }
   @media only screen and (max-width: 768px) {
     left: ${(props) => props.left && "10px"};
     right: ${(props) => props.right && "10px"};
@@ -192,7 +194,7 @@ const Categories = () => {
       </Title>
       <Slide>
         <Arrow left={true} onClick={() => handleClick("left")}>
-          <ArrowBackIosOutlined />
+          <ArrowLeft />
         </Arrow>
         <Wrapper>
           <SlideCon ref={catSlideRef}>
@@ -213,7 +215,7 @@ const Categories = () => {
           </SlideCon>
         </Wrapper>
         <Arrow right={true} onClick={() => handleClick("right")}>
-          <ArrowForwardIosOutlined />
+          <ArrowRight />
         </Arrow>
       </Slide>
       <DotsLoop />

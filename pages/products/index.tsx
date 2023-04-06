@@ -7,7 +7,6 @@ import FilterProducts from "../../components/FilterProducts";
 import { IProduct } from "../../components/Types";
 import Menu from "../../components/Menu";
 import { MenuContext } from "../../context/MenuContext";
-// import { dbConnect } from "../../util/mongo";
 
 const Products: NextPage<{ products: IProduct[] }> = ({ products }) => {
   const { state } = useContext(MenuContext);
@@ -25,11 +24,12 @@ const Products: NextPage<{ products: IProduct[] }> = ({ products }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps = async ({ query:{category} }) => {
   let products;
-  if (query.category || query.category !== "Tüm Ürünler") {
+  
+  if (category || category !== "Tüm Ürünler") {
     const res = await fetch(
-      `${BASE_URL}products?cat=${decodeURIComponent(query.category as string)}`
+      `${BASE_URL}products?cat=${decodeURIComponent(category as string)}`
     );
     products = (await res.json()) as IProduct[];
   } else {

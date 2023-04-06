@@ -1,9 +1,10 @@
-import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import Image from "next/image";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { slider } from "../data";
 import { DotProps, ImageProps } from "./Types";
+import ArrowLeft from "../svg/arrowLeft";
+import ArrowRight from "../svg/arrowRight";
 
 const Container = styled.div`
   height: calc(100vh - 130px);
@@ -45,6 +46,10 @@ const Arrow = styled.div`
   cursor: pointer;
   z-index: 2;
   opacity: 0.5;
+  svg{
+    width: 20px;
+    height: 20px;
+  }
   &:hover {
     opacity: 1;
   }
@@ -101,7 +106,7 @@ const Slider = () => {
       <SliderContainer>
         <Wrapper>
           <Arrow style={{ left: 10 }} onClick={() => handleClick("left")}>
-            <ArrowBack />
+            <ArrowLeft />
           </Arrow>
           {slider.map((slide) => (
             <ImageConLittle active={slide.id === currentImg} key={slide.id}>
@@ -117,7 +122,7 @@ const Slider = () => {
             </ImageConLittle>
           ))}
           <Arrow style={{ right: 10 }} onClick={() => handleClick("right")}>
-            <ArrowForward />
+            <ArrowRight />
           </Arrow>
         </Wrapper>
       </SliderContainer>
