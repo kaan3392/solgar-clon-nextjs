@@ -7,7 +7,6 @@ import Advert from "../../components/Advert";
 import InterestedProducts from "../../components/InterestedProducts";
 import Menu from "../../components/Menu";
 import { MenuContext } from "../../context/MenuContext";
-import axios from "axios";
 import { BASE_URL } from "../../util/url";
 
 const Product: NextPage<{ product: IProduct }> = ({ product }) => {

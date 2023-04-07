@@ -18,49 +18,51 @@ const Container = styled.div`
   width: 100%;
   height: 120vh;
   background-color: #fffaf3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
+
 const Wrapper = styled.div`
-  padding: 0px 100px;
+  width: 90%;
   height: 100%;
-  @media only screen and (max-width: 768px) {
-    padding: 10px 20px;
-  }
 `;
+
 const WrapperTop = styled.div`
   padding: 40px 0px;
   font-size: 12px;
   font-weight: 400;
   cursor: pointer;
 `;
+
 const WrapperBottom = styled.div`
   display: flex;
   width: 100%;
   height: 80%;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 960px) {
     flex-direction: column;
-    height: 80%;
   }
 `;
+
 const WrapperBottomLeft = styled.div`
   width: 60%;
   height: 90%;
   margin-right: 40px;
   display: flex;
   overflow: hidden;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 960px) {
     width: 100%;
     margin-bottom: 20px;
   }
 `;
+
 const LittleSlide = styled.div`
   display: flex;
   position: relative;
   width: 19%;
   height: 100%;
-  @media only screen and (max-width: 768px) {
-    width: 22%;
-}
 `;
+
 const LittleSlideCon = styled.div`
   width: 100%;
   height: 100%;
@@ -136,7 +138,7 @@ const WrapperBottomRight = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 960px) {
     width: 100%;
 }
 `;
@@ -303,7 +305,6 @@ const SingleProduct: React.FunctionComponent<ProductProps> = ({ product }) => {
                   <SmSlide
                     key={index}
                     ref={slideRef}
-                    
                     showBorder={slide === index}
                   >
                     <ImgContainerLittle>

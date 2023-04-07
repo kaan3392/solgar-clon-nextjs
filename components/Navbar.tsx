@@ -22,7 +22,7 @@ const Container = styled.div<MenuContextInterface>`
   position: sticky;
   top: 0;
   z-index: 999;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1024px) {
     top: 30px;
     height: 70px;
     background-color: ${(props) => (props.menu ? "#302519" : "#fffaf3")};
@@ -66,7 +66,7 @@ const Center = styled.div`
   flex: 3;
   height: 100%;
   padding: 0 10px;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1024px) {
     display: none;
   }
 `;
@@ -206,7 +206,7 @@ const Right = styled.div<MenuContextInterface>`
     color: gray;
     font-weight: lighter;
   }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1024px) {
     flex: 5;
     /* background-color: #fcead9; */
     background-color: ${(props) => (props.menu ? "#302519" : "#fffaf3")};
@@ -242,7 +242,7 @@ const Input = styled.input<MenuContextInterface>`
       color: ${(props) => props.menu && "white"};
     }
   }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1024px) {
     padding: 5px;
     font-weight: 300;
     background-color: ${(props) => (props.menu ? "#302519" : "inherit")};
@@ -259,7 +259,7 @@ const Input = styled.input<MenuContextInterface>`
 
 const MenuIcon = styled.div`
   display: none;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1024px) {
     display: block;
     flex: 1;
     display: flex;
@@ -376,15 +376,10 @@ const Navbar = () => {
 
   const handleClick = (id: string) => {
     router.push(`/products/${id}`);
+    dispatch({ type: "Close" })
     setText("");
   };
 
-  // const handleCat = (id: string) => {
-  //   router.push({
-  //     pathname: `/products`,
-  //     query: { category: id },
-  //   });
-  // };
 
   return (
     <Container option={option} menu={menu}>
@@ -428,9 +423,9 @@ const Navbar = () => {
                   </PCLeft>
                   <PCRight>
                     <Image
-                      src="/img/droplogo.png"
+                      src="/img/droplogo.PNG"
                       alt=""
-                      width={450}
+                      width={550}
                       height={150}
                       objectFit="cover"
                       priority

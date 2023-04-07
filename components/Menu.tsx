@@ -8,16 +8,19 @@ import Plus from "../svg/plus";
 
 const Container = styled.div`
   display: none;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1024px) {
     display: block;
-    position: fixed;
-    width: 100vw;
-    min-height: 100vh;
-    z-index: 10000;
+    position: absolute;
+    z-index: 10;
     background-color: #302519;
     transition: all 0.2s ease;
     color: white;
-    top: 85px;
+    /* top: 100px; */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-top: 50px;
   }
 `;
 

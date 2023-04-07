@@ -244,3 +244,22 @@ export const interestedProducts:InterestedProducts[] = [
     },
 
 ]
+
+
+export const listItemsData = [
+    {name:"Amino Asitler ve Proteinler", id:"Amino Asitler ve Proteinler"},
+    {name:"Bitkisel Takviyeler",id:"Bitkisel Takviyeler"},
+    {name:"Çocuk Ürunleri",id:"Cocuk Urunleri"},
+    {name:"Esansiyel Yağ Asitleri",id:"Esansiyel Yag Asitleri"},
+    {name:"Kalsiyum Grubu",id:"Kalsiyum Grubu"},
+    {name:"Koenzim Q-10",id:"Koenzim Q-10"},
+    {name:"Mineraller",id:"Mineraller"},
+    {name:"Multivitaminler",id:"Multivitaminler"},
+    {name:"Özel Takviyeler",id:"Ozel Takviyeler"},
+    {name:"Probiyotikler",id:"Probiyotikler"},
+    {name:"Vitaminler",id:"Vitaminler"},
+
+
+
+    
+]

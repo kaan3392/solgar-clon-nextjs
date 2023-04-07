@@ -8,7 +8,7 @@ import Instagram from "../svg/instagram";
 const Container = styled.div<MenuContextInterface>`
   height: 30px;
   background-color: #302519;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1024px) {
     position: fixed;
     z-index: 10000;
     top: 0;

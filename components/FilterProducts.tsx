@@ -8,9 +8,10 @@ import { MenuContext, MenuContextInterface } from "../context/MenuContext";
 import FilteringOptions from "./FilteringOptions";
 import ArrowRight from "../svg/arrowRight";
 import ArrowLeft from "../svg/arrowLeft";
+import { listItemsData } from "../data";
 
 const Container = styled.div<MenuContextInterface>`
-  height: 120vh;
+  min-height: 120vh;
   width: 100%;
   background-color: #fffaf3;
   padding: 40px 0px;
@@ -22,7 +23,7 @@ const Container = styled.div<MenuContextInterface>`
 `;
 const Wrapper = styled.div<MenuContextInterface>`
   height: 100%;
-  margin: 0px 80px 0px 100px;
+  margin: 0px 80px;
   display: flex;
   @media only screen and (max-width: 768px) {
     margin: ${(props) => (props.option ? "0" : "20px")};
@@ -77,7 +78,7 @@ const Right = styled.div`
 `;
 const RightWrapper = styled.div`
   height: 100%;
-  padding: 20px 20px 50px 20px;
+  padding: 20px 0px 50px 20px;
   display: flex;
   flex-direction: column;
   @media only screen and (max-width: 380px) {
@@ -110,6 +111,9 @@ const ProductContainer = styled.div`
   height: 300px;
   cursor: pointer;
   margin-bottom: 30px;
+  @media only screen and (max-width: 768px) {
+    width: 32%;
+  }
   @media only screen and (max-width: 380px) {
     width: 50%;
   }
@@ -234,144 +238,22 @@ const FilterProducts: React.FunctionComponent<ProductsProps> = (props) => {
                 </Check>
                 <CatTitle htmlFor="">Tüm Ürünler</CatTitle>
               </LeftListItem>
-              <LeftListItem>
+              {listItemsData.map((item,index) => (
+                <LeftListItem key={index}>
                 <Check>
                   <IsCheck
                     onChange={(e) => cbChange(e)}
                     onClick={(e) => handleClick(e)}
                     type="checkbox"
                     className="isCheck"
-                    id="Amino asitler ve Proteinler"
-                  />
+                    id={item.id}
+                    />
                 </Check>
-                <CatTitle htmlFor="Amino asitler ve Proteinler">
-                  Amino Asitler ve Proteinler
+                <CatTitle htmlFor={item.id}>
+                  {item.name}
                 </CatTitle>
               </LeftListItem>
-              <LeftListItem>
-                <Check>
-                  <IsCheck
-                    onChange={(e) => cbChange(e)}
-                    onClick={(e) => handleClick(e)}
-                    type="checkbox"
-                    className="isCheck"
-                    id="Bitkisel Takviyeler"
-                  />
-                </Check>
-                <CatTitle htmlFor="Bitkisel Takviyeler">
-                  Bitkisel Takviyeler
-                </CatTitle>
-              </LeftListItem>
-              <LeftListItem>
-                <Check>
-                  <IsCheck
-                    onChange={(e) => cbChange(e)}
-                    onClick={(e) => handleClick(e)}
-                    type="checkbox"
-                    className="isCheck"
-                    id="Cocuk Urunleri"
-                  />
-                </Check>
-                <CatTitle htmlFor="Cocuk Urunleri">Çocuk Ürünleri</CatTitle>
-              </LeftListItem>
-              <LeftListItem>
-                <Check>
-                  <IsCheck
-                    onChange={(e) => cbChange(e)}
-                    onClick={(e) => handleClick(e)}
-                    type="checkbox"
-                    className="isCheck"
-                    id="Esansiyel Yag Asitleri"
-                  />
-                </Check>
-                <CatTitle htmlFor="Esansiyel Yag Asitleri">
-                  Esansiyel Yağ Asitleri
-                </CatTitle>
-              </LeftListItem>
-              <LeftListItem>
-                <Check>
-                  <IsCheck
-                    onChange={(e) => cbChange(e)}
-                    onClick={(e) => handleClick(e)}
-                    type="checkbox"
-                    className="isCheck"
-                    id="Kalsiyum Grubu"
-                  />
-                </Check>
-                <CatTitle htmlFor="Kalsiyum Grubu">Kalsiyum Grubu</CatTitle>
-              </LeftListItem>
-              <LeftListItem>
-                <Check>
-                  <IsCheck
-                    onChange={(e) => cbChange(e)}
-                    onClick={(e) => handleClick(e)}
-                    type="checkbox"
-                    className="isCheck"
-                    id="Koenzim Q-10"
-                  />
-                </Check>
-                <CatTitle htmlFor="Koenzim Q-10">Koenzim Q-10</CatTitle>
-              </LeftListItem>
-              <LeftListItem>
-                <Check>
-                  <IsCheck
-                    onChange={(e) => cbChange(e)}
-                    onClick={(e) => handleClick(e)}
-                    type="checkbox"
-                    className="isCheck"
-                    id="Mineraller"
-                  />
-                </Check>
-                <CatTitle htmlFor="Mineraller">Mineraller</CatTitle>
-              </LeftListItem>
-              <LeftListItem>
-                <Check>
-                  <IsCheck
-                    onChange={(e) => cbChange(e)}
-                    onClick={(e) => handleClick(e)}
-                    type="checkbox"
-                    className="isCheck"
-                    id="Multivitaminler"
-                  />
-                </Check>
-                <CatTitle htmlFor="Multivitaminler">Multivitaminler</CatTitle>
-              </LeftListItem>
-              <LeftListItem>
-                <Check>
-                  <IsCheck
-                    onChange={(e) => cbChange(e)}
-                    onClick={(e) => handleClick(e)}
-                    type="checkbox"
-                    className="isCheck"
-                    id="Ozel Takviyeler"
-                  />
-                </Check>
-                <CatTitle htmlFor="Ozel Takviyeler">Özel Takviyeler</CatTitle>
-              </LeftListItem>
-              <LeftListItem>
-                <Check>
-                  <IsCheck
-                    onChange={(e) => cbChange(e)}
-                    onClick={(e) => handleClick(e)}
-                    type="checkbox"
-                    className="isCheck"
-                    id="Probiyotikler"
-                  />
-                </Check>
-                <CatTitle htmlFor="Probiyotikler">Probiyotikler</CatTitle>
-              </LeftListItem>
-              <LeftListItem>
-                <Check>
-                  <IsCheck
-                    onChange={(e) => cbChange(e)}
-                    onClick={(e) => handleClick(e)}
-                    type="checkbox"
-                    className="isCheck"
-                    id="Vitaminler"
-                  />
-                </Check>
-                <CatTitle htmlFor="Vitaminler">Vitaminler</CatTitle>
-              </LeftListItem>
+                   ))}
             </LeftList>
           </LeftWrapper>
         </Left>
