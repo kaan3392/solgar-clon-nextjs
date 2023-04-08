@@ -1,39 +1,33 @@
-import Image from "next/image";
 import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
   width: 100%;
-  height: 115vh;
-  @media only screen and (max-width: 380px) {
-    height: 150vh;
-  }
+  min-height: 100vh;
+  
 `;
 const Top = styled.div`
   background-color: #f9ecd9;
   display: flex;
-  height: 45%;
   width: 100%;
   padding-top: 20px;
   @media only screen and (max-width: 768px) {
     height: 45%;
-  }
-  @media only screen and (max-width: 380px) {
     flex-direction: column;
   }
 `;
 const TopLeft = styled.div`
   width: 50%;
-  padding: 100px 10px 300px 100px;
+  padding: 40px 30px 80px 80px;
   height: 100%;
   display: flex;
   flex-direction: column;
   @media only screen and (max-width: 768px) {
     padding: 20px 10px 50px 40px;
+    width: 100%;
   }
   @media only screen and (max-width: 380px) {
     padding: 10px;
-    width: 100%;
   }
 `;
 const TopLeftTitle = styled.div`
@@ -62,7 +56,7 @@ const TopLeftExtra = styled.div`
 const TopRight = styled.div`
   width: 50%;
   height: 100%;
-  @media only screen and (max-width: 380px) {
+  @media only screen and (max-width: 768px) {
     width: 100%;
   }
 `;
@@ -71,22 +65,27 @@ const TopRightCon = styled.div`
   height: 100%;
   display: flex;
   align-items: flex-end;
-  position: relative;
 `;
+
+const Image = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`
+
 const Center = styled.div`
   display: flex;
   width: 100%;
-  height: 40%;
-  @media only screen and (max-width: 380px) {
-    flex-direction: column;
+  height: 50vh;
+  @media only screen and (max-width: 768px) {
+    flex-direction: column-reverse;
   }
 `;
 const CenterLeft = styled.div`
   width: 50%;
   height: 100%;
-  overflow: hidden;
-  position: relative;
-  @media only screen and (max-width: 380px) {
+  /* overflow: hidden; */
+  @media only screen and (max-width: 768px) {
     width: 100%;
   }
 `;
@@ -95,14 +94,14 @@ const CenterRight = styled.div`
   height: 100%;
   display: flex;
   background-color: #f9ecd9;
-  @media only screen and (max-width: 380px) {
+  @media only screen and (max-width: 768px) {
     width: 100%;
   }
 `;
 const CenterRightWrapper = styled.div`
   height: 100%;
   width: 100%;
-  padding: 20px 50px;
+  padding: 10px 50px;
   @media only screen and (max-width: 768px) {
     padding: 20px;
   }
@@ -124,12 +123,12 @@ const CenterRightText = styled.div`
 `;
 const Bottom = styled.div`
   width: 100%;
-  height: 15%;
   background-color: #c8a46b;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding: 20px;
   @media only screen and (max-width: 380px) {
     padding: 10px;
     text-align: center;
@@ -166,8 +165,6 @@ const Advert = () => {
         <TopRight>
           <TopRightCon>
             <Image
-              layout="fill"
-              objectFit="contain"
               src="https://online.solgar.com.tr/WebSitesData/B7276B31-4A9F-4914-9C8D-5D6BFD175310/mpt_Files/9364AC81-C9DB-CC39-BFBA-9C6C671B6E89.png"
               alt=""
             />
@@ -177,8 +174,6 @@ const Advert = () => {
       <Center>
         <CenterLeft>
           <Image
-            layout="fill"
-            objectFit="cover"
             src="https://online.solgar.com.tr/WebSitesData/B7276B31-4A9F-4914-9C8D-5D6BFD175310/mpt_Files/CB54AA9F-62A4-5F27-8EDC-FABF2B5D52AB.png"
             alt=""
           />

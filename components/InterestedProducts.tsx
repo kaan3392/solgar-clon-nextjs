@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import styled from "styled-components";
 import { interestedProducts } from "../data";
+import Link from "next/link";
 
 const Container = styled.div`
   width: 100%;
@@ -9,8 +10,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   @media only screen and (max-width: 768px) {
-    height: 50vh;
+    height: 60vh;
   }
+
   
 `;
 const Title = styled.div`
@@ -30,25 +32,24 @@ const MainContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
+  align-items: center;
+justify-content: center;
 `;
 const Wrapper = styled.div`
-  margin: 0px 70px;
   display: flex;
-  width: 100%;
+  width: 90%;
   height: 100%;
+  
   @media only screen and (max-width: 768px) {
-    margin: 0 10px;
-  }
-  @media only screen and (max-width: 380px) {
     flex-wrap: wrap;
   }
 `;
 const Frame = styled.div`
   width: 25%;
   height: 100%;
-  @media only screen and (max-width: 380px) {
+  @media only screen and (max-width: 768px) {
     width: 50%;
-    height: 40%;
+    height: 48%;
   }
 `;
 const ImageContainer = styled.div`
@@ -66,6 +67,7 @@ const ImageCat = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 5px;
+  text-align: center;
   
 `;
 const ImageTitle = styled.div`
@@ -74,8 +76,8 @@ const ImageTitle = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 5px;
+  text-align: center;
   @media only screen and (max-width: 768px) {
-    text-align: center;
   }
 `;
 
@@ -86,13 +88,15 @@ const InterestedProducts = () => {
       <MainContainer >
         <Wrapper>
           {interestedProducts.map((pro,i) => (
-            <Frame key={i} >
+            <Link href={`/products/${pro.id}`} key={i}  >
+            <Frame  >
               <ImageContainer>
                 <Image  src={pro.img} alt="" layout="fill" objectFit="contain" />
               </ImageContainer>
               <ImageCat >{pro.categories}</ImageCat>
               <ImageTitle>{pro.title}</ImageTitle>
             </Frame>
+            </Link>
           ))}
         </Wrapper>
       </MainContainer>

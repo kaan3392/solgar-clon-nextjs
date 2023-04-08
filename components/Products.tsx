@@ -5,6 +5,7 @@ import { Dot, Dots } from "./Slider";
 import Image from "next/image";
 import ArrowLeft from "../svg/arrowLeft";
 import ArrowRight from "../svg/arrowRight";
+import Link from "next/link";
 
 const Container = styled.div`
   min-height: 100vh;
@@ -189,7 +190,8 @@ const Products = () => {
             </Arrow>
             <ImgCon ref={imgRef}>
               {products.map((product) => (
-                <PContainer key={product.id} ref={slideRef}>
+                <Link href={`/products/${product._id}`} key={product.id} >
+                <PContainer ref={slideRef}>
                   <PImg>
                     <Image
                       src={product.img}
@@ -197,11 +199,12 @@ const Products = () => {
                       objectFit="contain"
                       layout="fill"
                       priority
-                    />
+                      />
                   </PImg>
                   <PCat className="productCat">{product.categories}</PCat>
                   <PTitle className="productTitle">{product.title}</PTitle>
                 </PContainer>
+                      </Link>
               ))}
             </ImgCon>
             <Arrow style={{ right: 10 }} onClick={() => handleClick("right")}>

@@ -47,7 +47,7 @@ export const dropdownButtons:DB[] = [
     },
     {
         
-        id:"Ozel Takviyeler",
+        id:"Özel takviyeler",
         title:"Özel Takviyeler"
     },
     {
@@ -116,7 +116,8 @@ type Products = {
     id:number,
     img:string,
     categories:string,
-    title:string
+    title:string,
+    _id?:string
 }
 
 export const products:Products[] = [
@@ -124,43 +125,51 @@ export const products:Products[] = [
         id:1,
         img:"/img/esterc.png",
         categories:"Vitaminler",
-        title:"Ester C-plus"
+        title:"Ester C-plus",
+        _id:"6298aad99611caa43872c2eb"
     },
     {
         id:2,
         img:"/img/iron.png",
         categories:"Mineraller",
-        title:"Gentle Iron"
+        title:"Gentle Iron",
+        _id:"6298aad99611caa43872c2f6"
     },
     {
         id:3,
         img:"/img/hyalu.png",
         categories:"Özel Takviye",
-        title:"Hyarulonic Asitler"
+        title:"Hyarulonic Asitler",
+        _id:"6298aad99611caa43872c2ff"
     },
     {
         id:4,
         img:"/img/vitb.png",
         categories:"Vitaminler",
-        title:"Vitamin B-12"
+        title:"Vitamin B-12",
+        _id:"6298aad99611caa43872c335"
     },
     {
         id:5,
         img:"/img/magnez.png",
         categories:"Mineraller",
-        title:"Magnesium Citrate"
+        title:"Magnesium Citrate",
+        _id:"6298aad99611caa43872c30d"
     },
     {
         id:6,
         img:"/img/quercetin.png",
         categories:"Özel Takviyeler",
-        title:"Quercetin Complex"
+        title:"Quercetin Complex",
+        _id:"6298aad99611caa43872c320"
+
     },
     {
         id:7,
         img:"/img/d3.png",
         categories:"Vitaminler",
-        title:"Vitamin D-3 1000IU"
+        title:"Vitamin D-3 1000IU",
+        _id:"6298aad99611caa43872c339"
     },
 ]
 
@@ -211,7 +220,7 @@ export const catSlides:CategoriesSlide[]= [
 
 type InterestedProducts = {
     
-    id:number,
+    id:string,
     title:string,
     img:string,
     categories:string
@@ -219,25 +228,25 @@ type InterestedProducts = {
 
 export const interestedProducts:InterestedProducts[] = [
     {
-        id:1,
+        id:"6298aad99611caa43872c2cd",
         img:"https://online.solgar.com.tr/WebSitesData/B7276B31-4A9F-4914-9C8D-5D6BFD175310/mpt_Files/BC39819E-B5A7-1D33-A583-CF9835074996.webp",
         title:"Balance Rhodiola Complex",
         categories:"ÖZEL TAKVİYELER"
     },
     {
-        id:2,
+        id:"6298aad99611caa43872c323",
         img:"https://online.solgar.com.tr/WebSitesData/B7276B31-4A9F-4914-9C8D-5D6BFD175310/mpt_Files/0859A216-290C-5099-9DFA-FD33CAFF8CBE.webp",
         title:"Rhodiola Root Extract",
         categories:"BİTKİSEL TAKVİYELER"
     },
     {
-        id:3,
+        id:"6298aad99611caa43872c329",
         img:"https://online.solgar.com.tr/WebSitesData/B7276B31-4A9F-4914-9C8D-5D6BFD175310/mpt_Files/0FC81191-A067-5676-9CE6-A9BC8544795C.webp",
         title:"St.John's Wort",
         categories:"BİTKİSEL TAKVİYELER"
     },
     {
-        id:4,
+        id:"6298aad99611caa43872c331",
         img:"https://online.solgar.com.tr/WebSitesData/B7276B31-4A9F-4914-9C8D-5D6BFD175310/mpt_Files/632E00BE-15F4-3513-A037-FBB5E463B226.webp",
         title:"Valerian Root Extract",
         categories:"BİTKİSEL TAKVİYELER"
@@ -255,7 +264,7 @@ export const listItemsData = [
     {name:"Koenzim Q-10",id:"Koenzim Q-10"},
     {name:"Mineraller",id:"Mineraller"},
     {name:"Multivitaminler",id:"Multivitaminler"},
-    {name:"Özel Takviyeler",id:"Ozel Takviyeler"},
+    {name:"Özel Takviyeler",id:"Özel takviyeler"},
     {name:"Probiyotikler",id:"Probiyotikler"},
     {name:"Vitaminler",id:"Vitaminler"},
 

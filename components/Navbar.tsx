@@ -489,7 +489,7 @@ const Navbar = () => {
           {menu ? (
             <Close
               onClick={() => dispatch({ type: "Close" })}
-              style={{ color: "gray" }}
+              style={{ fill: "white" }}
             />
           ) : (
             <Drag

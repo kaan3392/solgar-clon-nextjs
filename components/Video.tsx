@@ -10,7 +10,7 @@ const Container = styled.div`
     height: 70vh;
   }
   @media only screen and (max-width: 380px) {
-    height: 45vh;
+    height: 20vh;
   }
 `;
 
@@ -19,6 +19,8 @@ const Vid = styled.div`
   align-items: center;
   justify-content: center;
   padding-top: 80px;
+  width: 100%;
+  height: 100%;
   @media only screen and (max-width: 768px) {
     padding-top: 40px;
   }
@@ -28,15 +30,15 @@ const Vid = styled.div`
 `;
 
 const PlayerCon = styled.div`
-  width: 800px;
-  height: 500px;
+  width: 80%;
+  height: 600px;
   @media only screen and (max-width: 768px) {
-    width: 600px;
-    height: 400px;
+    /* width: 600px; */
+    height: 350px;
   }
   @media only screen and (max-width: 380px) {
-    width: 300px;
-    height: 200px;
+    /* width: 300px; */
+    height: 250px;
   }
 `;
 
