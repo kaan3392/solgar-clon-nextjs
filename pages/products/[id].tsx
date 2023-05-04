@@ -22,9 +22,24 @@ const Product: NextPage<{ product: IProduct }> = ({ product }) => {
   );
 };
 
+export async function getStaticPaths() {
+  const res = await fetch(`${BASE_URL}products`);
+
+  const products = (await res.json()) as IProduct[];
+
+  const ids = products.map((product) => product._id);
+
+  const paths = ids.map((id) => ({ params: { id } }));
+
+  return { paths, fallback: "blocking" };
+}
+
 export async function getStaticProps({ params: { id } }: any) {
+
   const res = await fetch(`${BASE_URL}products/${id}`);
+
   const product = (await res.json()) as IProduct;
+
   return {
     props: {
       product,
@@ -32,13 +47,5 @@ export async function getStaticProps({ params: { id } }: any) {
   };
 }
 
-export async function getStaticPaths() {
-  const res = await fetch(`${BASE_URL}products`);
-  const products = (await res.json()) as IProduct[];
-  const paths = products.map((product) => ({
-    params: { id: product._id },
-  }));
-  return { paths, fallback: false };
-}
 
 export default Product;
