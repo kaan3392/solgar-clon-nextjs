@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import type { GetServerSideProps, NextPage } from "next";
+import React from "react";
+import type {  NextPage } from "next";
 import Head from "next/head";
 import { IProduct } from "../../components/Types";
 import SingleProduct from "../../components/SingleProduct";
