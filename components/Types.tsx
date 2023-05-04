@@ -51,6 +51,7 @@ export interface IProduct extends Document{
   extraInfo?: string;
   images: string[];
   children?:ReactNode;
+  _id?:string;
 }
 
 export interface ProductProps{
