@@ -29,12 +29,13 @@ export const getServerSideProps: GetServerSideProps = async ({
     const res = await fetch(
       `${BASE_URL}products?cat=${decodeURIComponent(category as string)}`
     );
+      
     products = (await res.json()) as IProduct[];
+
   } else {
     const res = await fetch(`${BASE_URL}products`);
     products = (await res.json()) as IProduct[];
   }
-  console.log(products);
   return {
     props: {
       products,

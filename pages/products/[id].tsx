@@ -1,5 +1,5 @@
 import React from "react";
-import type {  NextPage } from "next";
+import type { NextPage } from "next";
 import Head from "next/head";
 import { IProduct } from "../../components/Types";
 import SingleProduct from "../../components/SingleProduct";
@@ -8,9 +8,7 @@ import InterestedProducts from "../../components/InterestedProducts";
 import { BASE_URL } from "../../util/url";
 
 const Product: NextPage<{ product: IProduct }> = ({ product }) => {
-
-
-  if(!product) return <p>loading...</p>
+  if (!product) return <p>loading...</p>;
 
   return (
     <div>
@@ -30,20 +28,23 @@ export async function getStaticPaths() {
   const res = await fetch(`${BASE_URL}products`);
 
   const products = (await res.json()) as IProduct[];
+
+  const ids = products.map((product) => 
+  {
+    if(product._id === "6298aad99611caa43872c300"){
+      console.log("*************************",product.name)
+    }
+    
+   return product._id
   
+  });
 
-  const ids = products.map((product) => product._id);
+  const params = ids.map((id) => ({ params: { id } }));
 
-
-  console.log(ids.length)
-
-  const paths = ids.map((id) => ({ params: { id } }));
-
-  return { paths, fallback: false };
+  return { paths: params, fallback: false };
 }
 
 export async function getStaticProps({ params: { id } }: any) {
-
   const res = await fetch(`${BASE_URL}products/${id}`);
 
   const product = (await res.json()) as IProduct;
@@ -54,6 +55,5 @@ export async function getStaticProps({ params: { id } }: any) {
     },
   };
 }
-
 
 export default Product;
