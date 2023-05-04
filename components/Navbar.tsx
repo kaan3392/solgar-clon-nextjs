@@ -470,7 +470,7 @@ const Navbar = () => {
           {filteredProducts.length > 0 && text.length > 0 && (
             <FilteredCon>
               {filteredProducts.map((product, i) => (
-                <Pro key={i} onClick={() => handleClick(product._id)}>
+                <Pro key={i} onClick={() => handleClick(product._id!)}>
                   <ImageCon>
                     <Image
                       src={product.image}
