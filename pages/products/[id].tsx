@@ -8,6 +8,10 @@ import InterestedProducts from "../../components/InterestedProducts";
 import { BASE_URL } from "../../util/url";
 
 const Product: NextPage<{ product: IProduct }> = ({ product }) => {
+
+
+  if(!product) return <p>loading...</p>
+
   return (
     <div>
       <Head>
@@ -26,12 +30,16 @@ export async function getStaticPaths() {
   const res = await fetch(`${BASE_URL}products`);
 
   const products = (await res.json()) as IProduct[];
+  
 
   const ids = products.map((product) => product._id);
 
+
+  console.log(ids.length)
+
   const paths = ids.map((id) => ({ params: { id } }));
 
-  return { paths, fallback: "blocking" };
+  return { paths, fallback: false };
 }
 
 export async function getStaticProps({ params: { id } }: any) {
