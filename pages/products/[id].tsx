@@ -31,12 +31,15 @@ export async function getStaticPaths() {
 
   const paths = ids.map((id) => ({ params: { id } }));
 
-  return { paths, fallback: false };
+  return { paths, fallback: "blocking" };
 }
 
 export async function getStaticProps({ params: { id } }: any) {
+
   const res = await fetch(`${BASE_URL}products/${id}`);
+
   const product = (await res.json()) as IProduct;
+
   return {
     props: {
       product,
